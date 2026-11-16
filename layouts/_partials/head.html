@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+{{- $pt := partial "loc.html" (dict "m" .Params "k" "title") | default .Title }}
+{{- if eq .Kind "404" }}{{ $pt = T "notFound" }}{{ end }}
+{{- $title := site.Title }}
+{{- if not .IsHome }}{{ $title = printf "%s · %s" (partial "sima.html" $pt) site.Title }}{{ end }}
+<title>{{ $title }}</title>
+{{- $desc := site.Params.description }}
+{{- if not .IsHome }}
+  {{- $b := partial "body.html" . | plainify | replaceRE `[⟦⟧]` "" | strings.TrimSpace }}
+  {{- with $b }}{{ $desc = . | truncate 180 }}{{ end }}
+{{- end }}
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{- if not hugo.IsProduction }}
+<meta name="robots" content="noindex">
+{{- end }}
+{{- $img := "" }}
+{{- with .Params.borito }}{{ $img = . }}{{ else }}{{ with .Params.portre }}{{ $img = . }}{{ else }}{{ with .Params.kep }}{{ $img = . }}{{ else }}{{ with .Params.kepek }}{{ $img = (index . 0).kep }}{{ end }}{{ end }}{{ end }}{{ end }}
+{{- if not $img }}{{ $img = site.Params.shareImage }}{{ end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ partial "sima.html" $pt }}{{ end }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ if eq site.Language.Lang "en" }}en_GB{{ else }}hu_HU{{ end }}">
+{{- with resources.Get (strings.TrimPrefix "/" $img) }}
+{{- $og := .Fill "1200x630 Center jpg q80" }}
+<meta property="og:image" content="{{ $og.Permalink }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+{{- end }}
+{{- /* böngészőfül-ikon: a kis kék virág a Greener zine hátsó borítójáról */}}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}?v=2" sizes="any">
+<link rel="icon" href="{{ "favicon-32.png" | relURL }}?v=2" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ "favicon-192.png" | relURL }}?v=2" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}?v=2">
+<link rel="preload" href="{{ "fonts/sourceserif-latin-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/nunito-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- with resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{- end }}
+{{- /* Általános háttér minden oldal mögött: Weboldal-grafika/Weboldal-kepernyokepek/hatter_general.png,
+     a lábléc-sáv nélkül, alul-felül egymásba úsztatva, hogy ismételve se legyen varrata (assets/images/hatter/hatter-general.png).
+     Kisebb (600 px), veszteségmentes PNG-ként: a tömörített WebP-ben (még q95-ön is) a sima, sötét átmenetek kockásodtak, „pixelesnek”
+     látszottak; a kép eleve elmosott, így a böngésző simán, kockák nélkül nagyítja fel. */}}
+{{- with resources.Get "images/hatter/hatter-general.png" }}{{ $bg := .Resize "600x png" }}
+<style>body{background-image:url({{ $bg.RelPermalink | safeCSS }})}</style>
+{{- end }}
+{{- if .IsHome }}{{ partial "jsonld.html" . }}{{ end }}
+{{- partial "scholar.html" . }}

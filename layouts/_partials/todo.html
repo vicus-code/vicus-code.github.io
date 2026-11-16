@@ -1,0 +1,11 @@
+{{- /*
+  Kész HTML-ben a ⟦…⟧ közötti, még jóváhagyásra váró szöveget sárgán kiemeli.
+  Élesítéskor (hugo build) a check.html megállítja a közzétételt, amíg van ilyen.
+*/ -}}
+{{- $h := . | default "" | string -}}
+{{- if hugo.IsProduction -}}
+  {{- $h = replaceRE `⟦([^⟧]*)⟧` "$1" $h -}}
+{{- else -}}
+  {{- $h = replaceRE `⟦([^⟧]*)⟧` `<mark class="todo" title="Jóváhagyásra vár">$1</mark>` $h -}}
+{{- end -}}
+{{- $h | safeHTML -}}

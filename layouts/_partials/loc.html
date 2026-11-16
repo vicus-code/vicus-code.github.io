@@ -1,0 +1,9 @@
+{{- /*
+  Nyelvhez illő mezőérték: angol oldalon a „kulcs_en” mezőt adja, ha van,
+  különben a magyart. Használat: partial "loc.html" (dict "m" .Params "k" "title")
+*/ -}}
+{{- $v := index .m .k -}}
+{{- if eq site.Language.Lang "en" -}}
+  {{- with index .m (printf "%s_en" .k) -}}{{- $v = . -}}{{- end -}}
+{{- end -}}
+{{- return $v -}}

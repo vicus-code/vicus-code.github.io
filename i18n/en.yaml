@@ -1,0 +1,93 @@
+skip: Skip to content
+mainMenu: Main menu
+otherLang: Magyar
+otherLangCode: HU
+photo: Photo
+photoCredits: Photo credits are given with each image.
+dateFormat: "2 Jan 2006"
+dateShort: "2 Jan"
+releases: Releases
+latestReleases: Latest releases
+allReleases: All releases
+projects: Projects
+listen: Listen
+press: Press and radio
+release: Release
+artist: Artist
+released: Released
+label: Label
+format: Format
+licence: Licence
+tracks: Tracks
+photos: Photos
+artists: Artists
+upcoming: Upcoming
+upcomingGigs: Upcoming events
+recentGigs: Recent events
+allGigs: All events
+past: Past
+noGigs: No current events.
+date: Date
+venue: Venue
+event: Event
+project: Project
+details: details
+video: video
+technique: Technique
+size: Size
+related: Related
+researchWriting: Text
+all: All
+author: Author
+year: Year
+publishedIn: Published in
+institution: Institution
+supervisor: Supervisor
+coauthor: co-author
+downloadPdf: Download PDF
+open: Open
+citation: Citation
+contact: Contact
+draft: draft
+draftLong: draft – not shown on the live site
+loadPlayer: "▶ Play"
+loadVideo: "▶ Video"
+playerNote: The player loads from Bandcamp.
+videoNote: The video loads from YouTube.
+notFound: Page not found
+notFoundText: It may have moved.
+backHome: Back to the home page
+# Kiadvány- és írástípusok angolul (a magyar név a kulcs)
+Szólóalbum: Solo album
+Album: Album
+EP: EP
+Kislemez: Single
+Kazetta: Cassette
+Split: Split
+Split kazetta: Split cassette
+Válogatás: Compilation
+Tanulmány: Articles
+Szakdolgozat: Thesis
+Kurátori munka: Curatorial work
+Kritika: Reviews
+"Előadás, beszélgetés": Talks and conversations
+Publicisztika: Journalism
+Fordítás: Translation
+qo: "“"
+qc: "”"
+music: Music
+visual: Image
+research: Text
+Filmzene: Film score
+monthFormat: "January 2006"
+Válogatás LP: Compilation LP
+prevPage: previous
+nextPage: next
+zineFlip: "The zine, page by page"
+eventPhotos: Concert photos (scroll sideways)
+eventCount:
+  one: "{{ .Count }} event"
+  other: "{{ .Count }} events"
+contributions: Contributions
+pressDate: "Jan 2006"
+randomPage: Random page

@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{- partial "szoveg-disz.html" . }}
+{{ partial "oldalfej.html" . }}
+<section class="section">
+  {{- /* szoveg-lista: a doboz az alma teljes magasságáig ér, akkor is, ha az alma az utolsó csoport mellett lóg le */}}
+  <div class="wrap szoveg-lista">
+    {{- $pages := .Pages.ByDate.Reverse }}
+    {{- range (.Params.tipusok | default (slice "Tanulmány" "Szakdolgozat" "Kurátori munka" "Kritika" "Előadás, beszélgetés" "Publicisztika" "Fordítás")) }}
+      {{- $t := . }}
+      {{- $items := where $pages "Params.tipus" $t }}
+      {{- with $items }}
+      {{- /* az alma a Fordítás csoport magasságában úszik jobbra */}}
+      {{- if eq $t "Fordítás" }}{{ partial "szoveg-alma.html" . }}{{ end }}
+      <h2>{{ partial "tipus.html" $t }}</h2>
+      <ul class="pubs">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
+      {{- end }}
+    {{- end }}
+  </div>
+</section>
+{{ end }}

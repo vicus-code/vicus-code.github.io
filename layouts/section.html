@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{- if eq .Section "rolam" }}{{ partial "cv-hatter.html" . }}{{ end }}
+{{- $t := partial "loc.html" (dict "m" .Params "k" "title") }}
+<div class="wrap">
+  {{- if .Params.portre }}
+  <div class="about">
+    <div class="about-side">
+    <figure>
+      {{ partial "img.html" (dict "src" .Params.portre "alt" (partial "loc.html" (dict "m" .Params "k" "portre_alt")) "class" "portrait" "style" (printf "object-position: %s" (.Params.portre_pozicio | default "50% 50%")) "widths" (slice 500 900) "sizes" "(min-width: 52rem) 24rem, 90vw" "loading" "eager") }}
+      {{- with partial "loc.html" (dict "m" .Params "k" "portre_credit") }}<figcaption>{{ T "photo" }}: {{ partial "md.html" . }}</figcaption>{{ end }}
+    </figure>
+    </div>
+    <div{{ if eq $.Section "rolam" }} class="van-disz"{{ end }}>
+      {{- if eq $.Section "rolam" }}{{ partial "cv-disz.html" $ }}{{ end }}
+      <h1>{{ partial "md.html" $t }}</h1>
+      <div class="prose">{{ partial "todo.html" (partial "body.html" .) }}</div>
+      {{ partial "cv.html" . }}
+      {{ partial "contact.html" . }}
+    </div>
+  </div>
+  {{- else }}
+  <header class="page-head"><h1>{{ partial "md.html" $t }}</h1></header>
+  <div class="prose">{{ partial "todo.html" (partial "body.html" .) }}</div>
+  {{- end }}
+</div>
+{{ end }}

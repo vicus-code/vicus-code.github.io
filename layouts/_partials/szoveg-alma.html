@@ -1,0 +1,14 @@
+{{- /* A Szöveg oldal almája (Greener 10_11, eredeti irányában): a Fordítás csoport magasságában jobbról jön be, jobbra úszik,
+     a tételek jobbról kerülik ki. A rétegek az úszó doboz közepe körül állnak; nagyobb része a jobb margóba lóg. */ -}}
+<div class="alma-hely" aria-hidden="true">
+{{- partial "disz.html" (slice
+  (dict "c" "disz-alma" "rajz" "szoveg/alma.png" "retegek" (slice
+    (dict "f" "kod/felho-nagy-1.png" "c" "felho" "k" 2.2)
+    (dict "f" "szoveg/alma-arnyek.png" "c" "arnyek" "k" 1.36)
+    (dict "f" "szoveg/alma-kod-tav.png" "c" "kod-tav" "k" 1.7)
+    (dict "f" "szoveg/alma-fatyol.png" "c" "fatyol" "k" 2.4)
+    (dict "f" "szoveg/alma.png" "c" "szellem" "k" 1.5)
+    (dict "f" "szoveg/alma-kod.png" "c" "kod" "k" 1.7)
+    (dict "f" "szoveg/alma-feny-tag.png" "c" "feny-tag" "k" 1.24)
+    (dict "f" "szoveg/alma-feny.png" "c" "feny" "k" 1.12)))) }}
+</div>

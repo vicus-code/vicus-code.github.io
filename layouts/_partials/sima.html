@@ -1,0 +1,9 @@
+{{- /* Rövid szöveg (cím, alt) sima szövegként, a böngészőfül címéhez, a megosztási címhez és az alt szövegekhez:
+     a Markdown jelölések (*dőlt*, **félkövér**, [szöveg](link), \. ) és a ⟦ ⟧ jelek nélkül.
+     Szándékosan nem markdownify: az „1. …” vagy „2019. …” kezdetű szövegből az listát csinálna, és elveszne a szám. */ -}}
+{{- $s := . | default "" | string -}}
+{{- $s = replaceRE `\[([^\]]*)\]\([^)]*\)` "$1" $s -}}
+{{- $s = replaceRE `\*+([^*]+)\*+` "$1" $s -}}
+{{- $s = replaceRE `\\(.)` "$1" $s -}}
+{{- $s = $s | plainify | replaceRE `[⟦⟧]` "" | strings.TrimSpace -}}
+{{- return $s -}}

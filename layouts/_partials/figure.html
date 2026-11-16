@@ -1,0 +1,10 @@
+{{- /* Kép képaláírással és fotós nevével. A hívó a nyelvnek megfelelő alt/felirat értéket adja. */ -}}
+<figure>
+  {{ partial "img.html" (dict "src" .kep "alt" (.alt | default .felirat) "sizes" (.sizes | default "(min-width: 74rem) 22rem, (min-width: 40rem) 45vw, 92vw") "class" .class "loading" .loading) }}
+  {{- if or .felirat .credit }}
+  <figcaption>
+    {{- with .felirat }}{{ partial "md.html" . }}{{ end }}
+    {{- with .credit }}{{ if $.felirat }} · {{ end }}<span class="credit">{{ T "photo" }}: {{ partial "md.html" . }}</span>{{ end -}}
+  </figcaption>
+  {{- end }}
+</figure>

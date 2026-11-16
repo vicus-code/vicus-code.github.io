@@ -1,0 +1,15 @@
+{{- /*
+  BIZTONSÁGI ZÁR: élesítéskor (hugo build / GitHub) leállítja a közzétételt,
+  ha valahol még ⟦…⟧ közötti, jóvá nem hagyott szöveg maradt.
+  Előnézetben (hugo server) ezek sárgán látszanak.
+*/ -}}
+{{- if hugo.IsProduction -}}
+  {{- with .File -}}
+    {{- if strings.Contains (printf "%s %s" $.RawContent (jsonify $.Params)) "⟦" -}}
+      {{- errorf "\n\nJÓVÁHAGYÁSRA VÁR: a(z) „%s” fájlban még van ⟦…⟧ jelölésű szöveg.\nHagyd jóvá (töröld a ⟦ ⟧ jeleket), írd át, vagy tedd vázlatba (draft: true).\n" .Path -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if and $.IsHome (strings.Contains (jsonify hugo.Data) "⟦") -}}
+    {{- errorf "\n\nJÓVÁHAGYÁSRA VÁR: a data/ mappa egyik fájljában (pl. koncertek.yaml) még van ⟦…⟧ jelölésű szöveg.\n" -}}
+  {{- end -}}
+{{- end -}}

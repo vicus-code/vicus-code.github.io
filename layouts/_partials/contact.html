@@ -1,0 +1,6 @@
+<h2>{{ T "contact" }}</h2>
+{{- with partial "loc.html" (dict "m" .Params "k" "kapcsolat") }}<div class="prose">{{ partial "md.html" . }}</div>{{ end }}
+{{- with partial "loc.html" (dict "m" .Params "k" "email") }}
+<p class="email-line"{{ with partial "loc.html" (dict "m" $.Params "k" "email_olvaso") }} aria-label="{{ . }}"{{ end }}>{{ . }}</p>
+{{- end }}
+{{- /* a linkek (Instagram, Ágencia, Subvert, YouTube, Behance, Academia.edu) nem ismétlődnek itt: ott vannak az alsó menüben */}}

@@ -1,0 +1,2 @@
+{{- /* A tétel fölötti sor: a szakasz neve linkként (vissza a listához), utána a típus vagy az év. Bemenet: dict "p" (az oldal), "utana" (szöveg). */ -}}
+<p class="kicker">{{ with .p.Parent }}<a href="{{ .RelPermalink }}">{{ partial "loc.html" (dict "m" .Params "k" "title") }}</a>{{ end }} / {{ .utana }}</p>

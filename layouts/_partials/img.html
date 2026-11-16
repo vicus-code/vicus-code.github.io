@@ -1,0 +1,24 @@
+{{- /*
+  Reszponzív kép. A képek az assets/images mappában vannak, a tartalomban
+  „/images/…” formában hivatkozunk rájuk. A Hugo magától kicsinyít és WebP-t készít.
+  Paraméterek: src, alt, class, sizes, widths, loading
+*/ -}}
+{{- $src := .src | default "" | string -}}
+{{- $alt := partial "sima.html" .alt -}}
+{{- with resources.Get (strings.TrimPrefix "/" $src) -}}
+  {{- $orig := . -}}
+  {{- $widths := $.widths | default (slice 480 800 1200 1800) -}}
+  {{- $set := slice -}}
+  {{- range $widths -}}
+    {{- if le . $orig.Width -}}
+      {{- $r := $orig.Resize (printf "%dx webp q78" .) -}}
+      {{- $set = $set | append (printf "%s %dw" $r.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $fw := 1200 -}}
+  {{- if lt $orig.Width 1200 }}{{ $fw = $orig.Width }}{{ end -}}
+  {{- $fallback := $orig.Resize (printf "%dx jpg q80" $fw) -}}
+  <img src="{{ $fallback.RelPermalink }}"{{ with $set }} srcset="{{ delimit . ", " }}"{{ end }} sizes="{{ $.sizes | default "100vw" }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ $alt }}" loading="{{ $.loading | default "lazy" }}" decoding="async"{{ with $.class }} class="{{ . }}"{{ end }}{{ with $.style }} style="{{ . | safeCSS }}"{{ end }}>
+{{- else -}}
+  {{- with $src }}<img src="{{ . }}" alt="{{ $alt }}" loading="lazy"{{ with $.class }} class="{{ . }}"{{ end }}>{{ end -}}
+{{- end -}}

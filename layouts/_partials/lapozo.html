@@ -1,0 +1,30 @@
+{{- /* Lapozható zine (Issuu-szerű; Greener a Kép oldalon, az Inertia dalszövegzine a lemez oldalán). Bemenet: a kepek lista. Az álló kép egy lap (borító, hátlap), a fekvő kép egy nyitott oldalpár,
+     ami mindig egyben marad. JavaScript nélkül és telefonon oldalra húzható sor, oldalpáronként; széles képernyőn a main.js
+     ugyanebből egy kinyitható könyvet épít, amelyben a lapok 3D-ben fordulnak (kattintás a jobb/bal lapra, nyilak, húzás). */ -}}
+{{- $lapok := slice }}
+{{- range . }}
+  {{- $k := . }}
+  {{- $alt := partial "sima.html" (partial "loc.html" (dict "m" $k "k" "alt")) }}
+  {{- with resources.Get (strings.TrimPrefix "/" $k.kep) }}
+    {{- /* legfeljebb 2200 px széles, hogy a dalszövegzine apró betűi is olvashatók legyenek (a Greener képei eleve 1400 px-esek) */}}
+    {{- $w := 2200 }}{{ if lt .Width 2200 }}{{ $w = .Width }}{{ end }}
+    {{- $r := .Resize (printf "%dx webp q80" $w) }}
+    {{- $lapok = $lapok | append (dict "src" $r.RelPermalink "w" $r.Width "h" $r.Height "fel" (cond (gt .Width .Height) "par" "egesz") "alt" $alt) }}
+  {{- end }}
+{{- end }}
+{{- /* a könyv és a lapsor aránya az első oldalpárból (Greener kb. 1.4, Inertia dalszövegzine kb. 1.25) */}}
+{{- $ar := 0.0 }}{{ range $lapok }}{{ if and (eq .fel "par") (eq $ar 0.0) }}{{ $ar = div (float .w) .h }}{{ end }}{{ end }}
+<div class="lapozo" data-lapozo{{ if gt $ar 0.0 }} style="--ar: {{ printf "%.4f" $ar }}"{{ end }}>
+  <div class="lapozo-szalag" tabindex="0" role="region" aria-label="{{ T "zineFlip" }}">
+    {{- range $i, $p := $lapok }}
+    <figure class="lap lap-{{ $p.fel }}" data-fel="{{ $p.fel }}" style="aspect-ratio: {{ $p.w }} / {{ $p.h }}">
+      <img src="{{ $p.src }}" alt="{{ $p.alt }}" width="{{ $p.w }}" height="{{ $p.h }}" loading="{{ if lt $i 3 }}eager{{ else }}lazy{{ end }}" decoding="async">
+    </figure>
+    {{- end }}
+  </div>
+  <div class="lapozo-sav">
+    <button type="button" class="lapozo-gomb lapozo-elozo">{{ T "prevPage" }}</button>
+    <span class="lapozo-szam" aria-live="polite"></span>
+    <button type="button" class="lapozo-gomb lapozo-kovetkezo">{{ T "nextPage" }}</button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{{- /* Színek: a projekteké a Zene oldal projektlistájából (szin:), a helyszíneké a nevükből számolódik, így mindig ugyanaz.
+     A projekt neve angolul a projektlista nev_en mezőjéből (pl. Éva Bárdits); a szín a magyar név szerint. */ -}}
+{{- $projSzin := dict }}
+{{- $projNev := dict }}
+{{- with site.GetPage "/zene" }}{{ range $p := .Params.projektek }}{{ with $p.szin }}{{ $projSzin = merge $projSzin (dict $p.nev .) }}{{ end }}{{ $projNev = merge $projNev (dict $p.nev (partial "loc.html" (dict "m" $p "k" "nev"))) }}{{ end }}{{ end }}
+{{- $szinek := slice "rozsaszin" "piros" "barack" "zold" "turkiz" "kek" "lila" }}
+<table class="gigs"{{ with .cimke }} aria-label="{{ . }}"{{ end }}>
+  <colgroup><col class="c-date"><col class="c-where"><col><col class="c-proj"></colgroup>
+  <thead class="visually-hidden">
+    <tr><th scope="col">{{ T "date" }}</th><th scope="col">{{ T "venue" }}</th><th scope="col">{{ T "event" }}</th><th scope="col">{{ T "project" }}</th></tr>
+  </thead>
+  <tbody>
+    {{- range .rows }}
+    {{- $ev := partial "loc.html" (dict "m" . "k" "esemeny") }}
+    {{- $city := partial "loc.html" (dict "m" . "k" "varos") }}
+    {{- $note := partial "loc.html" (dict "m" . "k" "megjegyzes") }}
+    {{- $solo := not (or $ev .link) }}
+    <tr>
+      {{- /* többnapos esemény: magyarul „2022. 10. 28.–11. 04.”, angolul „28 Oct – 4 Nov 2022”; ha más évre nyúlik át, mindkét dátum teljes */}}
+      {{- $kezd := time.AsTime .datum }}
+      <td class="date">
+        {{- with .datum_vege }}{{ $veg := time.AsTime . }}
+          {{- if ne $kezd.Year $veg.Year }}<span class="nw">{{ time.Format (T "dateFormat") $kezd }}</span>{{ if eq site.Language.Lang "en" }} – {{ else }}–{{ end }}<span class="nw">{{ time.Format (T "dateFormat") $veg }}</span>
+          {{- else if eq site.Language.Lang "en" }}<span class="nw">{{ time.Format (T "dateShort") $kezd }}</span> – <span class="nw">{{ time.Format (T "dateFormat") $veg }}</span>
+          {{- else }}<span class="nw">{{ time.Format (T "dateFormat") $kezd }}</span>–<span class="nw">{{ time.Format (T "dateShort") $veg }}</span>{{ end }}
+        {{- else }}<span class="nw">{{ time.Format (cond (.csak_honap | default false) (T "monthFormat") (T "dateFormat")) $kezd }}</span>{{ end -}}
+      </td>
+      <td class="where"><strong class="szin-{{ index $szinek (mod (hash.FNV32a (printf "h-%s" .helyszin)) (len $szinek)) }}">{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "helyszin")) }}</strong>{{ with $city }}<span class="city">, {{ partial "md.html" . }}</span>{{ end }}</td>
+      <td class="what">
+        {{- with .link }}<a href="{{ . }}">{{ partial "md.html" ($ev | default (T "details")) }}</a>{{ else }}{{ partial "md.html" $ev }}{{ end }}
+        {{- with .video }}<a class="video{{ if $solo }} solo{{ end }}" href="{{ . }}">{{ T "video" }}</a>{{ end }}
+        {{- with $note }}<br><span class="meta">{{ partial "md.html" . }}</span>{{ end -}}
+      </td>
+      <td class="proj">{{ with .projekt }}<span class="tag{{ with index $projSzin . }} szin-{{ . }}{{ end }}">{{ index $projNev . | default . }}</span>{{ end }}</td>
+    </tr>
+    {{- end }}
+  </tbody>
+</table>

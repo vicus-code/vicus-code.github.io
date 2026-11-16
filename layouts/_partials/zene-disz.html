@@ -1,0 +1,18 @@
+{{- /* A Zene oldal díszei (a hullámos virág és a fotó a sajtó-szakaszban van: zene-disz-sajto.html).
+     Középtájt, a ZENE cím magasságában, 20°-kal jobbra döntve, halkan derengve az Inertia színes szkennjének (inertia-szken-5) csörgősipkája,
+     a körülötte lévő színes pontok nélkül (Weboldal-grafika/Inertia-szken/bohocsapka-tiszta.png).
+     Balra, a háttérben az Inertia dalszövegzine tűz melletti hullámos vízvonalai (tűzvíz.png jobb fele, kivágás: Weboldal-grafika/Inertia-dalszovegzine/viz-kivagas.png),
+     nagyban, elmosva, felhősen, a CV arcával azonos rétegekkel. */}}
+{{- partial "disz.html" (slice
+  (dict "c" "disz-zviz" "rajz" "" "retegek" (slice
+    (dict "f" "diszek/zene-viz-arnyek.png" "c" "arc-arnyek" "k" 2.0485 "meret" 400)
+    (dict "f" "diszek/zene-viz-arny.png" "c" "arc-arny" "k" 1.3511 "meret" 500)
+    (dict "f" "diszek/zene-viz-fatyol.png" "c" "arc-fatyol" "k" 1.8737 "meret" 500)
+    (dict "f" "diszek/zene-viz.png" "c" "arc" "k" 1.054 "meret" 900)
+    (dict "f" "diszek/zene-viz-feny.png" "c" "arc-feny" "k" 1.3511 "meret" 600)))
+  (dict "c" "disz-bohoc" "rajz" "diszek/bohoc.png" "retegek" (slice
+    (dict "f" "diszek/bohoc-fatyol.png" "c" "fatyol" "k" 2.3997)
+    (dict "f" "diszek/bohoc-kod.png" "c" "kod" "k" 1.7)
+    (dict "f" "diszek/bohoc-feny-tag.png" "c" "feny-tag" "k" 1.2385)
+    (dict "f" "diszek/bohoc-feny.png" "c" "feny" "k" 1.1599)))
+) }}

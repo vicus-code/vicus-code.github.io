@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="wrap">
+  <header class="page-head">
+    {{- if .Draft }}<span class="draft-badge">{{ T "draftLong" }}</span>{{ end }}
+    <h1>{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "title")) }}</h1>
+  </header>
+  <div class="prose">{{ partial "todo.html" (partial "body.html" .) }}</div>
+</article>
+{{ end }}

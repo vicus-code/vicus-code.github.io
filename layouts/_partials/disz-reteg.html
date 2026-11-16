@@ -1,0 +1,4 @@
+{{- /* Egy díszréteg (lásd disz.html): „f” kép az assets/images alatt, „c” osztály, „k” szélesség a rajzéhoz képest, „dx”/„dy” eltolás, „meret” a kép pixelszélessége. */}}
+{{- with resources.Get (printf "images/%s" .f) }}{{ $i := .Resize (printf "%dx webp q%d" ($.meret | default 600) ($.q | default 74)) }}
+<img class="r {{ $.c }}" style="--k: {{ $.k }}{{ with $.dx }}; --dx: {{ . }}{{ end }}{{ with $.dy }}; --dy: {{ . }}{{ end }}" src="{{ $i.RelPermalink }}" alt="" decoding="async">
+{{- end }}

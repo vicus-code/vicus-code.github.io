@@ -1,0 +1,19 @@
+{{- $p := . }}
+{{- $t := partial "loc.html" (dict "m" .Params "k" "title") }}
+{{- $href := "" }}
+{{- if or .Content .Params.body_en }}{{ $href = .RelPermalink }}{{ else }}{{ with .Params.link }}{{ $href = . }}{{ end }}{{ end }}
+{{- $bits := slice }}
+{{- with partial "loc.html" (dict "m" .Params "k" "hol") }}{{ $bits = $bits | append . }}{{ end }}
+{{- with partial "loc.html" (dict "m" .Params "k" "szerzotarsak") }}{{ $bits = $bits | append (printf "%s: %s" (partial "loc.html" (dict "m" $p.Params "k" "szerzotars_cimke") | default (T "coauthor")) .) }}{{ end }}
+<li>
+  <span class="year">{{ .Date.Year }}</span>
+  <div>
+    <p class="title">
+      {{- if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}
+      {{- with $href }}<a href="{{ . }}">{{ partial "md.html" $t }}</a>{{ else }}{{ partial "md.html" $t }}{{ end -}}
+    </p>
+    {{- /* ha a tételnek saját oldala is van, a külső link a listában is látszik (pl. Fanzin-anatómia → artpool.hu) */}}
+    {{- $kulso := "" }}{{ if and .Params.link (eq $href .RelPermalink) }}{{ $kulso = .Params.link }}{{ end }}
+    {{- if or $bits $kulso }}<p class="meta">{{ with $bits }}{{ partial "md.html" (delimit . " · ") }}{{ end }}{{ with $kulso }}{{ if $bits }} · {{ end }}<a href="{{ . }}">{{ strings.TrimPrefix "www." (urls.Parse .).Host }}</a>{{ end }}</p>{{ end }}
+  </div>
+</li>

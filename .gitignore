@@ -1,0 +1,13 @@
+# Hugo által generált fájlok – nem kell feltölteni
+public/
+resources/_gen/
+.hugo_build.lock
+# Mac és helyi beállítások
+.DS_Store
+.claude/
+# Munkaanyag (a rajzok PNG-ben, képernyőképek) – a gépen marad, nem kerül fel a GitHubra
+Weboldal-grafika/
+# Helyi export – nem kerül fel
+social export/
+# Helyi útmutató – nem kerül fel
+KARBANTARTAS.md

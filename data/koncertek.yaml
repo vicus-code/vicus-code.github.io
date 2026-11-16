@@ -1,0 +1,365 @@
+# Koncertek. Új sor: másold le egy meglévőt, és írd át. A dátum formája: ÉÉÉÉ-HH-NN.
+# Ami ⟦…⟧ jelek között van, az jóváhagyásra vár (élesben addig nem megy ki az oldal).
+- datum: 2026-09-20
+  helyszin: Trafó, Nagyterem
+  helyszin_en: "Trafó, Main Hall"
+  varos: Budapest
+  esemeny: "*Paraszttá leendés* – Vidék–város viszonyok (összművészeti fókusz)"
+  esemeny_en: "*Paraszttá leendés* – Rural–Urban Relations (interdisciplinary focus)"
+  projekt: Gondozási Központ
+  link: https://trafo.hu/programok/fokusz_parasztta_leendes
+- datum: 2025-10-11
+  helyszin: Lumen
+  varos: Budapest
+  esemeny: Gondozási Központ, Fukasa
+  esemeny_en: "Gondozási Központ, Fukasa"
+  projekt: Gondozási Központ
+- datum: 2025-08-23
+  helyszin: Hangfarm
+  varos: Ellend
+  esemeny: Ellendpont
+  projekt: Gondozási Központ
+  video: https://www.youtube.com/watch?v=vrSc6KnOS1E
+- datum: 2025-06-07
+  helyszin: Recyclart
+  varos: Brüsszel
+  varos_en: "Brussels"
+  esemeny: SCKRUUHK (schiev × KRAAK × UH Fest)
+  projekt: Gondozási Központ
+- datum: 2025-03-28
+  helyszin: Kondor Béla Közösségi Ház
+  helyszin_en: "Kondor Béla Community House"
+  varos: Budapest
+  esemeny: "A *Nem az a punk, aki…* 2. kötetének (Nők a magyar undergroundban) bemutatója"
+  esemeny_en: "Launch of *Nem az a punk, aki…* vol. 2 (Women in the Hungarian underground)"
+  projekt: Gondozási Központ
+- datum: 2025-02-07
+  helyszin: Lumen
+  varos: Budapest
+  esemeny: "Szenderák Bence: *Csendrendelet* – kötetbemutató"
+  esemeny_en: "Bence Szenderák: *Csendrendelet* – book launch"
+  projekt: Gondozási Központ
+- datum: 2024-05-23
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: A Mérce támogatói estje
+  esemeny_en: "Mérce supporters’ night"
+  projekt: Gondozási Központ
+- datum: 2024-05-23
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "Örökre elég volt ebből? – kerekasztal a magyar popzenéről és a politikáról"
+  esemeny_en: "“Örökre elég volt ebből?” – roundtable on Hungarian pop music and politics"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/750438307291275/
+  video: https://youtu.be/lIDjL0i9sgA
+- datum: 2024-05-15
+  helyszin: Tilos Rádió
+  helyszin_en: "Tilos Rádió"
+  varos: Budapest
+  esemeny: "*Drágám, hol a vacsorám?* – A népzene kisajátítása a kortárs magyar könnyűzenében"
+  esemeny_en: "*Drágám, hol a vacsorám?* – The appropriation of folk music in contemporary Hungarian popular music"
+  projekt: Bárdits Éva
+  link: https://tilos.hu/episode/dragam-hol-a-vacsoram/2024/05/15
+- datum: 2023-02-26
+  helyszin: Noise'n'Roses
+  varos: Budapest
+  esemeny: ""
+  projekt: Gondozási Központ
+- datum: 2022-12-15
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: '\_csak\_hangok\_ – a *CSAK ezt az 1-et kértem!* feminista fesztivál keretében'
+  esemeny_en: '\_csak\_hangok\_ – part of the feminist festival *CSAK ezt az 1-et kértem!*'
+  projekt: Gondozási Központ
+- datum: 2022-10-28
+  datum_vege: 2022-11-04
+  helyszin: Inter Arts Center
+  varos: Malmö
+  esemeny: Bananskolen (Goodiepal)
+  projekt: Gondozási Központ
+- datum: 2022-06-16
+  helyszin: BME
+  helyszin_en: "Budapest University of Technology and Economics"
+  varos: Budapest
+  esemeny: "*Art Work and Housework* (Művészeti munka és házimunka) – kerekasztal a láthatatlan munkáról, moderátorként"
+  esemeny_en: "*Art Work and Housework* – roundtable on invisible labour, as moderator"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/318094107112539/
+- datum: 2022-05-05
+  helyszin: Lumen
+  varos: Budapest
+  esemeny: Goodiepal & Pals (DK) + Bertók Márton & Bárdits Éva
+  esemeny_en: "Goodiepal & Pals (DK) + Márton Bertók & Éva Bárdits"
+  projekt: Bárdits Éva
+  link: https://www.instagram.com/p/CdAroBMISaR/
+- datum: 2022-01-29
+  helyszin: Lumen
+  varos: Budapest
+  esemeny: Koncert
+  esemeny_en: "Concert"
+  projekt: Bárdits Éva
+- datum: 2021-10-27
+  helyszin: Toldi Klub
+  varos: Budapest
+  esemeny: Holnaplányok + Human Ramen – a zenekar utolsó koncertje
+  esemeny_en: "Holnaplányok + Human Ramen – the band’s last concert"
+  projekt: Holnaplányok
+  video: https://www.youtube.com/watch?v=HtnLwx1WVvs
+- datum: 2021-10-02
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: Határidő buli (Keret Blog, Kikeltető)
+  esemeny_en: "Határidő party (Keret Blog, Kikeltető)"
+  projekt: Holnaplányok
+- datum: 2021-08-14
+  helyszin: Kolorádó Fesztivál, Keret színpad
+  helyszin_en: "Kolorádó Festival, Keret stage"
+  varos: Nagykovácsi
+  esemeny: Human Ramen, Holnaplányok, Dupla Eutanázia
+  esemeny_en: "Human Ramen, Holnaplányok, Dupla Eutanázia"
+  projekt: Holnaplányok
+- datum: 2021-07-30
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: "*The Punk Singer*-vetítés, Holnaplányok, Dupla Eutanázia"
+  esemeny_en: "*The Punk Singer* screening, Holnaplányok, Dupla Eutanázia"
+  projekt: Holnaplányok
+- datum: 2021-07-10
+  helyszin: Bánkitó Fesztivál, Szabad Terek színpad
+  helyszin_en: "Bánkitó Festival, Szabad Terek stage"
+  varos: Bánk
+  esemeny: ""
+  projekt: Holnaplányok
+- datum: 2020-03-07
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "Nem virágot akarunk! – a NEM! minifesztiválja"
+  esemeny_en: "We don’t want flowers! – NEM!’s mini festival"
+  projekt: Holnaplányok
+  link: https://www.facebook.com/events/814271292384109/
+- datum: 2020-02-18
+  helyszin: East Topics
+  varos: Budapest
+  esemeny: "Vanitas – az Exotic Girlfriend télbúcsúztatója"
+  esemeny_en: "Vanitas – Exotic Girlfriend’s farewell-to-winter night"
+  projekt: Holnaplányok
+- datum: 2020-02-01
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: Tegnapsrácok-buli az Ukmukfukk Zinefeszt keretében
+  esemeny_en: "Tegnapsrácok party, part of Ukmukfukk Zine Fest"
+  projekt: Holnaplányok
+- datum: 2020-01-24
+  helyszin: Grand Café
+  varos: Szeged
+  varos_en: "Szeged"
+  esemeny: Pindúr Punkzsúr – Krumpliscukor, Holnaplányok, Testrablók
+  esemeny_en: "Pindúr Punkzsúr – Krumpliscukor, Holnaplányok, Testrablók"
+  projekt: Holnaplányok
+- datum: 2022-07-02
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: Hexa, Gurguj, Bárdits Éva
+  esemeny_en: "Hexa, Gurguj, Éva Bárdits"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/453978432730891/
+  video: https://www.youtube.com/watch?v=aC8QpXUi6sU
+- datum: 2018-10-18
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "Neményi Lilla & Bárdits Vicus – dupla szóló"
+  esemeny_en: "Lilla Neményi & Vicus Bárdits – double solo"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/1875097172537580/
+- datum: 2016-09-24
+  helyszin: Müszi
+  varos: Budapest
+  esemeny: "Lost Harbours (UK/LV), Waterflower (LV) & Aires Altos"
+  esemeny_en: "Lost Harbours (UK/LV), Waterflower (LV) & Aires Altos"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/634263573415365/
+- datum: 2023-10-04
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: Pletyka, Trutat, The Calendars (US), Mairead Band (US)
+  esemeny_en: "Pletyka, Trutat, The Calendars (US), Mairead Band (US)"
+  projekt: Trutat
+- datum: 2023-08-01
+  csak_honap: true
+  helyszin: Kesztyűgyár
+  varos: Budapest
+  esemeny: Zajkeltő, hangszerekkel ismerkedő workshop – Lázadó Lányok tábor (NANE, PATENT)
+  esemeny_en: "Noise-making and instrument workshop – Lázadó Lányok camp (NANE, PATENT)"
+  projekt: Bárdits Éva
+- datum: 2023-05-21
+  helyszin: Szeszgyár
+  varos: Budapest
+  esemeny: A Nők Egymásért Mozgalom majálisa (NEM! majális)
+  esemeny_en: "NEM! May Day picnic"
+  projekt: Bárdits Éva
+- datum: 2020-12-31
+  helyszin: A zenekar próbaterme, 4K!
+  helyszin_en: "The band’s rehearsal room, 4K!"
+  varos: Budapest, Kőbánya
+  esemeny: Nyilvános próba, élő közvetítéssel
+  esemeny_en: "Open rehearsal, streamed live"
+  projekt: Holnaplányok
+  link: https://www.facebook.com/events/321231235669785/
+- datum: 2014-03-13
+  helyszin: Kontra (Trafó)
+  varos: Budapest
+  esemeny: Mayberian Sanskülotts & Aires Altos
+  esemeny_en: "Mayberian Sanskülotts & Aires Altos"
+  projekt: Aires Altos
+  link: https://welovebudapest.com/program/mayberian-sanskulotts-hu-aires-altos-hu/
+  video: https://www.youtube.com/watch?v=hmY0ZwJhR4o
+# A Facebook-exportból (2026. november)
+- datum: 2017-07-05
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "NéhaÖT: Szeverényi Orsi & Bárdits Éva"
+  esemeny_en: "NéhaÖT: Orsi Szeverényi & Éva Bárdits"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/1443324679063804/
+- datum: 2019-08-29
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Martus, Holnaplányok"
+  esemeny_en: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Martus, Holnaplányok"
+  projekt: Holnaplányok
+  link: https://www.facebook.com/events/2589333864424446/
+- datum: 2019-09-06
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: "A Közélet Iskolája 5. születésnapja"
+  esemeny_en: "5th birthday of the School of Public Life"
+  projekt: Bárdits Éva
+  link: https://www.facebook.com/events/2384096785249685/
+- datum: 2016-11-18
+  helyszin: Fészek (Astoria)
+  varos: Budapest
+  esemeny: Harmadik Ember Fesztivál
+  esemeny_en: "Harmadik Ember Festival"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/1737836213111520/
+- datum: 2018-05-02
+  helyszin: Tinta Art Café
+  varos: Budapest
+  esemeny: "Gabe Darling (US) & Aires Altos"
+  esemeny_en: "Gabe Darling (US) & Aires Altos"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/1872685806131228/
+- datum: 2019-03-02
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "Nem virágot akarunk! – a NEM! minifesztiválja"
+  esemeny_en: "We don’t want flowers! – NEM!’s mini festival"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/2218932161759565/
+- datum: 2019-11-09
+  helyszin: Három Holló
+  varos: Budapest
+  esemeny: "13\\. LIFT Fesztivál – buli nőknek"
+  esemeny_en: "13th LIFT Festival – party for women"
+  projekt: Holnaplányok
+  link: https://www.facebook.com/events/2323185854458496/
+# Az Aires Altos első évei (Facebook-export és YouTube, 2026. november)
+- datum: 2013-05-31
+  helyszin: Hátsó Kapu
+  varos: Budapest
+  esemeny: Songwriter Showcase – a zenekar első koncertje
+  esemeny_en: "Songwriter Showcase – the band’s first concert"
+  projekt: Aires Altos
+  video: https://www.youtube.com/watch?v=CYttl37pubg
+- datum: 2013-08-16
+  helyszin: Index
+  varos: Budapest
+  esemeny: "Dangle Manatee (UK), Seeyouetc., Aires Altos"
+  esemeny_en: "Dangle Manatee (UK), Seeyouetc., Aires Altos"
+  projekt: Aires Altos
+- datum: 2013-11-20
+  helyszin: Filter
+  varos: Budapest
+  esemeny: Wormkids, Aires Altos
+  esemeny_en: "Wormkids, Aires Altos"
+  projekt: Aires Altos
+- datum: 2014-01-25
+  helyszin: Hátsó Kapu
+  varos: Budapest
+  esemeny: "ColLab: Aires Altos, Gerencsér Gerda, Szabó Kristóf"
+  esemeny_en: "ColLab: Aires Altos, Gerda Gerencsér, Kristóf Szabó"
+  projekt: Aires Altos
+- datum: 2014-03-21
+  helyszin: Jazz Kocsma
+  varos: Szeged
+  esemeny: Aires Altos, I Am Soyuz
+  esemeny_en: "Aires Altos, I Am Soyuz"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/465295070264925/
+- datum: 2014-04-15
+  helyszin: Müszi
+  varos: Budapest
+  esemeny: "Stray Dogg & Ana Curcin (SRB), Aires Altos"
+  esemeny_en: "Stray Dogg & Ana Curcin (SRB), Aires Altos"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/678677188835139/
+- datum: 2014-04-25
+  helyszin: Hátsó Kapu
+  varos: Budapest
+  esemeny: Aires Altos, Szabó Kristóf, Gerencsér Gerda
+  esemeny_en: "Aires Altos, Kristóf Szabó, Gerda Gerencsér"
+  projekt: Aires Altos
+- datum: 2014-05-24
+  helyszin: Frisco
+  varos: Budapest
+  esemeny: Aires Altos, Duke Bluebeard
+  esemeny_en: "Aires Altos, Duke Bluebeard"
+  projekt: Aires Altos
+- datum: 2014-06-11
+  helyszin: A38
+  varos: Budapest
+  esemeny: "Gabby Young and Other Animals (UK), Antonia Vai (SE/HU), Aires Altos"
+  esemeny_en: "Gabby Young and Other Animals (UK), Antonia Vai (SE/HU), Aires Altos"
+  projekt: Aires Altos
+  video: https://www.youtube.com/watch?v=ciXeWAo1-JI
+- datum: 2014-07-26
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: Rakéta Fesztivál 2014
+  esemeny_en: "Rakéta Festival 2014"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/525272827598373/
+- datum: 2016-11-12
+  helyszin: Brancs
+  varos: Eger
+  esemeny: ""
+  projekt: Aires Altos
+  video: https://www.youtube.com/watch?v=M1wkleusBzk
+- datum: 2017-06-18
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: Ladyfest Budapest 2017
+  esemeny_en: "Ladyfest Budapest 2017"
+  projekt: Aires Altos
+  link: https://www.facebook.com/events/274860816257276/
+  video: https://www.youtube.com/watch?v=HBa6mAep9JA
+- datum: 2017-12-20
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "NéhaÖT: Barna Margit & Bárdits Éva"
+  esemeny_en: "NéhaÖT: Margit Barna & Éva Bárdits"
+  projekt: Bárdits Éva
+- datum: 2019-09-29
+  helyszin: Auróra
+  varos: Budapest
+  esemeny: "Pile (US), The Somersault Boy, Holnaplányok"
+  esemeny_en: "Pile (US), The Somersault Boy, Holnaplányok"
+  projekt: Holnaplányok
+- datum: 2019-12-30
+  helyszin: Gólya
+  varos: Budapest
+  esemeny: "9\\. RK Előszilveszter – Holnaplányok, Hello"
+  esemeny_en: "9th RK pre-New Year’s Eve party – Holnaplányok, Hello"
+  projekt: Holnaplányok
+  link: https://www.facebook.com/events/440551500221772/

@@ -1,0 +1,10 @@
+{{- $t := partial "loc.html" (dict "m" .Params "k" "title") }}
+<a class="card" href="{{ .RelPermalink }}">
+  {{- with .Params.borito_negyzet | default .Params.borito }}
+  {{ partial "img.html" (dict "src" . "alt" "" "class" "cover" "widths" (slice 400 700 1000) "sizes" "(min-width: 74rem) 17rem, (min-width: 40rem) 30vw, 92vw") }}
+  {{- else }}
+  <div class="cover-empty" aria-hidden="true"></div>
+  {{- end }}
+  <h3>{{ if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}{{ partial "md.html" $t }}</h3>
+  <p class="meta">{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "eloado")) }} · {{ .Date.Year }}{{ with .Params.tipus }} · {{ partial "tipus.html" . }}{{ end }}</p>
+</a>

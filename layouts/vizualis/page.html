@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{- /* Ha a képeknek saját címe van (kepek_cim, pl. a Zine oldalon: But It Actually Is Greener), az adatok, a leírás, a linkek és a képek
+     egy saját, címes részbe kerülnek; a „zine” mező egy második lapozható zine-t ad alá (Zine oldal: az Inertia dalszövegzine). */}}
+{{- $reszek := .Params.kepek_cim }}
+<article class="wrap">
+  <header class="page-head">
+    {{ partial "kicker.html" (dict "p" . "utana" (.Params.evek | default .Date.Year)) }}
+    {{- if .Draft }}<span class="draft-badge">{{ T "draftLong" }}</span>{{ end }}
+    <h1>{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "title")) }}</h1>
+    {{- if not $reszek }}{{ partial "inline/kep-adatok.html" . }}{{ end }}
+  </header>
+  {{- if $reszek }}
+  <section class="section kep-resz">
+    <h2>{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "kepek_cim")) }}</h2>
+    {{- partial "inline/kep-adatok.html" . }}
+  {{- end }}
+  {{- /* lapozo: true → a képek lapozható zine-ként (oldalpárok, Issuu-szerűen), különben rácsban */}}
+  {{- with .Params.kepek }}{{ if $.Params.lapozo }}{{ partial "lapozo.html" . }}{{ else }}{{ partial "gallery.html" . }}{{ end }}{{ end }}
+  {{- if $reszek }}
+  </section>
+  {{- end }}
+  {{- with .Params.zine }}
+  <section class="section kep-resz">
+    <h2>{{ partial "md.html" (partial "loc.html" (dict "m" $.Params "k" "zine_cim")) | default "Zine" }}</h2>
+    {{- with partial "loc.html" (dict "m" $.Params "k" "zine_kapcsolodo") }}
+    <dl class="facts"><dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd></dl>
+    {{- end }}
+    {{- /* az Inertia-zine nézegetője 30%-kal kisebb a Greenerénél */}}
+    <div class="lapozo-kisebb">{{ partial "lapozo.html" . }}</div>
+  </section>
+  {{- end }}
+  {{- /* más zine-ek, amelyekben Éva részt vett (Zine oldal: NEM!-zine-ek, Hüvelygomba), évvel és linkkel */}}
+  {{- with .Params.kozremukodes }}
+  <section class="section kep-resz">
+    <h2>{{ T "contributions" }}</h2>
+    <dl class="facts cv-list">
+      {{- range . }}<dt>{{ .ev }}</dt><dd>{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "szoveg")) }}</dd>{{ end }}
+    </dl>
+  </section>
+  {{- end }}
+</article>
+{{ end }}
+
+{{- /* Egy munka adatai (technika, méret, kapcsolódó), leírása és linkjei: a fejben, vagy ha a képeknek saját címük van, a címes részben. */}}
+{{- define "_partials/inline/kep-adatok.html" }}
+    <dl class="facts">
+      {{- with partial "loc.html" (dict "m" .Params "k" "technika") }}<dt>{{ T "technique" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
+      {{- with .Params.meret }}<dt>{{ T "size" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
+      {{- with partial "loc.html" (dict "m" .Params "k" "kapcsolodo") }}<dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
+    </dl>
+    {{- with partial "body.html" . }}<div class="prose">{{ partial "todo.html" . }}</div>{{ end }}
+    {{- with .Params.linkek }}
+    <ul class="links">{{ range . }}<li><a class="btn" href="{{ .url }}">{{ partial "loc.html" (dict "m" . "k" "nev") }}</a></li>{{ end }}</ul>
+    {{- end }}
+{{- end }}

@@ -1,0 +1,13 @@
+{{- with .Params.oneletrajz }}
+<section class="cv">
+  {{- with partial "loc.html" (dict "m" $.Params "k" "oneletrajz_megjegyzes") }}<p class="meta">{{ partial "md.html" . }}</p>{{ end }}
+  {{- range . }}
+  <h2>{{ partial "loc.html" (dict "m" . "k" "cim") }}</h2>
+  <dl class="facts cv-list">
+    {{- range .tetelek }}
+    <dt>{{ .evek }}</dt><dd>{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "szoveg")) }}</dd>
+    {{- end }}
+  </dl>
+  {{- end }}
+</section>
+{{- end }}

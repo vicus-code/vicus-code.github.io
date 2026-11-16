@@ -1,0 +1,14 @@
+{{- /* Egy sajtómegjelenés sora (Zene oldal: Sajtó és rádió; a lemezek oldala): hónap | forrás | cím linkként,
+     alatta halványan a műfaj / szerző, a Zene oldalon a lemez címe is. Ha nincs cím, a forrás a link.
+     Bemenet: dict "t" (a lemez „kritikak” listájának egy tétele), "lemez" és "lemezLink" (csak a Zene oldalon). */ -}}
+{{- $t := .t }}
+{{- $meta := partial "loc.html" (dict "m" $t "k" "szerzo") }}
+<li class="sajto-sor">
+  <span class="sajto-datum">{{ with $t.datum }}{{ time.Format (cond ($t.csak_ev | default false) "2006" (T "pressDate")) (time.AsTime .) }}{{ end }}</span>
+  <span class="sajto-forras">{{ if and $t.url (not $t.cim) }}<a href="{{ $t.url }}">{{ $t.forras }}</a>{{ else }}{{ $t.forras }}{{ end }}</span>
+  <span class="sajto-cim">
+    {{- if $t.cim }}{{ with $t.url }}<a href="{{ . }}">{{ end }}{{ T "qo" }}{{ partial "md.html" $t.cim }}{{ T "qc" }}{{ with $t.url }}</a>{{ end }}{{ end }}
+    {{- with $t.idezet }}<span class="quote">{{ T "qo" }}{{ partial "md.html" . }}{{ T "qc" }}</span>{{ end }}
+    {{- if or $meta .lemez }}<span class="meta">{{ with $meta }}{{ partial "md.html" . }}{{ end }}{{ if and $meta .lemez }} · {{ end }}{{ with .lemez }}<a href="{{ $.lemezLink }}"><em>{{ partial "md.html" . }}</em></a>{{ end }}</span>{{ end }}
+  </span>
+</li>

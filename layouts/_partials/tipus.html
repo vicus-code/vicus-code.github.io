@@ -1,0 +1,5 @@
+{{- /* Típusnév (pl. Szólóalbum) angolra fordítva az i18n/en.yaml alapján. */ -}}
+{{- $s := . | default "" | string -}}
+{{- $t := "" -}}
+{{- if and $s (eq site.Language.Lang "en") -}}{{- $t = T $s -}}{{- end -}}
+{{- return (or $t $s) -}}

@@ -1,0 +1,29 @@
+{{- /* Képek listája (kepek) galériaként, nyelvhez illő képaláírással.
+     Az instax-képek (útvonalukban „/instax/”) egymás után egy tömör sorba kerülnek: egyforma magasra,
+     a szélességük a képarányukból jön (flex-grow = szélesség/magasság), a felirat (az első instaxé) a sor alá. Telefonon kettesével. */ -}}
+{{- $instax := slice }}
+{{- range . }}{{ if in .kep "/instax/" }}{{ $instax = $instax | append . }}{{ end }}{{ end }}
+<div class="gallery">
+  {{- $kesz := false }}
+  {{- range . }}
+  {{- if in .kep "/instax/" }}
+    {{- if not $kesz }}{{ $kesz = true }}
+  <figure class="instax-sor">
+    <div class="instax-kepek">
+      {{- range $j, $k := $instax }}
+      {{- $alt := partial "loc.html" (dict "m" $k "k" "alt") }}
+      {{- $ar := 1.0 }}{{ with resources.Get (strings.TrimPrefix "/" $k.kep) }}{{ $ar = div (float .Width) .Height }}{{ end }}
+      {{- if eq $j 2 }}<span class="instax-tores" aria-hidden="true"></span>{{ end }}
+      <div class="instax-kep" style="--ar: {{ printf "%.3f" $ar }}">{{ partial "img.html" (dict "src" $k.kep "alt" $alt "sizes" "(min-width: 40rem) 18rem, 46vw") }}</div>
+      {{- end }}
+    </div>
+    {{- with partial "loc.html" (dict "m" (index $instax 0) "k" "felirat") }}<figcaption>{{ partial "md.html" . }}</figcaption>{{ end }}
+  </figure>
+    {{- end }}
+  {{- else }}
+  {{- $alt := partial "loc.html" (dict "m" . "k" "alt") }}
+  {{- $fel := partial "loc.html" (dict "m" . "k" "felirat") }}
+  {{ partial "figure.html" (dict "kep" .kep "alt" $alt "felirat" $fel "credit" (partial "loc.html" (dict "m" . "k" "credit"))) }}
+  {{- end }}
+  {{- end }}
+</div>

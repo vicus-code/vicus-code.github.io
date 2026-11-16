@@ -1,0 +1,12 @@
+{{- /* Az Esemény oldal dísze az ESEMÉNY cím alatt, kicsit jobbra a középvonaltól: az Inertia dalszövegzine tiszta tábortűz-vonalrajza (tűzvíz.png, éles),
+     alatta a színes szken (inertia-szken-8) meleg festékfoltjai élesen, laposan, mint a Greener rajzain (a hideg pöttyök nélkül,
+     kicsit elcsúsztatva, mint egy elcsúszott nyomat). Puha fehér fény, a színeken egészen kicsi saját fény. */}}
+{{- partial "disz.html" (slice
+  (dict "c" "disz-tuz" "rajz" "esemeny/tuz.png" "retegek" (slice
+    (dict "f" "kod/felho-nagy-2.png" "c" "felho" "k" 2.2)
+    (dict "f" "esemeny/tuz-arnyek.png" "c" "arnyek" "k" 1.44)
+    (dict "f" "esemeny/tuz-fatyol.png" "c" "fatyol" "k" 2.72)
+    (dict "f" "esemeny/tuz-feny-tag.png" "c" "feny-tag" "k" 1.29)
+    (dict "f" "esemeny/tuz-feny.png" "c" "feny" "k" 1.15)
+    (dict "f" "esemeny/tuz-folt.png" "c" "folt-feny" "k" 1 "meret" 600)
+    (dict "f" "esemeny/tuz-folt.png" "c" "folt" "k" 1 "meret" 1000 "q" 82)))) }}

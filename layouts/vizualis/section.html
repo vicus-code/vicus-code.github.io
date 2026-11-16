@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- partial "kep-fust.html" . }}
+{{ partial "oldalfej.html" . }}
+<section class="section van-disz">
+  {{- partial "kep-disz.html" . }}
+  <div class="wrap">
+    {{- /* négyzetes képgombok: széles képernyőn hármasával, telefonon kettesével; alattuk csak a név (évek, technika nélkül) */}}
+    <div class="gallery work-grid">
+      {{- range .Pages.ByDate.Reverse }}
+      {{- $first := index (.Params.kepek | default (slice dict)) 0 }}
+      {{- /* a négyzetes kivágás helye képenként állítható (borito_pozicio, pl. "50% 0%" = a kép teteje) */}}
+      {{- $poz := .Params.borito_pozicio | default "" }}
+      <a class="card" href="{{ .RelPermalink }}">
+        {{- with (.Params.borito | default $first.kep) }}{{ partial "img.html" (dict "src" . "alt" "" "widths" (slice 400 700 1000) "sizes" "(min-width: 74rem) 22rem, (min-width: 40rem) 30vw, 46vw" "style" (cond (ne $poz "") (printf "object-position: %s" $poz) "")) }}{{ end }}
+        <h3>{{ if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "title")) }}</h3>
+      </a>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ end }}

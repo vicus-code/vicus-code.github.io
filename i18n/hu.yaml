@@ -1,0 +1,75 @@
+skip: Ugrás a tartalomhoz
+mainMenu: Fő menü
+otherLang: English
+otherLangCode: EN
+photo: Fotó
+photoCredits: A fotók szerzőit a képaláírások jelzik.
+dateFormat: "2006. 01. 02."
+dateShort: "01. 02."
+releases: Kiadványok
+latestReleases: Legutóbbi kiadványok
+allReleases: Összes kiadvány
+projects: Projektek
+listen: Meghallgatás
+press: Sajtó és rádió
+release: Kiadvány
+artist: Előadó
+released: Megjelenés
+label: Kiadó
+format: Formátum
+licence: Licenc
+tracks: Számok
+photos: Fotók
+artists: Előadók
+upcoming: Következő
+upcomingGigs: Következő események
+recentGigs: Legutóbbi események
+allGigs: Összes esemény
+past: Korábban
+noGigs: Nincs aktuális esemény.
+date: Dátum
+venue: Helyszín
+event: Esemény
+project: Projekt
+details: részletek
+video: videó
+technique: Technika
+size: Méret
+related: Kapcsolódik
+researchWriting: Szöveg
+all: Összes
+author: Szerző
+year: Év
+publishedIn: Megjelenés
+institution: Intézmény
+supervisor: Témavezető
+coauthor: társszerző
+downloadPdf: PDF letöltése
+open: Megnyitás
+citation: Hivatkozás
+contact: Elérhetőség
+draft: vázlat
+draftLong: vázlat – élesben nem jelenik meg
+loadPlayer: "▶ Lejátszás"
+loadVideo: "▶ Videó"
+playerNote: A lejátszó a Bandcamp oldaláról töltődik be.
+videoNote: A videó a YouTube-ról töltődik be.
+notFound: Ez az oldal nincs meg
+notFoundText: Lehet, hogy elköltözött.
+backHome: Vissza a nyitóoldalra
+qo: "„"
+qc: "”"
+music: Zene
+visual: Kép
+research: Szöveg
+monthFormat: "2006. January"
+prevPage: előző
+nextPage: következő
+zineFlip: "A zine lapjai – lapozható"
+eventPhotos: Fotók a koncertekről (oldalra görgethető)
+eventCount:
+  one: "{{ .Count }} esemény"
+  other: "{{ .Count }} esemény"
+contributions: Közreműködés
+pressDate: "2006. 01."
+randomPage: Véletlen oldal

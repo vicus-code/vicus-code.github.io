@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- partial "esemeny-monstera.html" . }}
+{{- partial "esemeny-disz.html" . }}
+{{ partial "oldalfej.html" . }}
+
+{{- $all := hugo.Data.koncertek | default slice }}
+{{- $today := now.Format "2006-01-02" }}
+{{- $up := slice }}{{ $past := slice }}
+{{- range $all }}
+  {{- $end := (time.AsTime (.datum_vege | default .datum)).Format "2006-01-02" }}
+  {{- if ge $end $today }}{{ $up = $up | append . }}{{ else }}{{ $past = $past | append . }}{{ end }}
+{{- end }}
+
+<section class="section">
+  <div class="wrap">
+    <h2>{{ T "upcoming" }}</h2>
+    {{- with $up }}
+    {{ partial "gigs.html" (dict "rows" (sort . "datum" "asc")) }}
+    {{- else }}
+    <p class="empty">{{ T "noGigs" }}</p>
+    {{- end }}
+  </div>
+</section>
+
+{{- with .Params.kepek }}
+<section class="section">
+  <div class="wrap">
+    <h2 class="visually-hidden">{{ T "photos" }}</h2>
+    {{- /* egy sorban, oldalra görgethetően, a legújabbal kezdve */}}
+    {{ partial "kepsor.html" (dict "kepek" (sort . "datum" "desc") "cimke" (T "eventPhotos") "credit" true) }}
+  </div>
+</section>
+{{- end }}
+
+{{- with $past }}
+<section class="section">
+  <div class="wrap">
+    <h2>{{ T "past" }}</h2>
+    {{- /* idovonal: kézzel húzott vonal, évenként egy festékpötty; mindig csak a kiválasztott év gördül le */}}
+    {{ partial "idovonal.html" (dict "rows" .) }}
+  </div>
+</section>
+{{- end }}
+{{ end }}

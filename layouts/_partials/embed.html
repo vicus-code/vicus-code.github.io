@@ -1,0 +1,10 @@
+{{- with .bandcamp -}}
+<div class="embed" data-src="https://bandcamp.com/EmbeddedPlayer/album={{ . }}/size=large/bgcol=1a1919/linkcol=fda0a0/artwork=small/tracklist=false/transparent=true/" data-height="120" data-title="{{ partial "sima.html" $.title }} – Bandcamp">
+  <button class="btn btn-red" type="button">{{ T "loadPlayer" }}</button>
+</div>
+{{- end -}}
+{{- with .youtube -}}
+<div class="embed video" data-src="https://www.youtube-nocookie.com/embed/{{ . }}?autoplay=1" data-title="{{ partial "sima.html" $.title }} – YouTube">
+  <button class="btn btn-red" type="button">{{ T "loadVideo" }}</button>
+</div>
+{{- end -}}

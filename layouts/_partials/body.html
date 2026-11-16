@@ -1,0 +1,6 @@
+{{- /* Az oldal fő szövege a nyelvnek megfelelően (angolul a body_en mezőből). */ -}}
+{{- $h := .Content -}}
+{{- if eq site.Language.Lang "en" -}}
+  {{- with .Params.body_en -}}{{- $h = $.RenderString (dict "display" "block") . -}}{{- end -}}
+{{- end -}}
+{{- return $h -}}

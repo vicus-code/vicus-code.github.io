@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article class="wrap">
+  <header class="page-head">
+    {{ partial "kicker.html" (dict "p" . "utana" (partial "tipus.html" .Params.tipus)) }}
+    {{- if .Draft }}<span class="draft-badge">{{ T "draftLong" }}</span>{{ end }}
+    <h1>{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "title")) }}</h1>
+    {{- /* angolul a magyar eredeti cím is látszik alatta – kivéve, ha az írás eredetileg angol (szoveg_nyelve: en), ha a két cím ugyanazzal a dőlt
+         műcímmel kezdődik (pl. *Art Work and Housework*), vagy ha szinte azonos (True 2 You magazin / magazine) */}}
+    {{- $huCim := and (eq site.Language.Lang "en") .Params.title_en (ne (.Params.szoveg_nyelve | default "hu") "en") }}
+    {{- if $huCim }}
+      {{- $nh := partial "sima.html" .Params.title | lower | replaceRE `[^\p{L}\p{N}]` "" }}
+      {{- $ne := partial "sima.html" .Params.title_en | lower | replaceRE `[^\p{L}\p{N}]` "" }}
+      {{- if or (hasPrefix $nh $ne) (hasPrefix $ne $nh) }}{{ $huCim = false }}{{ end }}
+      {{- $mh := findRESubmatch `^\*([^*]+)\*` .Params.title 1 }}{{ $me := findRESubmatch `^\*([^*]+)\*` .Params.title_en 1 }}
+      {{- if and $mh $me }}{{ if eq (index (index $mh 0) 1) (index (index $me 0) 1) }}{{ $huCim = false }}{{ end }}{{ end }}
+    {{- end }}
+    {{- if $huCim }}<p class="meta" lang="hu">{{ partial "md.html" .Params.title }}</p>{{ end }}
+    <p class="meta">{{ with partial "loc.html" (dict "m" .Params "k" "hol") }}{{ partial "md.html" . }}{{ else }}{{ .Date.Year }}{{ end }}</p>
+    {{- if or .Params.temavezeto .Params.szerzotarsak }}
+    <dl class="facts">
+      {{- with partial "loc.html" (dict "m" .Params "k" "temavezeto") }}<dt>{{ T "supervisor" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
+      {{- with partial "loc.html" (dict "m" .Params "k" "szerzotarsak") }}<dt>{{ partial "loc.html" (dict "m" $.Params "k" "szerzotars_cimke") | default (T "coauthor") | strings.FirstUpper }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
+    </dl>
+    {{- end }}
+    <ul class="links">
+      {{- with .Params.pdf }}<li><a class="btn btn-red" href="{{ . | relURL }}">{{ T "downloadPdf" }}</a></li>{{ end }}
+      {{- with .Params.link }}<li><a class="btn" href="{{ . }}">{{ T "open" }}</a></li>{{ end }}
+      {{- with .Params.doi }}<li><a class="btn" href="https://doi.org/{{ . }}">DOI: {{ . }}</a></li>{{ end }}
+    </ul>
+  </header>
+  <div class="prose">
+    {{ partial "todo.html" (partial "body.html" .) }}
+    {{- with .Params.hivatkozas }}
+    <p class="cite"><span class="label">{{ T "citation" }}</span>{{ partial "md.html" . }}</p>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

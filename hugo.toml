@@ -1,0 +1,129 @@
+# Bárdits Éva – weboldal beállításai
+# Ezt a fájlt ritkán kell módosítani. A tartalom a content/ és data/ mappákban van.
+# Két nyelv: magyar (alapértelmezett, a gyökérben) és angol (/en/).
+# Minden tartalomfájl mindkét nyelven megjelenik; az angol szövegek a *_en mezőkben vannak.
+
+# Közzétételkor a GitHub a tényleges címet adja meg (lásd .github/workflows/hugo.yaml),
+# ez a sor a saját gépen való építéshez kell.
+baseURL = 'https://barditseva.hu/'
+defaultContentLanguage = 'hu'
+timeZone = 'Europe/Budapest'
+enableRobotsTXT = true
+# A jövőbeli dátumú tételek (pl. bejelentett előadás) is megjelennek
+buildFuture = true
+disableKinds = ['taxonomy', 'term', 'rss']
+
+# Címek: a mappanevek (koncertek, vizualis, kutatas, rolam) maradnak, a látható cím a menühöz igazodik.
+# Az angol címek lent, a [languages.en.permalinks] részben.
+[permalinks]
+  [permalinks.section]
+    koncertek = '/esemeny/'
+    vizualis = '/kep/'
+    kutatas = '/szoveg/'
+    rolam = '/cv/'
+  [permalinks.page]
+    koncertek = '/esemeny/:contentbasename/'
+    vizualis = '/kep/:contentbasename/'
+    kutatas = '/szoveg/:contentbasename/'
+
+[params]
+  author = 'Bárdits Éva'
+  # Megosztási kép (ha egy oldalnak nincs saját képe)
+  shareImage = 'images/rolam/portre-inertia.jpg'
+  # A színek és a betűk az assets/css/main.css elején vannak; az oldalak rajzai a layouts/_partials/*-disz.html fájlokban.
+
+[languages]
+  [languages.hu]
+    weight = 1
+    locale = 'hu-HU'
+    title = 'Bárdits Éva'
+    [languages.hu.params]
+      description = 'Bárdits Éva budapesti művész, kulturális munkás weboldala: zene, esemény, kép, szöveg.'
+    [[languages.hu.menus.main]]
+      name = 'Zene'
+      pageRef = '/zene'
+      weight = 10
+    [[languages.hu.menus.main]]
+      name = 'Esemény'
+      pageRef = '/koncertek'
+      weight = 20
+    [[languages.hu.menus.main]]
+      name = 'Kép'
+      pageRef = '/vizualis'
+      weight = 30
+    [[languages.hu.menus.main]]
+      name = 'Szöveg'
+      pageRef = '/kutatas'
+      weight = 40
+    [[languages.hu.menus.main]]
+      name = 'CV'
+      pageRef = '/rolam'
+      weight = 5
+  [languages.en]
+    weight = 2
+    locale = 'en-GB'
+    title = 'Éva Bárdits'
+    [languages.en.params]
+      description = 'Website of Éva Bárdits, Budapest-based artist and cultural worker: music, events, images, texts.'
+    [[languages.en.menus.main]]
+      name = 'Music'
+      pageRef = '/zene'
+      weight = 10
+    [[languages.en.menus.main]]
+      name = 'Event'
+      pageRef = '/koncertek'
+      weight = 20
+    [[languages.en.menus.main]]
+      name = 'Image'
+      pageRef = '/vizualis'
+      weight = 30
+    [[languages.en.menus.main]]
+      name = 'Text'
+      pageRef = '/kutatas'
+      weight = 40
+    [[languages.en.menus.main]]
+      name = 'CV'
+      pageRef = '/rolam'
+      weight = 5
+
+    [languages.en.permalinks]
+      [languages.en.permalinks.section]
+        zene = '/music/'
+        koncertek = '/event/'
+        vizualis = '/image/'
+        kutatas = '/text/'
+        rolam = '/cv/'
+      [languages.en.permalinks.page]
+        zene = '/music/:contentbasename/'
+        koncertek = '/event/:contentbasename/'
+        vizualis = '/image/:contentbasename/'
+        kutatas = '/text/:contentbasename/'
+# Ugyanaz a content/ mappa mindkét nyelvhez
+[module]
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+    [module.mounts.sites.matrix]
+      languages = ['**']
+
+[markup.goldmark.renderer]
+  # A böngészős szerkesztő (Pages CMS) HTML-t is írhat a szövegbe – ezt engedjük.
+  unsafe = true
+
+[markup.goldmark.extensions.typographer]
+  # Magyar idézőjelek: „…”
+  leftDoubleQuote = '&bdquo;'
+  rightDoubleQuote = '&rdquo;'
+
+[imaging]
+  resampleFilter = 'Lanczos'
+  [imaging.jpeg]
+    quality = 80
+  [imaging.webp]
+    quality = 78
+
+[caches.images]
+  dir = ':cacheDir/images'
+
+[sitemap]
+  changeFreq = 'monthly'

@@ -1,0 +1,15 @@
+<footer class="site-footer">
+  <div class="wrap">
+    {{- /* a linkek között ugyanazok a festékpöttyök, mint a fenti menüben */}}
+    {{- $pottyok := partial "pottyok.html" . }}
+    {{- with hugo.Data.linkek }}
+    <ul>
+      {{- range $i, $l := . }}
+      {{- if and $i $pottyok }}<li class="potty" aria-hidden="true"><img src="{{ (index $pottyok (mod (sub $i 1) (len $pottyok))).RelPermalink }}" alt="" width="8" height="8"></li>{{ end }}
+      <li><a href="{{ $l.url }}" rel="me">{{ partial "loc.html" (dict "m" $l "k" "nev") }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    <small>© {{ now.Year }} {{ site.Title }}</small>
+  </div>
+</footer>

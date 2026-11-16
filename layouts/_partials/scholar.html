@@ -1,0 +1,19 @@
+{{- /*
+  Google Scholar metaadatok – csak azokon a kutatási oldalakon, ahol
+  „scholar: true” és van feltöltött PDF. (Google Scholar beválogatási irányelvei szerint.)
+*/ -}}
+{{- if and .IsPage .Params.scholar .Params.pdf -}}
+<meta name="citation_title" content="{{ .Title | plainify }}">
+{{- range (.Params.szerzok | default (slice "Bárdits, Éva")) }}
+<meta name="citation_author" content="{{ . }}">
+{{- end }}
+<meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}">
+{{- with .Params.intezmeny }}
+<meta name="citation_dissertation_institution" content="{{ . }}">
+{{- end }}
+{{- with .Params.folyoirat }}
+<meta name="citation_journal_title" content="{{ . }}">
+{{- end }}
+<meta name="citation_language" content="{{ .Params.szoveg_nyelve | default "hu" }}">
+<meta name="citation_pdf_url" content="{{ .Params.pdf | absURL }}">
+{{- end -}}

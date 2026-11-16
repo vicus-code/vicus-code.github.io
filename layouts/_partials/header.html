@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="wrap">
+    {{- /* Bal felső sarok: az Ágencia Kollektíva színes (sárga-fehér) banánja; a név a képernyőolvasóknak szól */}}
+    <a class="site-name site-logo" href="{{ "/" | relLangURL }}">
+      {{- with resources.Get "images/rajzok/banan-szines-logo.png" }}
+      {{- $x2 := .Resize "96x webp q85" }}{{ $x1 := .Resize "48x webp q85" }}
+      <img src="{{ $x2.RelPermalink }}" srcset="{{ $x1.RelPermalink }} 1x, {{ $x2.RelPermalink }} 2x" width="48" height="{{ math.Round (mul 48 (div (float .Height) .Width)) }}" alt="{{ site.Title }}">
+      {{- else }}{{ site.Title }}{{ end -}}
+    </a>
+    <nav class="site-nav" aria-label="{{ T "mainMenu" }}">
+      <ul>
+        {{- $page := . }}
+        {{- $pottyok := partial "pottyok.html" . }}
+        {{- range $i, $m := site.Menus.main }}
+        {{- $active := or ($page.IsMenuCurrent "main" $m) ($page.HasMenuCurrent "main" $m) }}
+        {{- if and $i $pottyok }}<li class="potty" aria-hidden="true"><img src="{{ (index $pottyok (mod (sub $i 1) (len $pottyok))).RelPermalink }}" alt="" width="8" height="8"></li>{{ end }}
+        <li><a href="{{ $m.URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ $m.Name }}</a></li>
+        {{- end }}
+        {{- $other := "" }}
+        {{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}
+        {{- if not $other }}{{ $other = cond (eq site.Language.Lang "en") "/" "/en/" }}{{ end }}
+        {{- /* a nyelvváltó egy világos, homokszínű festett fénycsíkon áll (a Greener 12–13. oldaláról), hogy elváljon a menütől */}}
+        <li class="lang"><a href="{{ $other }}" hreflang="{{ if eq site.Language.Lang "en" }}hu{{ else }}en{{ end }}" title="{{ T "otherLang" }}">
+          {{- with resources.Get "images/rajzok/homok-zaszlo.png" }}{{ $z := .Resize "160x webp q85" }}<img class="zaszlo" src="{{ $z.RelPermalink }}" alt="" aria-hidden="true">{{ end -}}
+          <span>{{ T "otherLangCode" }}</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,4 @@
+{{- /* Rövid szöveg (cím, leírás) Markdownként: *dőlt*, **félkövér**, [link](url), ⟦jóváhagyandó⟧ */ -}}
+{{- with . -}}
+  {{- partial "todo.html" (. | string | markdownify) -}}
+{{- end -}}

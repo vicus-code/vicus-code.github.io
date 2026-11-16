@@ -1,0 +1,365 @@
+# Pages CMS – böngészős szerkesztő: https://app.pagescms.org
+# Itt van megadva, milyen űrlapokon lehet szerkeszteni a weboldalt.
+
+media:
+  input: assets/images
+  output: /images
+  categories: [image]
+
+content:
+  # ---------- Nyitóoldal ----------
+  - name: nyitooldal
+    label: Nyitóoldal
+    type: file
+    path: content/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: kep, label: Kép a név mellett, type: image }
+      - { name: kep_alt, label: Mi látszik a képen, type: string }
+      - { name: kep_alt_en, label: "Mi látszik a képen – angolul", type: string }
+      - { name: kep_felirat, label: Képaláírás, type: string }
+      - { name: kep_felirat_en, label: "Képaláírás – angolul", type: string }
+      - { name: body, label: Bemutatkozás, type: rich-text }
+      - { name: body_en, label: "Bemutatkozás – angolul", type: rich-text }
+      - { name: kiemelt, label: "Kiemelt kiadványok (a zene/ mappa fájlnevei, sorrendben)", type: string, list: true }
+
+  # ---------- Zene ----------
+  - name: kiadvanyok
+    label: Zene – kiadványok
+    type: collection
+    path: content/zene
+    exclude: [_index.md]
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, eloado]
+    fields:
+      - { name: title, label: Cím, type: string, required: true }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: date, label: Megjelenés dátuma, type: date, options: { format: yyyy-MM-dd } }
+      - { name: csak_ev, label: Csak az évet mutassa, type: boolean }
+      - { name: draft, label: Vázlat (élesben nem jelenik meg), type: boolean }
+      - { name: eloado, label: Előadó, type: string }
+      - { name: eloado_en, label: "Előadó – angolul (keresztnév elöl)", type: string }
+      - name: tipus
+        label: Típus
+        type: select
+        options:
+          values: [Szólóalbum, Album, EP, Kislemez, Kazetta, Split, Split kazetta, Válogatás]
+      - { name: kiado, label: Kiadó, type: string }
+      - { name: katalogusszam, label: Katalógusszám, type: string }
+      - { name: formatum, label: Formátum, type: string }
+      - { name: formatum_en, label: "Formátum – angolul", type: string }
+      - { name: licenc, label: Licenc, type: string }
+      - { name: borito, label: Borító, type: image }
+      - { name: borito_alt, label: Borító leírása (vakoknak), type: string }
+      - { name: borito_alt_en, label: "Borító leírása (vakoknak) – angolul", type: string }
+      - { name: borito_credit, label: Borító / fotó készítője, type: string }
+      - { name: borito_credit_en, label: "Borító / fotó készítője – angolul", type: string }
+      - { name: bandcamp_album, label: Bandcamp album azonosító (szám), type: string, description: "Bandcamp → Share/Embed → a kódban az album= utáni szám" }
+      - { name: youtube, label: YouTube videó azonosító, type: string, description: "A youtube.com/watch?v= utáni rész" }
+      - { name: szamok, label: Számok, type: string, list: true }
+      - { name: szamok_en, label: "Számok – angolul", type: string, list: true }
+      - { name: zine_cim, label: "A zine címe (pl. Dalszövegzine)", type: string }
+      - { name: zine_cim_en, label: "A zine címe – angolul", type: string }
+      - name: zine
+        label: "Zine lapjai (lapozható könyvként; álló kép = egy lap, fekvő kép = oldalpár; sorrendben, borítótól hátlapig)"
+        type: object
+        list: true
+        fields:
+          - { name: kep, label: Kép, type: image }
+          - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
+          - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
+      - { name: kepek_cim, label: "A fotók címe (ha nem csak „Fotók”, pl. László Loren fotósorozata)", type: string }
+      - { name: kepek_cim_en, label: "A fotók címe – angolul", type: string }
+      - name: kepek
+        label: Fotók
+        type: object
+        list: true
+        fields:
+          - { name: kep, label: Kép, type: image }
+          - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
+          - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
+          - { name: felirat, label: Képaláírás, type: string }
+          - { name: felirat_en, label: "Képaláírás – angolul", type: string }
+          - { name: credit, label: Fotós neve, type: string }
+          - { name: credit_en, label: "Fotós neve – angolul (keresztnév elöl)", type: string }
+      - name: linkek
+        label: Linkek (gombok)
+        type: object
+        list: true
+        fields:
+          - { name: nev, label: Felirat, type: string }
+          - { name: nev_en, label: "Felirat – angolul", type: string }
+          - { name: url, label: Link, type: string }
+      - name: kritikak
+        label: Sajtó és rádió
+        type: object
+        list: true
+        fields:
+          - { name: forras, label: Lap / oldal / rádió, type: string }
+          - { name: cim, label: Cikk vagy műsor címe, type: string }
+          - { name: szerzo, label: Szerző, type: string }
+          - { name: szerzo_en, label: "Szerző – angolul", type: string }
+          - { name: datum, label: Dátum, type: date, options: { format: yyyy-MM-dd } }
+          - { name: csak_ev, label: "Csak az év ismert", type: boolean }
+          - { name: url, label: Link, type: string }
+          - { name: idezet, label: Rövid idézet (nem kötelező), type: string }
+      - { name: body, label: Leírás, type: rich-text }
+      - { name: body_en, label: "Leírás – angolul", type: rich-text }
+
+  - name: zene-oldal
+    label: Zene – projektek
+    type: file
+    path: content/zene/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - name: agencia
+        label: Ágencia Kollektíva
+        type: object
+        fields:
+          - { name: leiras, label: Bemutatkozás, type: text }
+          - { name: leiras_en, label: "Bemutatkozás – angolul", type: text }
+          - { name: alapitok, label: Alapítók, type: string }
+          - { name: alapitok_en, label: "Alapítók – angolul", type: string }
+          - { name: eloadok, label: Előadók, type: string, list: true }
+          - name: linkek
+            label: Linkek
+            type: object
+            list: true
+            fields:
+              - { name: nev, label: Felirat, type: string }
+              - { name: nev_en, label: "Felirat – angolul", type: string }
+              - { name: url, label: Link, type: string }
+      - name: projektek
+        label: Projektek, zenekarok
+        type: object
+        list: true
+        fields:
+          - { name: nev, label: Név, type: string }
+          - { name: nev_en, label: "Név – angolul", type: string }
+          - name: szin
+            label: Szín az eseménylistában
+            type: select
+            options: { values: [rozsaszin, piros, barack, zold, turkiz, kek, lila] }
+          - { name: evek, label: Évek, type: string }
+          - { name: leiras, label: Leírás, type: string }
+          - { name: leiras_en, label: "Leírás – angolul", type: string }
+          - { name: url, label: Link, type: string }
+
+  # ---------- Esemény (koncertek) ----------
+  - name: koncertek
+    label: Esemény
+    type: file
+    path: data/koncertek.yaml
+    format: yaml
+    list: true
+    fields:
+      - { name: datum, label: Dátum, type: date, options: { format: yyyy-MM-dd }, required: true }
+      - { name: datum_vege, label: Utolsó nap (ha több napos), type: date, options: { format: yyyy-MM-dd } }
+      - { name: csak_honap, label: "Csak a hónap ismert", type: boolean }
+      - { name: helyszin, label: Helyszín, type: string, required: true }
+      - { name: helyszin_en, label: "Helyszín – angolul", type: string }
+      - { name: varos, label: Város, type: string }
+      - { name: varos_en, label: "Város – angolul", type: string }
+      - { name: esemeny, label: Esemény, type: string }
+      - { name: esemeny_en, label: "Esemény – angolul", type: string }
+      - name: projekt
+        label: Projekt
+        type: select
+        options:
+          values: [Bárdits Éva, Gondozási Központ, Trutat, Holnaplányok, Aires Altos]
+      - { name: link, label: Link, type: string }
+      - { name: video, label: "Videó (YouTube-link)", type: string }
+      - { name: megjegyzes, label: Megjegyzés, type: string }
+      - { name: megjegyzes_en, label: "Megjegyzés – angolul", type: string }
+
+  - name: koncertek-fotok
+    label: Esemény – fotók
+    type: file
+    path: content/koncertek/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - name: kepek
+        label: Fotók
+        type: object
+        list: true
+        fields:
+          - { name: kep, label: Kép, type: image }
+          - { name: datum, label: "A koncert napja (ebben a sorrendben jelennek meg)", type: date }
+          - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
+          - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
+          - { name: felirat, label: Képaláírás, type: string }
+          - { name: felirat_en, label: "Képaláírás – angolul", type: string }
+          - { name: credit, label: Fotós neve, type: string }
+          - { name: credit_en, label: "Fotós neve – angolul (keresztnév elöl)", type: string }
+      - { name: body, label: Bevezető, type: rich-text }
+      - { name: body_en, label: "Bevezető – angolul", type: rich-text }
+
+  # ---------- Kép ----------
+  - name: kepi-dolgok
+    label: Kép
+    type: collection
+    path: content/vizualis
+    exclude: [_index.md]
+    filename: "{primary}.md"
+    view:
+      fields: [title, date]
+    fields:
+      - { name: title, label: Cím, type: string, required: true }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: date, label: Dátum (az év számít), type: date, options: { format: yyyy-MM-dd } }
+      - { name: evek, label: "Évek, ha több évet fog át (pl. 2014–2016)", type: string }
+      - { name: draft, label: Vázlat (élesben nem jelenik meg), type: boolean }
+      - { name: technika, label: Technika, type: string }
+      - { name: technika_en, label: "Technika – angolul", type: string }
+      - { name: meret, label: Méret, type: string }
+      - { name: borito, label: "Borítókép a listában (ha nem az első kép)", type: image }
+      - { name: borito_pozicio, label: "A borító kivágása a Kép oldalon (pl. 50% 0% = a kép teteje; üresen középre vágódik)", type: string }
+      - { name: lapozo, label: "Lapozható zine (a képek oldalpárok: álló kép = egy lap, fekvő = két lap)", type: boolean }
+      - { name: kepek_cim, label: "A képek címe, ha az oldalon több rész van (pl. But It Actually Is Greener a Zine oldalon)", type: string }
+      - { name: kepek_cim_en, label: "A képek címe – angolul", type: string }
+      - { name: kapcsolodo, label: Kapcsolódik, type: string }
+      - { name: kapcsolodo_en, label: "Kapcsolódik – angolul", type: string }
+      - name: linkek
+        label: Linkek (gombok)
+        type: object
+        list: true
+        fields:
+          - { name: nev, label: Felirat, type: string }
+          - { name: nev_en, label: "Felirat – angolul", type: string }
+          - { name: url, label: Link, type: string }
+      - name: kepek
+        label: Képek
+        type: object
+        list: true
+        fields:
+          - { name: kep, label: Kép, type: image }
+          - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
+          - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
+          - { name: felirat, label: Képaláírás, type: string }
+          - { name: felirat_en, label: "Képaláírás – angolul", type: string }
+          - { name: credit, label: Fotós neve (ha nem te), type: string }
+          - { name: credit_en, label: "Fotós neve – angolul (keresztnév elöl)", type: string }
+      - { name: zine_cim, label: "Második lapozható zine címe (Zine oldal: Inertia – dalszövegzine)", type: string }
+      - { name: zine_cim_en, label: "Második zine címe – angolul", type: string }
+      - { name: zine_kapcsolodo, label: "Második zine: kapcsolódik", type: string }
+      - { name: zine_kapcsolodo_en, label: "Második zine: kapcsolódik – angolul", type: string }
+      - name: kozremukodes
+        label: "Közreműködés: más zine-ek, amelyekben részt vettél (év, szöveg linkkel)"
+        type: object
+        list: true
+        fields:
+          - { name: ev, label: Év, type: string }
+          - { name: szoveg, label: "Szöveg (link: [cím](https://…))", type: string }
+          - { name: szoveg_en, label: "Szöveg – angolul", type: string }
+      - name: zine
+        label: "Második zine lapjai (álló kép = egy lap, fekvő = két lap)"
+        type: object
+        list: true
+        fields:
+          - { name: kep, label: Kép, type: image }
+          - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
+          - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
+      - { name: body, label: Leírás, type: rich-text }
+      - { name: body_en, label: "Leírás – angolul", type: rich-text }
+
+  # ---------- Szöveg ----------
+  - name: kutatas
+    label: Szöveg
+    type: collection
+    path: content/kutatas
+    exclude: [_index.md]
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, tipus]
+    fields:
+      - { name: title, label: Cím, type: string, required: true }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: date, label: Dátum, type: date, options: { format: yyyy-MM-dd } }
+      - { name: draft, label: Vázlat (élesben nem jelenik meg), type: boolean }
+      - name: tipus
+        label: Típus
+        type: select
+        options:
+          values: [Tanulmány, Szakdolgozat, Kurátori munka, Kritika, "Előadás, beszélgetés", Publicisztika, Fordítás]
+      - { name: hol, label: Hol jelent meg / hol hangzott el, type: string }
+      - { name: hol_en, label: "Hol jelent meg / hol hangzott el – angolul", type: string }
+      - { name: szerzok, label: "Szerző(k) a Google Scholarnak (Vezetéknév, Keresztnév)", type: string, list: true }
+      - { name: intezmeny, label: Intézmény (szakdolgozatnál), type: string }
+      - { name: intezmeny_en, label: "Intézmény (szakdolgozatnál) – angolul", type: string }
+      - { name: temavezeto, label: Témavezető, type: string }
+      - { name: temavezeto_en, label: "Témavezető – angolul (keresztnév elöl)", type: string }
+      - { name: szoveg_nyelve, label: "Szöveg nyelve (hu / en)", type: string }
+      - { name: szerzotarsak, label: Szerzőtársak / beszélgetőtársak, type: string }
+      - { name: szerzotarsak_en, label: "Szerzőtársak – angolul (keresztnév elöl)", type: string }
+      - { name: szerzotars_cimke, label: "Hogyan nevezzük őket (pl. társszerző, kurátortársak)", type: string }
+      - { name: szerzotars_cimke_en, label: "Hogyan nevezzük őket (pl. társszerző, kurátortársak) – angolul", type: string }
+      - { name: link, label: Link, type: string }
+      - { name: pdf, label: PDF (a static/files mappából, pl. /files/cikk.pdf), type: string }
+      - { name: doi, label: DOI, type: string }
+      - { name: scholar, label: Google Scholar-adatok (csak ha van PDF), type: boolean }
+      - { name: hivatkozas, label: Javasolt hivatkozás, type: string }
+      - { name: body, label: Absztrakt / leírás, type: rich-text }
+      - { name: body_en, label: "Absztrakt / leírás – angolul", type: rich-text }
+
+  - name: kutatas-oldal
+    label: Kutatás – érdeklődési területek
+    type: file
+    path: content/kutatas/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: erdeklodes, label: Kutatási területek, type: string, list: true }
+
+  # ---------- CV, linkek ----------
+  - name: rolam
+    label: CV
+    type: file
+    path: content/rolam/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: portre, label: Portré, type: image }
+      - { name: portre_alt, label: Portré leírása, type: string }
+      - { name: portre_alt_en, label: "Portré leírása – angolul", type: string }
+      - { name: portre_credit, label: Fotós neve, type: string }
+      - { name: portre_credit_en, label: "Fotós neve – angolul (keresztnév elöl)", type: string }
+      - { name: email, label: "E-mail (így: bardits pont eva gmail – kukac és .com nélkül)", type: string }
+      - { name: email_en, label: "E-mail – angolul (így: bardits dot eva gmail)", type: string }
+      - { name: email_olvaso, label: "E-mail képernyőolvasóknak (sima betűkkel)", type: string }
+      - { name: email_olvaso_en, label: "E-mail képernyőolvasóknak – angolul", type: string }
+      - { name: kapcsolat, label: Elérhetőség szövege, type: string }
+      - { name: kapcsolat_en, label: "Elérhetőség szövege – angolul", type: string }
+      - { name: oneletrajz_megjegyzes, label: Megjegyzés az önéletrajz fölött, type: string }
+      - name: oneletrajz
+        label: Önéletrajz
+        type: object
+        list: true
+        fields:
+          - { name: cim, label: Blokk címe, type: string }
+          - { name: cim_en, label: "Blokk címe – angolul", type: string }
+          - name: tetelek
+            label: Tételek
+            type: object
+            list: true
+            fields:
+              - { name: evek, label: Évek, type: string }
+              - { name: szoveg, label: Szöveg, type: string }
+              - { name: szoveg_en, label: "Szöveg – angolul", type: string }
+      - { name: body, label: Bemutatkozás, type: rich-text }
+      - { name: body_en, label: "Bemutatkozás – angolul", type: rich-text }
+
+
+  - name: linkek
+    label: Linkek (lábléc)
+    type: file
+    path: data/linkek.yaml
+    format: yaml
+    list: true
+    fields:
+      - { name: nev, label: Felirat, type: string }
+      - { name: nev_en, label: "Felirat – angolul", type: string }
+      - { name: url, label: Link, type: string }
