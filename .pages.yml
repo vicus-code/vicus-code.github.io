@@ -52,6 +52,7 @@ content:
       - { name: formatum_en, label: "Formátum – angolul", type: string }
       - { name: licenc, label: Licenc, type: string }
       - { name: borito, label: Borító, type: image }
+      - { name: borito_negyzet, label: "Négyzetes borító a kiadványrácsban (csak ha más kép kell, mint a borító)", type: image }
       - { name: borito_alt, label: Borító leírása (vakoknak), type: string }
       - { name: borito_alt_en, label: "Borító leírása (vakoknak) – angolul", type: string }
       - { name: borito_credit, label: Borító / fotó készítője, type: string }
@@ -156,7 +157,7 @@ content:
     format: yaml
     list: true
     fields:
-      - { name: datum, label: Dátum, type: date, options: { format: yyyy-MM-dd }, required: true }
+      - { name: datum, label: Dátum, type: date, options: { format: yyyy-MM-dd }, required: true, description: "Ami ⟦…⟧ jelek között van, az jóváhagyásra vár: amíg ilyen van bármelyik sorban, az éles oldal nem épül újra." }
       - { name: datum_vege, label: Utolsó nap (ha több napos), type: date, options: { format: yyyy-MM-dd } }
       - { name: csak_honap, label: "Csak a hónap ismert", type: boolean }
       - { name: helyszin, label: Helyszín, type: string, required: true }
@@ -184,11 +185,12 @@ content:
       - { name: title_en, label: "Cím – angolul", type: string }
       - name: kepek
         label: Fotók
+        description: "Az események listája az Esemény űrlapon van, itt csak a fotók. A dátum a koncert napja; ebben a sorrendben jelennek meg, a legújabbal kezdve."
         type: object
         list: true
         fields:
           - { name: kep, label: Kép, type: image }
-          - { name: datum, label: "A koncert napja (ebben a sorrendben jelennek meg)", type: date }
+          - { name: datum, label: "A koncert napja (ebben a sorrendben jelennek meg)", type: date, options: { format: yyyy-MM-dd } }
           - { name: alt, label: Mi látszik a képen (vakoknak), type: string }
           - { name: alt_en, label: "Mi látszik a képen (vakoknak) – angolul", type: string }
           - { name: felirat, label: Képaláírás, type: string }
@@ -298,7 +300,7 @@ content:
       - { name: szerzotars_cimke, label: "Hogyan nevezzük őket (pl. társszerző, kurátortársak)", type: string }
       - { name: szerzotars_cimke_en, label: "Hogyan nevezzük őket (pl. társszerző, kurátortársak) – angolul", type: string }
       - { name: link, label: Link, type: string }
-      - { name: pdf, label: PDF (a static/files mappából, pl. /files/cikk.pdf), type: string }
+      - { name: pdf, label: PDF (a static/files mappából, pl. /files/cikk.pdf), type: string, description: "Ha a PDF a static/files mappában van, ide: /files/fajlnev.pdf – ekkor a Google Scholar is megtalálhatja." }
       - { name: doi, label: DOI, type: string }
       - { name: scholar, label: Google Scholar-adatok (csak ha van PDF), type: boolean }
       - { name: hivatkozas, label: Javasolt hivatkozás, type: string }
@@ -312,6 +314,7 @@ content:
     fields:
       - { name: title, label: Cím, type: string }
       - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: tipusok, label: "A csoportok sorrendje a Szöveg oldalon", type: string, list: true, description: "Pontosan úgy írd, ahogy a szövegek Típus mezőjében szerepel (pl. Előadás, beszélgetés)." }
       - { name: erdeklodes, label: Kutatási területek, type: string, list: true }
 
   # ---------- CV, linkek ----------
@@ -327,9 +330,10 @@ content:
       - { name: portre_alt_en, label: "Portré leírása – angolul", type: string }
       - { name: portre_credit, label: Fotós neve, type: string }
       - { name: portre_credit_en, label: "Fotós neve – angolul (keresztnév elöl)", type: string }
-      - { name: email, label: "E-mail (így: bardits pont eva gmail – kukac és .com nélkül)", type: string }
+      - { name: portre_pozicio, label: "A portré kivágása (pl. 50% 30% = kicsit a közép fölött; üresen középre vágódik)", type: string }
+      - { name: email, label: "E-mail (így: bardits pont eva gmail – kukac és .com nélkül)", type: string, description: "Kukac, pont és .com nélkül, szétszedett (glitches) betűkkel, hogy a spamrobotok ne ismerjék fel." }
       - { name: email_en, label: "E-mail – angolul (így: bardits dot eva gmail)", type: string }
-      - { name: email_olvaso, label: "E-mail képernyőolvasóknak (sima betűkkel)", type: string }
+      - { name: email_olvaso, label: "E-mail képernyőolvasóknak (sima betűkkel)", type: string, description: "A képernyőolvasók a glitches szöveget nem tudják felolvasni, ezért kell ez is." }
       - { name: email_olvaso_en, label: "E-mail képernyőolvasóknak – angolul", type: string }
       - { name: kapcsolat, label: Elérhetőség szövege, type: string }
       - { name: kapcsolat_en, label: "Elérhetőség szövege – angolul", type: string }
