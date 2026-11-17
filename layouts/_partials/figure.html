@@ -1,5 +1,6 @@
-{{- /* Kép képaláírással és fotós nevével. A hívó a nyelvnek megfelelő alt/felirat értéket adja. */ -}}
-<figure>
+{{- /* Kép képaláírással és fotós nevével. A hívó a nyelvnek megfelelő alt/felirat értéket adja.
+     „ar”: a kép szélesség/magasság aránya, a sorokba rendezett galériához (gallery.html). */ -}}
+<figure{{ with .ar }} style="--ar: {{ . | safeCSS }}"{{ end }}>
   {{ partial "img.html" (dict "src" .kep "alt" (.alt | default .felirat) "sizes" (.sizes | default "(min-width: 74rem) 22rem, (min-width: 40rem) 45vw, 92vw") "class" .class "loading" .loading) }}
   {{- if or .felirat .credit }}
   <figcaption>

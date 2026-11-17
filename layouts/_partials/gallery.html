@@ -1,9 +1,18 @@
 {{- /* Képek listája (kepek) galériaként, nyelvhez illő képaláírással.
      Az instax-képek (útvonalukban „/instax/”) egymás után egy tömör sorba kerülnek: egyforma magasra,
-     a szélességük a képarányukból jön (flex-grow = szélesség/magasság), a felirat (az első instaxé) a sor alá. Telefonon kettesével. */ -}}
+     a szélességük a képarányukból jön (flex-grow = szélesség/magasság), a felirat (az első instaxé) a sor alá. Telefonon kettesével.
+     Ha álló és fekvő képek vegyesen vannak, és a képek kevesebb mint felének van felirata (sorozat, csak a csoportok első képén
+     felirattal), a rácsban rések maradnának: ilyenkor az egész galéria egyforma magas, kitöltött sorokba rendeződik („sorok”),
+     a felirat a sorközbe kerül. */ -}}
 {{- $instax := slice }}
 {{- range . }}{{ if in .kep "/instax/" }}{{ $instax = $instax | append . }}{{ end }}{{ end }}
-<div class="gallery">
+{{- $feliratos := 0 }}{{ $allo := false }}{{ $fekvo := false }}
+{{- range . }}
+  {{- if .felirat }}{{ $feliratos = add $feliratos 1 }}{{ end }}
+  {{- if not (in .kep "/instax/") }}{{ with resources.Get (strings.TrimPrefix "/" .kep) }}{{ $a := div (float .Width) .Height }}{{ if lt $a 0.9 }}{{ $allo = true }}{{ else if gt $a 1.1 }}{{ $fekvo = true }}{{ end }}{{ end }}{{ end }}
+{{- end }}
+{{- $sorok := and $allo $fekvo (lt (mul $feliratos 2) (len .)) }}
+<div class="gallery{{ if $sorok }} sorok{{ end }}">
   {{- $kesz := false }}
   {{- range . }}
   {{- if in .kep "/instax/" }}
@@ -23,7 +32,8 @@
   {{- else }}
   {{- $alt := partial "loc.html" (dict "m" . "k" "alt") }}
   {{- $fel := partial "loc.html" (dict "m" . "k" "felirat") }}
-  {{ partial "figure.html" (dict "kep" .kep "alt" $alt "felirat" $fel "credit" (partial "loc.html" (dict "m" . "k" "credit"))) }}
+  {{- $ar := "" }}{{ if $sorok }}{{ with resources.Get (strings.TrimPrefix "/" .kep) }}{{ $ar = printf "%.3f" (div (float .Width) .Height) }}{{ end }}{{ end }}
+  {{ partial "figure.html" (dict "kep" .kep "alt" $alt "felirat" $fel "credit" (partial "loc.html" (dict "m" . "k" "credit")) "ar" $ar "sizes" (cond $sorok "(min-width: 74rem) 30rem, (min-width: 40rem) 50vw, 92vw" "")) }}
   {{- end }}
   {{- end }}
 </div>

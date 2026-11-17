@@ -342,6 +342,18 @@ figcaption .credit { white-space: nowrap; }
 .instax-kep { flex: var(--ar) 1 0; min-width: 0; }
 .instax-tores { display: none; }
 @media (max-width: 40rem) { .instax-kepek { flex-wrap: wrap; gap: .75rem; } .instax-tores { display: block; flex-basis: 100%; height: 0; } }
+/* sorokba rendezett galéria (gallery.html, „sorok”): a képek egy sorban egyforma magasak, és kitöltik a sort.
+   Alapméretük a --sor-mag magasságból és a képarányból (--ar) jön, a maradék helyen arányosan osztoznak.
+   A felirat a sorközben áll, így nem nyújtja meg a képét. Az utolsó sor nem nyúlik a teljes szélességre (::after),
+   kivéve, ha a main.js sormagasság-igazítása után majdnem tele van („kitolt”). */
+.gallery.sorok { --sor-mag: clamp(11rem, 20vw, 19rem); display: flex; flex-wrap: wrap; gap: 2.4rem 1rem; }
+/* a növekedés ×100: ha egy sorban 1-nél kisebb a növekedések összege (egyetlen álló kép), a böngésző nem osztaná ki a teljes helyet */
+.gallery.sorok > figure { flex: calc(var(--ar) * 100) 1 calc(var(--ar) * var(--sor-mag)); min-width: 0; margin: 0; position: relative; }
+.gallery.sorok > figure > figcaption { position: absolute; top: 100%; left: 0; width: max-content; max-width: 200%; }
+.gallery.sorok > .instax-sor { flex-basis: 100%; }
+.gallery.sorok::after { content: ""; flex: 300 1 0; }
+.gallery.sorok.kitolt::after { display: none; }
+.gallery.sorok.meres::after { flex-grow: 100000; }  /* mérés közben a képek az alapméretükön állnak */
 /* Kép oldal: négyzetes képgombok, hármasával (telefonon kettesével); a kivágás helye képenként állítható (borito_pozicio).
    Alattuk csak a név, jól láthatóan: fehér, félkövér verzál, a szöveg méretében */
 .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.75rem; }
@@ -439,7 +451,15 @@ figcaption .credit { white-space: nowrap; }
 .cs-hold .kod { opacity: .45; }
 .cs-hold .eles { opacity: .92; }
 .cs-hold .vonal-feny { opacity: .45; }
-@media (max-width: 40rem) { .nyito { --V: max(100vw, 34rem); } .cs-hold { --w: calc(var(--V) * .15); } .cs-virag { --cx: calc(var(--V) * .58); --cy: 8%; } }
+/* telefonon a rajzok nagyobbak a képernyőhöz képest; a macska (--mw széles) jobbról a képernyő széléig ér, és egészében látszik,
+   a kék virág a hátgödre fölött marad, a hold és az ajtós ember tőle balra, a bal margón belül */
+@media (max-width: 40rem) {
+  .nyito { --V: max(100vw, 34rem); --mw: min(84vw, 26rem); }
+  .cs-macska { --w: var(--mw); --cx: calc(100vw - var(--mw) * .5); }
+  .cs-virag { --cx: calc(100vw - var(--mw) * .458); --cy: 8%; }
+  .cs-hold { --w: calc(var(--V) * .15); --cx: calc(100vw - var(--mw) * 1.02 + .75rem); --cy: calc(56% - var(--mw) * .185 - var(--w) * .393 + 1%); }
+  .cs-ajto { --cx: calc(100vw - var(--mw) * 1.06 + .75rem); --cy: 80%; }
+}
 
 /* --- Díszek (layouts/_partials/disz.html, disz-reteg.html; oldalanként szoveg-disz, szoveg-alma, esemeny-disz, esemeny-monstera,
    zene-disz, zene-disz-sajto, kep-disz, kep-fust, cv-disz, cv-hatter) ---

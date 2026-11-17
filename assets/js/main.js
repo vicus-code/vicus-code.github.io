@@ -138,3 +138,48 @@ document.addEventListener('click', function (e) {
     });
   });
 })();
+
+/* Sorokba rendezett galéria (gallery.html, „sorok”): a sormagasságot az alapérték körül (−20% … +15%) úgy választja,
+   hogy az utolsó sor a lehető legjobban kitöltődjön. Ha legalább 80%-ig kitöltődik, az utolsó sor is a teljes szélességre nyúlik
+   („kitolt”). Szkript nélkül a CSS-elrendezés marad, csak az utolsó sor lehet rövidebb. */
+(function () {
+  var galeriak = document.querySelectorAll('.gallery.sorok');
+  if (!galeriak.length) return;
+  function utolsoSor(g) {
+    var f = g.querySelectorAll(':scope > figure');
+    if (!f.length) return 1;
+    var top = f[f.length - 1].offsetTop, w = 0, n = 0;
+    for (var i = f.length - 1; i >= 0 && f[i].offsetTop === top; i--) { w += f[i].offsetWidth; n++; }
+    return (w + (n - 1) * parseFloat(getComputedStyle(g).columnGap || 0)) / g.clientWidth;
+  }
+  function igazit(g) {
+    g.classList.remove('kitolt');
+    g.classList.add('meres');
+    g.style.removeProperty('--sor-mag');
+    var alap = parseFloat(getComputedStyle(g).getPropertyValue('--sor-mag')) || 0;
+    if (!alap) {
+      var p = document.createElement('div');
+      p.style.cssText = 'position:absolute;visibility:hidden;height:var(--sor-mag)';
+      g.appendChild(p); alap = p.offsetHeight; g.removeChild(p);
+    }
+    if (!alap) { g.classList.remove('meres'); return; }
+    var legjobb = alap, legjobbArany = -1;
+    for (var k = 0; k <= 35; k++) {
+      var m = alap * (0.8 + k * 0.01);
+      g.style.setProperty('--sor-mag', m + 'px');
+      var a = utolsoSor(g) - Math.abs(m - alap) / alap * 0.2;
+      if (a > legjobbArany) { legjobbArany = a; legjobb = m; }
+    }
+    g.style.setProperty('--sor-mag', legjobb + 'px');
+    if (utolsoSor(g) >= 0.8) g.classList.add('kitolt');
+    g.classList.remove('meres');
+  }
+  function mind() { [].forEach.call(galeriak, igazit); }
+  mind();
+  var idozito, szel = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === szel) return;
+    szel = window.innerWidth;
+    clearTimeout(idozito); idozito = setTimeout(mind, 150);
+  });
+})();
