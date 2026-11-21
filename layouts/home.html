@@ -42,7 +42,7 @@
     (dict "c" "cs-virag" "cel" "/kutatas" "rajz" "virag.png" "eles" 200 "meret" 300 "sizes" "(max-width: 40rem) 1.75rem, 5.1vw" "retegek" (slice
       (dict "f" "virag-arnyek.png" "c" "arnyek" "k" 2)
       (dict "f" "virag-feny.png" "c" "feny" "k" 1.5)))
-    (dict "c" "cs-hold" "cel" "/koncertek" "rajz" "hold.png" "eles" 700 "meret" 450 "sizes" "(max-width: 40rem) 5.25rem, 11.25vw" "retegek" (slice
+    (dict "c" "cs-hold" "cel" "/linkek" "rajz" "hold.png" "eles" 700 "meret" 450 "sizes" "(max-width: 40rem) 5.25rem, 11.25vw" "retegek" (slice
       (dict "f" "hold-feny.png" "c" "feny" "k" 1.5)
       (dict "f" "hold-kod.png" "c" "kod" "k" 1.7))
       "elol" (slice
@@ -79,7 +79,7 @@
   {{- if and (in (slice "page" "section") .Kind) (not .Draft) }}
     {{- $ok := true }}
     {{- if and (eq .Section "kutatas") (eq .Kind "page") (not (or .Content .Params.body_en)) }}{{ $ok = false }}{{ end }}
-    {{- if $ok }}{{ $lista = $lista | append .RelPermalink }}{{ end }}
+    {{- if and $ok .RelPermalink }}{{ $lista = $lista | append .RelPermalink }}{{ end }}
   {{- end }}
 {{- end }}
 <script type="application/json" id="veletlen-oldalak">{{ $lista | jsonify | safeJS }}</script>

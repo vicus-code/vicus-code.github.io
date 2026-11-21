@@ -1,5 +1,8 @@
 ---
 title: Zene
+aliases:
+  - /esemeny/
+  - /event/
 agencia:
   leiras: |-
     imaginárius labelszimulákrum

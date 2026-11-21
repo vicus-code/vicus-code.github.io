@@ -1,4 +1,4 @@
-{{- /* A szakaszoldalak (Zene, Esemény, Kép, Szöveg) feje: a cím és, ha van, a bevezető szöveg. */ -}}
+{{- /* A szakaszoldalak (Zene, Kép, Szöveg, Linkek) feje: a cím és, ha van, a bevezető szöveg. */ -}}
 <header class="wrap page-head">
   <h1>{{ partial "loc.html" (dict "m" .Params "k" "title") }}</h1>
   {{- with partial "body.html" . }}<div class="lead prose">{{ partial "todo.html" . }}</div>{{ end }}

@@ -1,0 +1,25 @@
+{{- /* Megjelenések (sajtó, rádió): a Zene oldal lemezeinek „kritikak” listájából, projektenként (a lemez „eloado” mezője) csoportosítva,
+     a projektek a legfrissebb megjelenésükkel kezdve, a projekt neve a saját színében. A sorokat a sajto-sor.html rajzolja (ugyanígy a lemezek oldalán).
+     A projektek színe és (angolul) neve a content/zene/_index.md projektek listájából, a magyar név szerint. Bemenet: a Zene szakaszoldal. */ -}}
+{{- $projSzin := dict }}{{ $projNev := dict }}
+{{- range .Params.projektek }}{{ $nev := .nev }}{{ with .szin }}{{ $projSzin = merge $projSzin (dict $nev .) }}{{ end }}{{ $projNev = merge $projNev (dict $nev (partial "loc.html" (dict "m" . "k" "nev"))) }}{{ end }}
+{{- $tetelek := slice }}
+{{- range $p := .Pages }}{{ range $p.Params.kritikak }}
+  {{- $tetelek = $tetelek | append (merge . (dict "rend" (cond (isset . "datum") (string .datum) "0000") "projekt" ($p.Params.eloado | default "") "projektNev" (partial "loc.html" (dict "m" $p.Params "k" "eloado") | default "") "lemez" (partial "loc.html" (dict "m" $p.Params "k" "title")) "lemezLink" $p.RelPermalink)) }}
+{{- end }}{{ end }}
+{{- with $tetelek }}
+{{- $projektek := slice }}{{ range sort . "rend" "desc" }}{{ if not (in $projektek .projekt) }}{{ $projektek = $projektek | append .projekt }}{{ end }}{{ end }}
+<div class="sajto measure">
+  {{- range $pr := $projektek }}
+  <div class="sajto-csop">
+    {{- $nev := index $projNev $pr | default (index (where $tetelek "projekt" $pr) 0).projektNev | default $pr }}
+    <h3{{ with index $projSzin $pr }} class="szin-{{ . }}"{{ end }}>{{ $nev }}</h3>
+    <ul class="sajto-lista">
+      {{- range sort (where $tetelek "projekt" $pr) "rend" "desc" }}
+      {{ partial "sajto-sor.html" (dict "t" . "lemez" .lemez "lemezLink" .lemezLink) }}
+      {{- end }}
+    </ul>
+  </div>
+  {{- end }}
+</div>
+{{- end }}

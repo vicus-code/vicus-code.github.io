@@ -1,4 +1,4 @@
 ---
 title: Kép
-title_en: Image
+title_en: Artwork
 ---

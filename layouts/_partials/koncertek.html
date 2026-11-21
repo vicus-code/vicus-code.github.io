@@ -1,8 +1,5 @@
-{{ define "main" }}
-{{- partial "esemeny-monstera.html" . }}
-{{- partial "esemeny-disz.html" . }}
-{{ partial "oldalfej.html" . }}
-
+{{- /* Koncertek a Zene oldalon: a következő események, a koncertfotók képsora és a korábbiak idővonala.
+     Az események a data/koncertek.yaml-ből, a fotók a content/koncertek/_index.md „kepek” listájából (annak saját oldala nincs). */ -}}
 {{- $all := hugo.Data.koncertek | default slice }}
 {{- $today := now.Format "2006-01-02" }}
 {{- $up := slice }}{{ $past := slice }}
@@ -10,35 +7,23 @@
   {{- $end := (time.AsTime (.datum_vege | default .datum)).Format "2006-01-02" }}
   {{- if ge $end $today }}{{ $up = $up | append . }}{{ else }}{{ $past = $past | append . }}{{ end }}
 {{- end }}
-
-<section class="section">
+<section class="section koncertek" id="koncertek">
   <div class="wrap">
-    <h2>{{ T "upcoming" }}</h2>
+    <h2>{{ T "concerts" }}</h2>
+    {{- /* a következő események csak akkor, ha van ilyen (üres lista esetén se cím, se „nincs” szöveg) */}}
     {{- with $up }}
+    <h3>{{ T "upcoming" }}</h3>
     {{ partial "gigs.html" (dict "rows" (sort . "datum" "asc")) }}
-    {{- else }}
-    <p class="empty">{{ T "noGigs" }}</p>
+    {{- end }}
+    {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
+    <h3 class="visually-hidden">{{ T "photos" }}</h3>
+    {{- /* egy sorban, oldalra görgethetően, a legújabbal kezdve */}}
+    {{ partial "kepsor.html" (dict "kepek" (sort . "datum" "desc") "cimke" (T "eventPhotos") "credit" true) }}
+    {{- end }}{{ end }}
+    {{- with $past }}
+    <h3>{{ T "past" }}</h3>
+    {{- /* idovonal: kézzel húzott vonal, évenként egy festékpötty; mindig csak a kiválasztott év gördül le */}}
+    {{ partial "idovonal.html" (dict "rows" .) }}
     {{- end }}
   </div>
 </section>
-
-{{- with .Params.kepek }}
-<section class="section">
-  <div class="wrap">
-    <h2 class="visually-hidden">{{ T "photos" }}</h2>
-    {{- /* egy sorban, oldalra görgethetően, a legújabbal kezdve */}}
-    {{ partial "kepsor.html" (dict "kepek" (sort . "datum" "desc") "cimke" (T "eventPhotos") "credit" true) }}
-  </div>
-</section>
-{{- end }}
-
-{{- with $past }}
-<section class="section">
-  <div class="wrap">
-    <h2>{{ T "past" }}</h2>
-    {{- /* idovonal: kézzel húzott vonal, évenként egy festékpötty; mindig csak a kiválasztott év gördül le */}}
-    {{ partial "idovonal.html" (dict "rows" .) }}
-  </div>
-</section>
-{{- end }}
-{{ end }}

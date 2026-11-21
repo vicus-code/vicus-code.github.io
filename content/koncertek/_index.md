@@ -1,7 +1,5 @@
 ---
-title: Esemény
-# A koncertek listája a data/koncertek.yaml fájlban van. Itt csak a fotók;
-# a „datum” a koncert napja, ebben a sorrendben (a legújabbal kezdve) jelennek meg.
+title: Koncertek
 kepek:
   - kep: /images/koncertek/trafo-2026-duo.jpg
     datum: 2026-09-20
@@ -90,5 +88,5 @@ kepek:
     alt: Bárdits Éva egyedül a színpadon elektromos gitárral, mögötte vetített erdőkép
     alt_en: "Éva Bárdits alone on stage with an electric guitar, a projected forest behind her"
     felirat: Aires Altos, Müszi, 2016
-title_en: "Event"
+title_en: "Concerts"
 ---

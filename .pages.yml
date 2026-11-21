@@ -94,7 +94,7 @@ content:
           - { name: nev_en, label: "Felirat – angolul", type: string }
           - { name: url, label: Link, type: string }
       - name: kritikak
-        label: Sajtó és rádió
+        label: Megjelenések (a Linkek oldalon jelennek meg)
         type: object
         list: true
         fields:
@@ -116,6 +116,7 @@ content:
     fields:
       - { name: title, label: Cím, type: string }
       - { name: title_en, label: "Cím – angolul", type: string }
+      - { name: aliases, label: "Régi címek, amelyek ide irányítanak (ne töröld)", type: string, list: true }
       - name: agencia
         label: Ágencia Kollektíva
         type: object
@@ -141,7 +142,7 @@ content:
           - { name: nev, label: Név, type: string }
           - { name: nev_en, label: "Név – angolul", type: string }
           - name: szin
-            label: Szín az eseménylistában
+            label: Szín a koncertlistában
             type: select
             options: { values: [rozsaszin, piros, barack, zold, turkiz, kek, lila] }
           - { name: evek, label: Évek, type: string }
@@ -149,9 +150,9 @@ content:
           - { name: leiras_en, label: "Leírás – angolul", type: string }
           - { name: url, label: Link, type: string }
 
-  # ---------- Esemény (koncertek) ----------
+  # ---------- Koncertek (a Zene oldalon) ----------
   - name: koncertek
-    label: Esemény
+    label: Koncertek
     type: file
     path: data/koncertek.yaml
     format: yaml
@@ -177,7 +178,7 @@ content:
       - { name: megjegyzes_en, label: "Megjegyzés – angolul", type: string }
 
   - name: koncertek-fotok
-    label: Esemény – fotók
+    label: Koncertek – fotók
     type: file
     path: content/koncertek/_index.md
     fields:
@@ -185,7 +186,7 @@ content:
       - { name: title_en, label: "Cím – angolul", type: string }
       - name: kepek
         label: Fotók
-        description: "Az események listája az Esemény űrlapon van, itt csak a fotók. A dátum a koncert napja; ebben a sorrendben jelennek meg, a legújabbal kezdve."
+        description: "A koncertek listája a Koncertek űrlapon van, itt csak a fotók. A dátum a koncert napja; ebben a sorrendben jelennek meg, a legújabbal kezdve."
         type: object
         list: true
         fields:
@@ -286,7 +287,7 @@ content:
         label: Típus
         type: select
         options:
-          values: [Tanulmány, Szakdolgozat, Kurátori munka, Kritika, "Előadás, beszélgetés", Publicisztika, Fordítás]
+          values: [Tanulmány, Szakdolgozat, Kurátori munka, Kritika, Publicisztika, Fordítás]
       - { name: hol, label: Hol jelent meg / hol hangzott el, type: string }
       - { name: hol_en, label: "Hol jelent meg / hol hangzott el – angolul", type: string }
       - { name: szerzok, label: "Szerző(k) a Google Scholarnak (Vezetéknév, Keresztnév)", type: string, list: true }
@@ -357,8 +358,16 @@ content:
       - { name: body_en, label: "Bemutatkozás – angolul", type: rich-text }
 
 
+  - name: linkek-oldal
+    label: Linkek – oldal
+    type: file
+    path: content/linkek/_index.md
+    fields:
+      - { name: title, label: Cím, type: string }
+      - { name: title_en, label: "Cím – angolul", type: string }
+
   - name: linkek
-    label: Linkek (lábléc)
+    label: Linkek – Social
     type: file
     path: data/linkek.yaml
     format: yaml

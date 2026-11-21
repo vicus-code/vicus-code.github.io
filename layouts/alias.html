@@ -1,0 +1,13 @@
+{{- /* Átirányító oldal a régi címekről (aliases). A Zene oldal régi címei (/esemeny/, /en/event/) a Koncertek részére visznek. */ -}}
+{{- $u := .Permalink }}
+{{- with .Page }}{{ if and .IsSection (eq .Section "zene") }}{{ $u = printf "%s#koncertek" $u }}{{ end }}{{ end -}}
+<!DOCTYPE html>
+<html{{ with site.Language.LanguageCode }} lang="{{ . }}"{{ end }}>
+<head>
+<title>{{ $u }}</title>
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url={{ $u }}">
+</head>
+</html>

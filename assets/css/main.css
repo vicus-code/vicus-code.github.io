@@ -141,7 +141,7 @@ h1 { font-family: var(--sans); font-size: var(--t-display); font-weight: 700; li
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* címke */
-h2, .label, .kicker, nav, .site-footer ul, .btn, th, .facts dt, .gigs .video, .sajto-forras, .lapozo-sav, .work-grid .card h3 {
+h2, .label, .kicker, nav, .linksor, .btn, th, .facts dt, .gigs .video, .sajto-forras, .lapozo-sav, .work-grid .card h3 {
   font-family: var(--sans); font-size: var(--t-label); font-weight: var(--w-label); line-height: 1.4;
   letter-spacing: var(--track-label); text-transform: uppercase;
 }
@@ -167,10 +167,10 @@ em, i { font-style: italic; }
    a menük, a linksorok és a gombok világos verzál címkék, aláhúzás nélkül (a fő gomb – lejátszás, PDF – pasztellpiros) */
 :is(.prose a, .kicker a) { color: var(--accent-2); text-decoration-color: color-mix(in srgb, var(--accent-2) 45%, transparent); }
 :is(.prose a, .kicker a):hover { color: var(--accent-3); }
-:is(.links, .site-footer ul) a, .btn { color: var(--felirat); text-decoration: none; }
+:is(.links, .linksor) a, .btn { color: var(--felirat); text-decoration: none; }
 .btn { display: inline-block; background: none; border: 0; padding: 0; cursor: pointer; }
 :is(.links .btn-red, .btn-red) { color: var(--accent-2); }
-:is(.links, .site-footer ul) a:hover, .btn:hover, .links .btn-red:hover { color: var(--accent-3); }
+:is(.links, .linksor) a:hover, .btn:hover, .links .btn-red:hover { color: var(--accent-3); }
 
 /* Jóváhagyásra váró szöveg (⟦…⟧) – csak az előnézetben látszik így */
 mark.todo {
@@ -192,8 +192,8 @@ mark.todo {
 .site-nav a[aria-current="page"] { color: var(--nav-current); text-shadow: var(--nav-glow); }
 .site-nav a:hover { color: var(--accent-3); }
 /* festékpötty a menüpontok között (fent és a láblécben) */
-:is(.site-nav, .site-footer) .potty { line-height: 0; }
-:is(.site-nav, .site-footer) .potty img { width: .5rem; height: .5rem; object-fit: contain; opacity: .9; }
+:is(.site-nav, .linksor) .potty { line-height: 0; }
+:is(.site-nav, .linksor) .potty img { width: .5rem; height: .5rem; object-fit: contain; opacity: .9; }
 /* nyelvváltó: világos festett fénycsík a betűk mögött, sötét betűvel */
 .site-nav .lang { margin-left: 1.4rem; }
 .site-nav .lang a { position: relative; display: inline-block; padding: .4rem 1.5rem .4rem .6rem; color: #1a1919; font-weight: 700; isolation: isolate; }
@@ -247,7 +247,11 @@ mark.todo {
   filter: drop-shadow(0 0 .6rem rgba(255, 253, 248, .5)) drop-shadow(0 0 2rem rgba(255, 253, 248, .25)); }
 @media (max-width: 51.99rem) { .agencia-banan { width: min(65vw, 17.7rem); } }
 
-/* --- Sajtó és rádió (layouts/_partials/sajto-sor.html) --- */
+/* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
+/* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak */
+.koncertek h3 { margin: 2.5rem 0 .75rem; }
+.koncertek h2 + h3 { margin-top: 0; }
+.koncertek h2 + .kepsor { margin-top: 0; }
 /* a Zene oldalon projektenként (a projekt neve a saját színében), a lemezek oldalán ugyanígy, csoport nélkül:
    soronként hónap | forrás | cím, alatta halványan műfaj/szerző (és a Zene oldalon a lemez) */
 .sajto-csop { margin: 0 0 2.4rem; }
@@ -360,7 +364,7 @@ figcaption .credit { white-space: nowrap; }
 .work-grid .card img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
 .work-grid .card h3 { margin: 1rem 0 .2rem; font-size: var(--t-body); font-weight: 800; letter-spacing: .08em; }
 @media (max-width: 40rem) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1rem; } }
-/* egysoros képsor (Esemény fotói, egy lemez fotósorozata; kepsor.html): oldalra görgethető; a képek egyforma magasak, a saját arányukban,
+/* egysoros képsor (koncertfotók, egy lemez fotósorozata; kepsor.html): oldalra görgethető; a képek egyforma magasak, a saját arányukban,
    a felirat a kép szélességéig tördelődik */
 .kepsor { display: flex; gap: 1.25rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: .6rem .1rem 1rem; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
 .kepsor:focus-visible { outline: 2px solid var(--accent-3); outline-offset: 4px; }
@@ -394,8 +398,8 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- Lábléc --- */
 .site-footer { border-top: 1px solid var(--line); margin-top: 5rem; padding-block: 2.5rem; }
-.site-footer .wrap { display: grid; gap: .9rem; }
-.site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.15rem; }
+/* profilok és linkek egy sorban, pöttyökkel (Linkek oldal, linksor.html) */
+.linksor { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.15rem; }
 .site-footer small { color: var(--muted); }
 
 /* a nyitóoldal és a rövid 404-es oldal kitölti a képernyőt: a lábléc az ablak alján van */

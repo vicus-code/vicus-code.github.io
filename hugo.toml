@@ -13,18 +13,27 @@ enableRobotsTXT = true
 buildFuture = true
 disableKinds = ['taxonomy', 'term', 'rss']
 
-# Címek: a mappanevek (koncertek, vizualis, kutatas, rolam) maradnak, a látható cím a menühöz igazodik.
+# Címek: a mappanevek (vizualis, kutatas, rolam, linkek) maradnak, a látható cím a menühöz igazodik.
 # Az angol címek lent, a [languages.en.permalinks] részben.
 [permalinks]
   [permalinks.section]
-    koncertek = '/esemeny/'
     vizualis = '/kep/'
     kutatas = '/szoveg/'
     rolam = '/cv/'
+    linkek = '/linkek/'
   [permalinks.page]
-    koncertek = '/esemeny/:contentbasename/'
     vizualis = '/kep/:contentbasename/'
     kutatas = '/szoveg/:contentbasename/'
+
+# A koncertek a Zene oldalon jelennek meg (lista: data/koncertek.yaml, fotók: content/koncertek/_index.md).
+# A content/koncertek/ mappának ezért nincs saját oldala; a régi /esemeny/ cím a Zene oldalra visz
+# (a content/zene/_index.md „aliases” mezője).
+[[cascade]]
+  [cascade.build]
+    render = 'never'
+    list = 'never'
+  [cascade.target]
+    path = '{/koncertek,/koncertek/**}'
 
 [params]
   author = 'Bárdits Éva'
@@ -38,15 +47,11 @@ disableKinds = ['taxonomy', 'term', 'rss']
     locale = 'hu-HU'
     title = 'Bárdits Éva'
     [languages.hu.params]
-      description = 'Bárdits Éva budapesti művész, kulturális munkás weboldala: zene, esemény, kép, szöveg.'
+      description = 'Bárdits Éva budapesti művész, kulturális munkás weboldala: zene, koncert, kép, szöveg.'
     [[languages.hu.menus.main]]
       name = 'Zene'
       pageRef = '/zene'
       weight = 10
-    [[languages.hu.menus.main]]
-      name = 'Esemény'
-      pageRef = '/koncertek'
-      weight = 20
     [[languages.hu.menus.main]]
       name = 'Kép'
       pageRef = '/vizualis'
@@ -59,22 +64,22 @@ disableKinds = ['taxonomy', 'term', 'rss']
       name = 'CV'
       pageRef = '/rolam'
       weight = 5
+    [[languages.hu.menus.main]]
+      name = 'Linkek'
+      pageRef = '/linkek'
+      weight = 50
   [languages.en]
     weight = 2
     locale = 'en-GB'
     title = 'Éva Bárdits'
     [languages.en.params]
-      description = 'Website of Éva Bárdits, Budapest-based artist and cultural worker: music, events, images, texts.'
+      description = 'Website of Éva Bárdits, Budapest-based artist and cultural worker: music, concerts, artwork, texts.'
     [[languages.en.menus.main]]
       name = 'Music'
       pageRef = '/zene'
       weight = 10
     [[languages.en.menus.main]]
-      name = 'Event'
-      pageRef = '/koncertek'
-      weight = 20
-    [[languages.en.menus.main]]
-      name = 'Image'
+      name = 'Artwork'
       pageRef = '/vizualis'
       weight = 30
     [[languages.en.menus.main]]
@@ -85,17 +90,20 @@ disableKinds = ['taxonomy', 'term', 'rss']
       name = 'CV'
       pageRef = '/rolam'
       weight = 5
+    [[languages.en.menus.main]]
+      name = 'Links'
+      pageRef = '/linkek'
+      weight = 50
 
     [languages.en.permalinks]
       [languages.en.permalinks.section]
         zene = '/music/'
-        koncertek = '/event/'
         vizualis = '/image/'
         kutatas = '/text/'
         rolam = '/cv/'
+        linkek = '/links/'
       [languages.en.permalinks.page]
         zene = '/music/:contentbasename/'
-        koncertek = '/event/:contentbasename/'
         vizualis = '/image/:contentbasename/'
         kutatas = '/text/:contentbasename/'
 # Ugyanaz a content/ mappa mindkét nyelvhez

@@ -11,7 +11,9 @@ latestReleases: Legutóbbi kiadványok
 allReleases: Összes kiadvány
 projects: Projektek
 listen: Meghallgatás
-press: Sajtó és rádió
+press: Megjelenések
+social: Social
+concerts: Koncertek
 release: Kiadvány
 artist: Előadó
 released: Megjelenés
@@ -26,7 +28,6 @@ upcomingGigs: Következő események
 recentGigs: Legutóbbi események
 allGigs: Összes esemény
 past: Korábban
-noGigs: Nincs aktuális esemény.
 date: Dátum
 venue: Helyszín
 event: Esemény

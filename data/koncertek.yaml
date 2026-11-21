@@ -46,22 +46,6 @@
   esemeny: A Mérce támogatói estje
   esemeny_en: "Mérce supporters’ night"
   projekt: Gondozási Központ
-- datum: 2024-05-23
-  helyszin: Gólya
-  varos: Budapest
-  esemeny: "Örökre elég volt ebből? – kerekasztal a magyar popzenéről és a politikáról"
-  esemeny_en: "“Örökre elég volt ebből?” – roundtable on Hungarian pop music and politics"
-  projekt: Bárdits Éva
-  link: https://www.facebook.com/events/750438307291275/
-  video: https://youtu.be/lIDjL0i9sgA
-- datum: 2024-05-15
-  helyszin: Tilos Rádió
-  helyszin_en: "Tilos Rádió"
-  varos: Budapest
-  esemeny: "*Drágám, hol a vacsorám?* – A népzene kisajátítása a kortárs magyar könnyűzenében"
-  esemeny_en: "*Drágám, hol a vacsorám?* – The appropriation of folk music in contemporary Hungarian popular music"
-  projekt: Bárdits Éva
-  link: https://tilos.hu/episode/dragam-hol-a-vacsoram/2024/05/15
 - datum: 2023-02-26
   helyszin: Noise'n'Roses
   varos: Budapest
@@ -79,14 +63,6 @@
   varos: Malmö
   esemeny: Bananskolen (Goodiepal)
   projekt: Gondozási Központ
-- datum: 2022-06-16
-  helyszin: BME
-  helyszin_en: "Budapest University of Technology and Economics"
-  varos: Budapest
-  esemeny: "*Art Work and Housework* (Művészeti munka és házimunka) – kerekasztal a láthatatlan munkáról, moderátorként"
-  esemeny_en: "*Art Work and Housework* – roundtable on invisible labour, as moderator"
-  projekt: Bárdits Éva
-  link: https://www.facebook.com/events/318094107112539/
 - datum: 2022-05-05
   helyszin: Lumen
   varos: Budapest
@@ -94,13 +70,6 @@
   esemeny_en: "Goodiepal & Pals (DK) + Márton Bertók & Éva Bárdits"
   projekt: Bárdits Éva
   link: https://www.instagram.com/p/CdAroBMISaR/
-- datum: 2022-03-05
-  helyszin: Gólya
-  varos: Budapest
-  esemeny: "Nem virágot akarunk! – loop station-workshop a NEM! nőnapi minifesztiválján"
-  esemeny_en: "We don’t want flowers! – loop station workshop at NEM!’s Women’s Day mini festival"
-  projekt: Bárdits Éva
-  link: https://www.facebook.com/events/3078130879111699/
 - datum: 2022-01-29
   helyszin: Lumen
   varos: Budapest
@@ -193,13 +162,6 @@
   esemeny: Pletyka, Trutat, The Calendars (US), Mairead Band (US)
   esemeny_en: "Pletyka, Trutat, The Calendars (US), Mairead Band (US)"
   projekt: Trutat
-- datum: 2023-08-01
-  csak_honap: true
-  helyszin: Kesztyűgyár
-  varos: Budapest
-  esemeny: Zajkeltő, hangszerekkel ismerkedő workshop – Lázadó Lányok tábor (NANE, PATENT)
-  esemeny_en: "Noise-making and instrument workshop – Lázadó Lányok camp (NANE, PATENT)"
-  projekt: Bárdits Éva
 - datum: 2023-05-21
   helyszin: Szeszgyár
   varos: Budapest

@@ -54,6 +54,24 @@ oneletrajz:
       - evek: "2012"
         szoveg: "1\\. hely, *Diploma nélkül* pályázat, Bakelit Multi Art Center, Budapest"
         szoveg_en: "1st prize, *Without a Degree* competition, Bakelit Multi Art Center, Budapest"
+  - cim: Előadás, workshop
+    cim_en: "Talks, workshops"
+    tetelek:
+      - evek: "2024"
+        szoveg: "[Örökre elég volt ebből?](/szoveg/golya-kerekasztal-2024/) – kerekasztal a magyar popzenéről és a politikáról, Gólya, Budapest"
+        szoveg_en: "[“Örökre elég volt ebből?”](/en/text/golya-kerekasztal-2024/) – roundtable on Hungarian pop music and politics, Gólya, Budapest"
+      - evek: "2024"
+        szoveg: "[*Drágám, hol a vacsorám?* – A népzene kisajátítása a kortárs magyar könnyűzenében](/szoveg/tilos-2024/), Tilos Rádió"
+        szoveg_en: "[*Drágám, hol a vacsorám?* – The appropriation of folk music in contemporary Hungarian popular music](/en/text/tilos-2024/), Tilos Rádió"
+      - evek: "2023"
+        szoveg: Zajkeltő, hangszerekkel ismerkedő workshop – Lázadó Lányok tábor (NANE, PATENT), Kesztyűgyár, Budapest
+        szoveg_en: "Noise-making and instrument workshop – Lázadó Lányok camp (NANE, PATENT), Kesztyűgyár, Budapest"
+      - evek: "2022"
+        szoveg: "[*Art Work and Housework*](/szoveg/art-work-and-housework-2022/) (Művészeti munka és házimunka) – kerekasztal a láthatatlan munkáról, moderátorként, BME, Budapest"
+        szoveg_en: "[*Art Work and Housework*](/en/text/art-work-and-housework-2022/) – roundtable on invisible labour, as moderator, Budapest University of Technology and Economics"
+      - evek: "2022"
+        szoveg: "[Nem virágot akarunk!](https://www.facebook.com/events/3078130879111699/) – loop station-workshop a NEM! nőnapi minifesztiválján, Gólya, Budapest"
+        szoveg_en: "[We don’t want flowers!](https://www.facebook.com/events/3078130879111699/) – loop station workshop at NEM!’s Women’s Day mini festival, Gólya, Budapest"
   - cim: Aktivizmus
     cim_en: "Activism"
     tetelek:

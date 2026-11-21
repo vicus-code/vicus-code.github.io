@@ -5,7 +5,7 @@
   {{- /* szoveg-lista: a doboz az alma teljes magasságáig ér, akkor is, ha az alma az utolsó csoport mellett lóg le */}}
   <div class="wrap szoveg-lista">
     {{- $pages := .Pages.ByDate.Reverse }}
-    {{- range (.Params.tipusok | default (slice "Tanulmány" "Szakdolgozat" "Kurátori munka" "Kritika" "Előadás, beszélgetés" "Publicisztika" "Fordítás")) }}
+    {{- range (.Params.tipusok | default (slice "Tanulmány" "Szakdolgozat" "Kurátori munka" "Kritika" "Publicisztika" "Fordítás")) }}
       {{- $t := . }}
       {{- $items := where $pages "Params.tipus" $t }}
       {{- with $items }}

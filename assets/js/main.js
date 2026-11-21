@@ -105,7 +105,7 @@ document.addEventListener('click', function (e) {
   [].forEach.call(document.querySelectorAll('main h2:not(.visually-hidden)'), function (h, i) { h.classList.add('szin-' + sz[i % sz.length]); });
 })();
 
-/* Esemény idővonal: egy évre kattintva csak az az év gördül le (a nyitott évre újra kattintva bezárul) */
+/* Koncertek idővonala (Zene oldal): egy évre kattintva csak az az év gördül le (a nyitott évre újra kattintva bezárul) */
 (function () {
   [].forEach.call(document.querySelectorAll('[data-idovonal]'), function (iv) {
     var gombok = iv.querySelectorAll('.iv-ev');

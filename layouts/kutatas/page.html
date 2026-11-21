@@ -1,7 +1,8 @@
 {{ define "main" }}
 <article class="wrap">
   <header class="page-head">
-    {{ partial "kicker.html" (dict "p" . "utana" (partial "tipus.html" .Params.tipus)) }}
+    {{- /* az előadások, beszélgetések a CV „Előadás, workshop” blokkjában vannak felsorolva, ezért oda mutatnak vissza */}}
+    {{ partial "kicker.html" (dict "p" . "utana" (partial "tipus.html" .Params.tipus) "szulo" (cond (eq .Params.tipus "Előadás, beszélgetés") (site.GetPage "/rolam") nil)) }}
     {{- if .Draft }}<span class="draft-badge">{{ T "draftLong" }}</span>{{ end }}
     <h1>{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "title")) }}</h1>
     {{- /* angolul a magyar eredeti cím is látszik alatta – kivéve, ha az írás eredetileg angol (szoveg_nyelve: en), ha a két cím ugyanazzal a dőlt
