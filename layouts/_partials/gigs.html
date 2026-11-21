@@ -1,9 +1,6 @@
-{{- /* Színek: a projekteké a Zene oldal projektlistájából (szin:), a helyszíneké a nevükből számolódik, így mindig ugyanaz.
-     A projekt neve angolul a projektlista nev_en mezőjéből (pl. Éva Bárdits); a szín a magyar név szerint. */ -}}
-{{- $projSzin := dict }}
+{{- /* A projekt neve angolul a Zene oldal projektlistájának nev_en mezőjéből (pl. Éva Bárdits), a magyar név szerint. */ -}}
 {{- $projNev := dict }}
-{{- with site.GetPage "/zene" }}{{ range $p := .Params.projektek }}{{ with $p.szin }}{{ $projSzin = merge $projSzin (dict $p.nev .) }}{{ end }}{{ $projNev = merge $projNev (dict $p.nev (partial "loc.html" (dict "m" $p "k" "nev"))) }}{{ end }}{{ end }}
-{{- $szinek := slice "rozsaszin" "piros" "barack" "zold" "turkiz" "kek" "lila" }}
+{{- with site.GetPage "/zene" }}{{ range $p := .Params.projektek }}{{ $projNev = merge $projNev (dict $p.nev (partial "loc.html" (dict "m" $p "k" "nev"))) }}{{ end }}{{ end }}
 <table class="gigs"{{ with .cimke }} aria-label="{{ . }}"{{ end }}>
   <colgroup><col class="c-date"><col class="c-where"><col><col class="c-proj"></colgroup>
   <thead class="visually-hidden">
@@ -25,13 +22,13 @@
           {{- else }}<span class="nw">{{ time.Format (T "dateFormat") $kezd }}</span>–<span class="nw">{{ time.Format (T "dateShort") $veg }}</span>{{ end }}
         {{- else }}<span class="nw">{{ time.Format (cond (.csak_honap | default false) (T "monthFormat") (T "dateFormat")) $kezd }}</span>{{ end -}}
       </td>
-      <td class="where"><strong class="szin-{{ index $szinek (mod (hash.FNV32a (printf "h-%s" .helyszin)) (len $szinek)) }}">{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "helyszin")) }}</strong>{{ with $city }}<span class="city">, {{ partial "md.html" . }}</span>{{ end }}</td>
+      <td class="where"><strong>{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "helyszin")) }}</strong>{{ with $city }}<span class="city">, {{ partial "md.html" . }}</span>{{ end }}</td>
       <td class="what">
         {{- with .link }}<a href="{{ . }}">{{ partial "md.html" ($ev | default (T "details")) }}</a>{{ else }}{{ partial "md.html" $ev }}{{ end }}
         {{- with .video }}<a class="video{{ if $solo }} solo{{ end }}" href="{{ . }}">{{ T "video" }}</a>{{ end }}
         {{- with $note }}<br><span class="meta">{{ partial "md.html" . }}</span>{{ end -}}
       </td>
-      <td class="proj">{{ with .projekt }}<span class="tag{{ with index $projSzin . }} szin-{{ . }}{{ end }}">{{ index $projNev . | default . }}</span>{{ end }}</td>
+      <td class="proj">{{ with .projekt }}<span class="tag">{{ index $projNev . | default . }}</span>{{ end }}</td>
     </tr>
     {{- end }}
   </tbody>

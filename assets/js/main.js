@@ -99,12 +99,6 @@ document.addEventListener('click', function (e) {
   });
 })();
 
-// a kis szekciócímek sorban különböző színeket kapnak; a nagy oldalcím (h1) marad
-(function () {
-  var sz = ['rozsaszin', 'turkiz', 'barack', 'kek', 'zold', 'lila', 'piros'];
-  [].forEach.call(document.querySelectorAll('main h2:not(.visually-hidden)'), function (h, i) { h.classList.add('szin-' + sz[i % sz.length]); });
-})();
-
 /* Koncertek idővonala (Zene oldal): egy évre kattintva csak az az év gördül le (a nyitott évre újra kattintva bezárul) */
 (function () {
   [].forEach.call(document.querySelectorAll('[data-idovonal]'), function (iv) {
