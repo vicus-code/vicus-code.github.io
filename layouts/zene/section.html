@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{- partial "zene-disz.html" . }}
 {{ partial "oldalfej.html" . }}
 
 <section class="section">
@@ -23,10 +22,6 @@
       <h2>Ágencia Kollektíva</h2>
       {{- with .leiras }}<p class="label-motto">{{ . }}</p>{{ end }}
     </div>
-    {{- /* a színes banán Bertók Márton matricájáról, a kék fej fehérre cserélve, átlátszó margóval; a fehér derengést a CSS adja */}}
-    {{- with resources.Get "images/rajzok/banan-szines.png" }}{{ $n := .Resize "820x webp q85" }}{{ $k := .Resize "410x webp q85" }}
-    <img class="agencia-banan" src="{{ $n.RelPermalink }}" srcset="{{ $k.RelPermalink }} 410w, {{ $n.RelPermalink }} 820w" sizes="(min-width: 52rem) 20.4rem, 65vw" width="{{ $n.Width }}" height="{{ $n.Height }}" alt="Ágencia Kollektíva" loading="lazy" decoding="async">
-    {{- end }}
   </div>
 </section>
 {{- end }}

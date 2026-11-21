@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{- if eq .Section "rolam" }}{{ partial "cv-hatter.html" . }}{{ end }}
 {{- $t := partial "loc.html" (dict "m" .Params "k" "title") }}
 <div class="wrap">
   {{- if .Params.portre }}
@@ -10,8 +9,7 @@
       {{- with partial "loc.html" (dict "m" .Params "k" "portre_credit") }}<figcaption>{{ T "photo" }}: {{ partial "md.html" . }}</figcaption>{{ end }}
     </figure>
     </div>
-    <div{{ if eq $.Section "rolam" }} class="van-disz"{{ end }}>
-      {{- if eq $.Section "rolam" }}{{ partial "cv-disz.html" $ }}{{ end }}
+    <div>
       <h1>{{ partial "md.html" $t }}</h1>
       <div class="prose">{{ partial "todo.html" (partial "body.html" .) }}</div>
       {{ partial "cv.html" . }}

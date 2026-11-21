@@ -1,43 +1,16 @@
-{{- /* Korábbi koncertek idővonalon (Zene oldal, Koncertek).
-  A vonal kézzel húzott: a Greener zine üveges-szappanos oldalának asztalvonala (36_37), vízszintesre forgatva.
-  Minden év egy festékpötty a Greener pöttyös oldaláról (02_43), a legrégebbitől sorban: potty-01, potty-02, … (teltebbek: átlátszóságuk 1,7-szeres).
-  A vonalat a vonalrendez.swift rendezte át: a rajz saját, kézzel húzott rése oda esik, ahol egy év kimarad (2015, a szélesség
-  15–21%-a; a 2015 évszám ki van írva, pötty nélkül), a bal vége szakadozva, fokozatosan indul, és kevésbé átlátszó (1,6×).
-  Ha az évek köre változik (új év, más kimaradó év), a rés helyét újra kell számolni.
-  Az évek valódi időbeli távolságra ülnek a vonalon (ahol egy év kimarad, ott hézag van), és pont a vonalra:
-  a $profil a vonal magassága a kép szélességének 0, 1, … 100%-ánál (a kép magasságának arányában).
-  Egy évre kattintva csak az az év gördül le alatta; a legfrissebb nyitva van. JS nélkül minden év látszik. */ -}}
-{{- $profil := slice 0.416 0.416 0.408 0.393 0.386 0.387 0.383 0.375 0.384 0.409 0.431 0.448 0.434 0.388 0.367 0.371 0.340 0.308 0.277 0.246 0.214 0.196 0.178 0.157 0.141 0.130 0.127 0.133 0.140 0.136 0.119 0.113 0.135 0.130 0.127 0.143 0.139 0.136 0.141 0.148 0.151 0.155 0.161 0.168 0.176 0.188 0.203 0.219 0.235 0.255 0.277 0.293 0.300 0.307 0.321 0.339 0.388 0.404 0.349 0.342 0.378 0.394 0.413 0.433 0.447 0.467 0.482 0.489 0.503 0.524 0.539 0.549 0.557 0.569 0.579 0.589 0.608 0.626 0.641 0.661 0.687 0.710 0.733 0.757 0.775 0.786 0.789 0.787 0.791 0.794 0.799 0.812 0.825 0.835 0.845 0.858 0.873 0.886 0.896 0.904 0.908 }}
+{{- /* Korábbi koncertek évenként (Zene oldal, Koncertek): fent az évszámok egy sorban, gombként; egy évre kattintva csak az az év
+  gördül le alatta (main.js), a legfrissebb nyitva van. JS nélkül minden év látszik, az évszámmal. */ -}}
 {{- $sorted := sort .rows "datum" "desc" }}
 {{- $years := slice }}
 {{- range $sorted }}{{ $y := (time.AsTime .datum).Year }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end }}
-{{- $asc := sort $years }}
-{{- $min := index $asc 0 }}{{ $max := index $asc (sub (len $asc) 1) }}
-{{- $span := cond (gt $max $min) (sub $max $min) 1 }}
-{{- $vonal := (resources.Get "images/esemeny/idovonal.png").Resize "2198x webp q90" }}
-{{- $pottyok := resources.Match "images/esemeny/pottyok/potty-*.png" }}
-{{- /* a pöttyök saját színe (potty-01 … 13), a kiválasztott év fényéhez */}}
-{{- $fenyek := slice "#feca86" "#e7d8fe" "#fe9cb7" "#07bafe" "#0afeb0" "#f7e6fa" "#e6d8fe" "#07bafe" "#fe9cb8" "#affec7" "#13bafe" "#fbe0f6" "#0bfeaf" }}
+{{- $max := index $years 0 }}
 <div class="idovonal" data-idovonal>
   <div class="iv-sav">
-    <img class="iv-vonal" src="{{ $vonal.RelPermalink }}" width="{{ $vonal.Width }}" height="{{ $vonal.Height }}" alt="" aria-hidden="true">
-    {{- range $i, $y := $asc }}
+    {{- range $y := sort $years }}
       {{- $rows := slice }}
       {{- range $sorted }}{{ if eq (time.AsTime .datum).Year $y }}{{ $rows = $rows | append . }}{{ end }}{{ end }}
-      {{- $x := add 3.0 (mul 94.0 (div (float (sub $y $min)) $span)) }}
-      {{- $yf := index $profil (int (math.Round $x)) }}
-      {{- $p := index $pottyok (mod $i (len $pottyok)) }}
-      {{- $s := string $y }}
-    <button type="button" class="iv-ev" aria-expanded="{{ if eq $y $max }}true{{ else }}false{{ end }}" aria-controls="iv-{{ $y }}" style="--x: {{ printf "%.2f" $x }}%; --y: {{ $yf }}; --g: {{ index $fenyek (mod $i (len $fenyek)) }}">
-      <img class="iv-potty" src="{{ $p.RelPermalink }}" width="{{ $p.Width }}" height="{{ $p.Height }}" alt="">
-      <span class="iv-szam"><span class="iv-szazad">{{ substr $s 0 2 }}</span>{{ substr $s 2 }}</span><span class="visually-hidden">, {{ T "eventCount" (len $rows) }}</span>
-    </button>
+    <button type="button" class="iv-ev" aria-expanded="{{ if eq $y $max }}true{{ else }}false{{ end }}" aria-controls="iv-{{ $y }}">{{ $y }}<span class="visually-hidden">, {{ T "eventCount" (len $rows) }}</span></button>
     {{- end }}
-    {{- /* a kimaradt évek (pl. 2015) csak felirattal: ott szakad meg a vonal */}}
-    {{- range $y := seq $min $max }}{{ if not (in $asc $y) }}
-      {{- $x := add 3.0 (mul 94.0 (div (float (sub $y $min)) $span)) }}{{ $s := string $y }}
-    <span class="iv-ures" style="--x: {{ printf "%.2f" $x }}%" aria-hidden="true"><span class="iv-szam"><span class="iv-szazad">{{ substr $s 0 2 }}</span>{{ substr $s 2 }}</span></span>
-    {{- end }}{{ end }}
   </div>
   {{- range $y := $years }}
     {{- $rows := slice }}

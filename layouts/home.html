@@ -1,13 +1,9 @@
 {{ define "main" }}
-{{- /* Nyitóoldal a Weboldal-grafika/Weboldal-kepernyokepek/01-fooldal.psd terv szerint: az alvó macska (Greener), a kék virág (Greener) és az ajtós ember (Inertia),
-     fölöttük jobbra fent a hold: Éva alakok.psd-jének kerek, levágott szélű alakja, a Greener 02_43 konfettimintájával kitöltve, Éva fehér vonalainak modorában húzott körvonallal és belül ívelt, gömbszerű árnyékkal,
-     mindegyik saját ködben, puha fényben és foltos sötét árnyékban. A név és a bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól. */}}
+{{- /* Nyitóoldal: a menü és a lábléc között csak a köd. A név és a bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól. */}}
 <div class="visually-hidden">
   <h1>{{ site.Title }}</h1>
   {{ partial "body.html" . }}
 </div>
-{{- /* Minden rajz (macska, ajtós ember, kis virág, hold) gomb: kattintásra egy véletlen oldalra visz a szájton belül
-     (a lista lent, JSON-ban; a választást a main.js végzi). JS nélkül mindegyik egy állandó oldalra mutat (a „cel”). */}}
 <section class="nyito">
   {{- /* felhősség: sötét felhőfoltok és világos ködfátylak az egész kép előtt-mögött */}}
   <div class="nyito-hatter">
@@ -24,63 +20,9 @@
     {{- end }}
     {{- end }}
   </div>
-  {{- /* Minden rajz rétegei egy közös középpont körül. A --k a réteg szélessége a rajzéhoz képest (a generált képek körül ennyi a puha szegély).
-       „eles”: az éles rajz pixelszélessége, „meret”: a ködök, fények, árnyékok pixelszélessége (a rajz megjelenő méretéhez igazítva). */}}
-  {{- $csoportok := slice
-    (dict "c" "cs-macska" "cel" "/vizualis" "rajz" "macska.png" "eles" 2000 "meret" 900 "sizes" "(max-width: 40rem) 22rem, min(64vw, 118vh)" "retegek" (slice
-      (dict "f" "macska-arnyek.png" "c" "arnyek" "k" 1.36)
-      (dict "f" "macska-kod-tav.png" "c" "kod-tav" "k" 1.7)
-      (dict "f" "macska.png" "c" "szellem" "k" 1.5)
-      (dict "f" "macska-kod.png" "c" "kod" "k" 1.7)
-      (dict "f" "macska-feny-tag.png" "c" "feny-tag" "k" 1.24)
-      (dict "f" "macska-feny.png" "c" "feny" "k" 1.12)))
-    (dict "c" "cs-ajto" "cel" "/zene" "rajz" "ajtosember.png" "eles" 420 "meret" 520 "sizes" "(max-width: 40rem) 4.2rem, 12.3vw" "retegek" (slice
-      (dict "f" "ajto-fatyol.png" "c" "fatyol" "k" 2.4)
-      (dict "f" "ajto-arnyek.png" "c" "arnyek" "k" 1.8)
-      (dict "f" "ajtosember.png" "c" "szellem" "k" 1.6)
-      (dict "f" "ajto-feny.png" "c" "feny" "k" 1.24)))
-    (dict "c" "cs-virag" "cel" "/kutatas" "rajz" "virag.png" "eles" 200 "meret" 300 "sizes" "(max-width: 40rem) 1.75rem, 5.1vw" "retegek" (slice
-      (dict "f" "virag-arnyek.png" "c" "arnyek" "k" 2)
-      (dict "f" "virag-feny.png" "c" "feny" "k" 1.5)))
-    (dict "c" "cs-hold" "cel" "/linkek" "rajz" "hold.png" "eles" 700 "meret" 450 "sizes" "(max-width: 40rem) 5.25rem, 11.25vw" "retegek" (slice
-      (dict "f" "hold-feny.png" "c" "feny" "k" 1.5)
-      (dict "f" "hold-kod.png" "c" "kod" "k" 1.7))
-      "elol" (slice
-      (dict "f" "hold-gomb.png" "c" "gomb" "k" 1)
-      (dict "f" "hold-vonal-feny.png" "c" "feny vonal-feny" "k" 1.2314)
-      (dict "f" "hold-vonal.png" "c" "vonal" "k" 1.1))) }}
-  {{- range $cs := $csoportok }}
-  <div class="csoport {{ $cs.c }}">
-    {{- range $r := $cs.retegek }}
-    {{- with resources.Get (printf "images/fooldal/%s" $r.f) }}{{ $i := .Resize (printf "%dx webp q74" $cs.meret) }}
-    <img class="r {{ $r.c }}" style="--k: {{ $r.k }}" src="{{ $i.RelPermalink }}" alt="">
-    {{- end }}
-    {{- end }}
-    {{- with resources.Get (printf "images/fooldal/%s" $cs.rajz) }}{{ $i := .Resize (printf "%dx webp q86" $cs.eles) }}{{ $kicsi := .Resize (printf "%dx webp q86" (div $cs.eles 2)) }}
-    <a class="ugro" href="{{ with site.GetPage $cs.cel }}{{ .RelPermalink }}{{ else }}{{ "/" | relLangURL }}{{ end }}" aria-label="{{ T "randomPage" }}"><img class="r eles" src="{{ $i.RelPermalink }}" srcset="{{ $kicsi.RelPermalink }} {{ $kicsi.Width }}w, {{ $i.RelPermalink }} {{ $i.Width }}w" sizes="{{ $cs.sizes }}" width="{{ $i.Width }}" height="{{ $i.Height }}" alt=""></a>
-    {{- end }}
-    {{- /* az éles rajz elé kerülő rétegek (a hold kézzel húzott fehér körvonala és annak fénye) */}}
-    {{- range $r := $cs.elol }}
-    {{- with resources.Get (printf "images/fooldal/%s" $r.f) }}{{ $i := .Resize "800x webp q86" }}
-    <img class="r {{ $r.c }}" style="--k: {{ $r.k }}" src="{{ $i.RelPermalink }}" alt="">
-    {{- end }}
-    {{- end }}
-  </div>
-  {{- end }}
-  {{- /* elöl egy halvány ködfátyol is átúszik a rajzok előtt, mintha a felhő belsejéből néznénk */}}
+  {{- /* elöl egy halvány ködfátyol */}}
   {{- with resources.Get "images/fooldal/fatyol-2.png" }}{{ $r := .Resize "700x webp q72" }}
   <img class="fv fv3" src="{{ $r.RelPermalink }}" alt="">
   {{- end }}
 </section>
-{{- /* a véletlen ugrás céljai: minden (nem vázlat) aloldal és szakaszoldal ezen a nyelven, a nyitóoldal nélkül;
-     a Szöveg tételei közül csak azok, amelyeknek van saját szövegük (a többi csak egy külső linket tartalmaz) */}}
-{{- $lista := slice }}
-{{- range site.Pages }}
-  {{- if and (in (slice "page" "section") .Kind) (not .Draft) }}
-    {{- $ok := true }}
-    {{- if and (eq .Section "kutatas") (eq .Kind "page") (not (or .Content .Params.body_en)) }}{{ $ok = false }}{{ end }}
-    {{- if and $ok .RelPermalink }}{{ $lista = $lista | append .RelPermalink }}{{ end }}
-  {{- end }}
-{{- end }}
-<script type="application/json" id="veletlen-oldalak">{{ $lista | jsonify | safeJS }}</script>
 {{ end }}

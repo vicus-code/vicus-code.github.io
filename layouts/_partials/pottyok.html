@@ -1,7 +1,0 @@
-{{- /* A menüpontok és a lábléc linkjei közti kis festékpöttyök az Inertia virágos rajzáról (assets/images/pottyok/potty-1…4.png).
-     Visszaadja a kicsinyített képek listáját; a hívó sorban, körbe-körbe használja őket. */ -}}
-{{- $pottyok := slice -}}
-{{- range seq 1 4 -}}
-  {{- with resources.Get (printf "images/pottyok/potty-%d.png" .) -}}{{- $pottyok = $pottyok | append (.Resize "24x webp q90") -}}{{- end -}}
-{{- end -}}
-{{- return $pottyok -}}

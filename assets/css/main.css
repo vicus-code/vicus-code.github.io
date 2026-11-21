@@ -181,25 +181,14 @@ mark.todo {
 .draft-badge { display: inline-block; color: var(--accent-text); border: 1px dashed var(--accent); border-radius: 2px; padding: .05rem .4rem; margin: 0 .5rem .4rem 0; vertical-align: middle; }
 
 /* --- Fejléc --- */
-.site-header { border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 2rem; padding-block: .9rem; }
-/* bal fent az Ágencia Kollektíva színes banánja, halvány, szétterülő derengéssel */
-.site-logo { display: block; line-height: 0; }
-.site-logo img { width: 2.6rem; height: auto; filter: drop-shadow(0 0 .8rem rgba(255, 253, 248, .13)) drop-shadow(0 0 1.8rem rgba(255, 253, 248, .06)); }
-.site-name { color: var(--ink); text-decoration: none; }
+.site-name { color: var(--ink); text-decoration: none; font-family: var(--sans); font-size: var(--t-label); font-weight: 800; letter-spacing: var(--track-label); text-transform: uppercase; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem 1.15rem; }
 .site-nav a { text-decoration: none; color: var(--felirat); }
 .site-nav a[aria-current="page"] { color: var(--nav-current); text-shadow: var(--nav-glow); }
 .site-nav a:hover { color: var(--accent-3); }
-/* festékpötty a menüpontok között (fent és a láblécben) */
-:is(.site-nav, .linksor) .potty { line-height: 0; }
-:is(.site-nav, .linksor) .potty img { width: .5rem; height: .5rem; object-fit: contain; opacity: .9; }
-/* nyelvváltó: világos festett fénycsík a betűk mögött, sötét betűvel */
+/* nyelvváltó: kicsit távolabb a menütől */
 .site-nav .lang { margin-left: 1.4rem; }
-.site-nav .lang a { position: relative; display: inline-block; padding: .4rem 1.5rem .4rem .6rem; color: #1a1919; font-weight: 700; isolation: isolate; }
-.site-nav .lang .zaszlo { position: absolute; left: 0; top: .3rem; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-.site-nav .lang a:hover { color: #1a1919; }
-.site-nav .lang a:hover .zaszlo { filter: brightness(1.08); }
 
 /* --- Szakaszok --- */
 .section { padding-block: var(--szakasz); }
@@ -238,14 +227,8 @@ mark.todo {
 .embed.is-loaded { margin-bottom: 1.5rem; }
 .embed.is-loaded.video { aspect-ratio: 16 / 9; }
 .embed.is-loaded.video iframe { height: 100%; }
-/* Ágencia Kollektíva a Zene oldal alján: a leírás és a nagy, színes banán */
-.agencia { display: grid; gap: 2rem 3rem; grid-template-columns: minmax(0, 1fr); align-items: center; }
-@media (min-width: 52rem) { .agencia { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+/* Ágencia Kollektíva a Zene oldal alján */
 .label-motto { white-space: pre-line; margin: 0; }
-/* a képben átlátszó margó van a banán körül, hogy a fehér derengés ne vágódjon le: ezért szélesebb, mint a látható banán */
-.agencia-banan { width: min(100%, 20.4rem); height: auto; justify-self: start;
-  filter: drop-shadow(0 0 .6rem rgba(255, 253, 248, .5)) drop-shadow(0 0 2rem rgba(255, 253, 248, .25)); }
-@media (max-width: 51.99rem) { .agencia-banan { width: min(65vw, 17.7rem); } }
 
 /* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
 /* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak */
@@ -297,23 +280,12 @@ mark.todo {
   .gigs td.proj { grid-column: 2; grid-row: 1; }
   .gigs td.where, .gigs td.what { grid-column: 1 / -1; }
 }
-/* Korábbi események idővonalon (layouts/_partials/idovonal.html): kézzel húzott Greener-vonal, évenként egy festékpötty a vonalon
-   (--x: hol az évek közt, --y: a vonal magassága ott). Mindig csak a kiválasztott év gördül le alatta. */
-.idovonal { container-type: inline-size; }
-.iv-sav { --h: calc(100cqw * 113 / 2198); --cimke: 2.6rem; position: relative; height: calc(var(--h) + var(--cimke)); margin: .25rem 0 1.25rem; }
-.iv-vonal { position: absolute; left: 0; top: 0; width: 100%; height: var(--h); pointer-events: none; opacity: .72; filter: drop-shadow(0 0 .1rem rgb(255 255 255 / .22)); }  /* lágy, halvány derengés */
-.iv-ev { position: absolute; left: var(--x); top: 0; width: 3.4rem; height: 100%; translate: -50% 0; padding: 0; border: 0; background: none; cursor: pointer; color: var(--muted); font-family: var(--sans); }
-.iv-potty { position: absolute; left: 50%; top: calc(var(--y) * var(--h)); width: 1.55rem; height: auto; translate: -50% -50%; opacity: .88; filter: saturate(.8); transition: width .2s ease, opacity .2s ease, filter .25s ease; }
-.iv-szam { position: absolute; left: 50%; bottom: 0; translate: -50% 0; font-size: var(--t-label); font-weight: var(--w-label); letter-spacing: var(--track-label); white-space: nowrap; transition: color .2s ease; }
-/* kimaradt év (2015): csak a felirat, halványan; ott szakad meg a vonal */
-.iv-ures { position: absolute; left: var(--x); top: 0; width: 3.4rem; height: 100%; translate: -50% 0; color: var(--muted); opacity: .55; font-family: var(--sans); pointer-events: none; }
-.iv-ev:hover .iv-potty { width: 1.8rem; opacity: 1; }
-.iv-ev:hover .iv-szam { color: var(--ink); }
-/* a kiválasztott év pöttye a saját színében fénylik (--g) */
-.iv-ev[aria-expanded="true"] .iv-potty { width: 2.25rem; opacity: 1; filter: saturate(.8) drop-shadow(0 0 .25rem color-mix(in srgb, var(--g) 38%, transparent)) drop-shadow(0 0 .7rem color-mix(in srgb, var(--g) 16%, transparent)); }
-.iv-ev[aria-expanded="true"] .iv-szam { color: var(--ink); font-weight: 800; }
-.iv-ev:focus-visible { outline: none; }
-.iv-ev:focus-visible .iv-szam { outline: 2px solid var(--accent-3); outline-offset: 3px; }
+/* Korábbi koncertek évenként (layouts/_partials/idovonal.html): az évszámok egy sorban, gombként; a kiválasztott év kiemelve */
+.iv-sav { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .25rem 0 1.25rem; }
+.iv-ev { padding: .2rem 0; border: 0; background: none; cursor: pointer; color: var(--muted); font-family: var(--sans); font-size: var(--t-label); font-weight: var(--w-label); letter-spacing: var(--track-label); font-variant-numeric: tabular-nums; }
+.iv-ev:hover { color: var(--ink); }
+.iv-ev[aria-expanded="true"] { color: var(--ink); font-weight: 800; }
+.iv-ev:focus-visible { outline: 2px solid var(--accent-3); outline-offset: 3px; }
 /* lenyíló év: JS nélkül minden év látszik, az évszámmal; JS-sel csak a kiválasztott, és az legördül */
 .iv-cim { font-family: var(--sans); font-size: var(--t-label); font-weight: 700; letter-spacing: var(--track-label); margin: 1.5rem 0 .25rem; }
 .js .iv-cim { display: none; }
@@ -321,18 +293,7 @@ mark.todo {
 .js .iv-panel { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; }
 .js .iv-panel.nyitva { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition: grid-template-rows .5s ease, opacity .45s ease; }
 .iv-panel .gigs tr:last-child, .iv-panel .gigs tr:last-child td { border-bottom: 0; }
-@media (prefers-reduced-motion: reduce) { .iv-potty, .iv-szam, .js .iv-panel.nyitva { transition: none; } }
-/* telefonon minden év kifér: kisebb pöttyök, kétjegyű évszám ('13) */
-@media (max-width: 40rem) {
-  .iv-sav { --cimke: 2.1rem; }
-  .iv-ev, .iv-ures { width: 1.6rem; }
-  .iv-potty { width: .95rem; }
-  .iv-ev:hover .iv-potty { width: 1.05rem; }
-  .iv-ev[aria-expanded="true"] .iv-potty { width: 1.35rem; }
-  .iv-szam { font-size: .6875rem; letter-spacing: 0; }
-  .iv-szazad { display: none; }
-  .iv-szam::before { content: "’"; }
-}
+@media (prefers-reduced-motion: reduce) { .js .iv-panel.nyitva { transition: none; } }
 
 /* --- Képek --- */
 figure { margin: 0; }
@@ -397,25 +358,21 @@ figcaption .credit { white-space: nowrap; }
 .email-line { margin-top: -1rem; padding-block: 0 1.75rem; line-height: 2.2; font-size: var(--t-body); font-family: "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif; white-space: nowrap; overflow: visible; }
 
 /* --- Lábléc --- */
-.site-footer { border-top: 1px solid var(--line); margin-top: 5rem; padding-block: 2.5rem; }
-/* profilok és linkek egy sorban, pöttyökkel (Linkek oldal, linksor.html) */
+.site-footer { margin-top: 5rem; padding-block: 2.5rem; }
+/* profilok és linkek egy sorban (Linkek oldal, linksor.html) */
 .linksor { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.15rem; }
 .site-footer small { color: var(--muted); }
 
-/* a nyitóoldal és a rövid 404-es oldal kitölti a képernyőt: a lábléc az ablak alján van */
-:is(.kind-home, .kind-404) { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
-:is(.kind-home, .kind-404) main { flex: 1; }
+/* minden oldal legalább a képernyő magasságú: rövid oldalon is az ablak alján van a lábléc */
+body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+body > main { flex: 1; }
 
-/* --- Nyitóoldal (terv: Weboldal-grafika/Weboldal-kepernyokepek/01-fooldal.psd): macska, ajtós ember, kék virág és hold ködben, puha fényben, foltos árnyékban; fent a menü, lent a lábléc --- */
+/* --- Nyitóoldal: a menü és a lábléc között csak a köd --- */
 .kind-home main { display: flex; flex-direction: column; }
 .kind-home .site-footer { margin-top: 0; }
 .nyito { position: relative; flex: 1; min-height: 30rem; overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent); mask-image: linear-gradient(to bottom, #000 72%, transparent); }
 .nyito img { position: absolute; max-width: none; height: auto; pointer-events: none; user-select: none; }
-/* a rajzok gombok: kattintásra véletlen oldal (home.html, main.js); rámutatva kicsit világosabbak */
-.nyito .ugro img.eles { pointer-events: auto; cursor: pointer; transition: filter .25s ease; }
-.nyito .ugro:hover img.eles, .nyito .ugro:focus-visible img.eles { filter: brightness(1.22); }
-.nyito .ugro:focus-visible { outline: none; }
 /* felhősség: távoli színköd, sötét felhőfoltok, világos fátylak */
 .nyito .lk1 { width: 70vw; left: -26vw; top: 18%; opacity: .35; }
 .nyito .lf { opacity: .8; }
@@ -427,187 +384,7 @@ figcaption .credit { white-space: nowrap; }
 .nyito .fv1 { width: 90vw; left: -20vw; top: -6%; opacity: .26; }
 .nyito .fv2 { width: 84vw; right: -24vw; top: 38%; opacity: .2; transform: scaleX(-1); }
 .nyito .fv3 { width: 110vw; left: -10vw; top: 46%; opacity: .1; transform: rotate(8deg); }
-/* rajzonként egy csoport: a méretet a --w, a helyet a --cx és --cy adja; minden réteg ugyanott van a közepe */
-.nyito .csoport, .nyito-hatter { position: absolute; inset: 0; pointer-events: none; }
-.nyito .r { left: var(--cx); top: var(--cy); translate: -50% -50%; width: calc(var(--w) * var(--k, 1)); }
-.nyito .arnyek { opacity: .85; }
-.nyito .kod-tav { opacity: .55; }
-.nyito .kod { opacity: .75; }
-.nyito .fatyol { opacity: .3; mix-blend-mode: screen; }
-.nyito .szellem { filter: blur(calc(var(--w) * .03)); opacity: .14; translate: calc(-50% - var(--w) * .06) calc(-50% - var(--w) * .04); }
-.nyito .feny-tag { opacity: .3; mix-blend-mode: screen; }
-.nyito .feny { opacity: .5; mix-blend-mode: screen; }
-/* --V: a kompozíció szélessége. Asztalon az ablaké; telefonon nem nyomjuk össze, hanem a kép jobb oldala lóg ki (le van vágva). */
-.nyito { --V: 100vw; }
-.cs-macska { --w: min(calc(var(--V) * .64), 118svh); --cx: calc(var(--V) * .65); --cy: 56%; }
-.cs-macska .eles { -webkit-mask-image: radial-gradient(closest-side at 55% 50%, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side at 55% 50%, #000 72%, transparent 100%); }
-.cs-ajto { --w: calc(var(--V) * .123); --cx: calc(var(--V) * .215); --cy: 72%; }
-.cs-ajto .szellem { opacity: .05; filter: blur(calc(var(--w) * .08)); }
-/* a kék virág jobbra fent, a macska hátgödre fölött egy vonalban (a gödör .042 × macskaszélességgel a macska közepétől jobbra) */
-.cs-virag { --w: calc(var(--V) * .051); --cx: calc(var(--V) * .65 + min(var(--V) * .64, 118svh) * .042); --cy: 10.5%; }
-.cs-virag .feny { opacity: .6; }
-/* a hold (alakok.psd): balra, kicsit megdöntve, hogy a levágott széle holdfázisnak hasson; halvány udvar körülötte.
-   Az alja a macska fülének magasságában, kicsit lejjebb (+4.5%): a fül hegye a macska közepe fölött .185 × macskaszélességgel,
-   a megdöntött hold alja a közepe alatt .393 × holdszélességgel. */
-.cs-hold { --w: calc(var(--V) * .1125); --cx: calc(var(--V) * .288); --cy: calc(56% - min(var(--V) * .64, 118svh) * .185 - var(--w) * .393 + 4.5%); }
-.cs-hold .r { rotate: -18deg; }
-.cs-hold .feny { opacity: .2; }
-.cs-hold .kod { opacity: .45; }
-.cs-hold .eles { opacity: .92; }
-.cs-hold .vonal-feny { opacity: .45; }
-/* telefonon a rajzok nagyobbak a képernyőhöz képest; a macska (--mw széles) jobbról a képernyő széléig ér, és egészében látszik,
-   a kék virág a hátgödre fölött marad, a hold és az ajtós ember tőle balra, a bal margón belül */
-@media (max-width: 40rem) {
-  .nyito { --V: max(100vw, 34rem); --mw: min(84vw, 26rem); }
-  .cs-macska { --w: var(--mw); --cx: calc(100vw - var(--mw) * .5); }
-  .cs-virag { --cx: calc(100vw - var(--mw) * .458); --cy: 8%; }
-  .cs-hold { --w: calc(var(--V) * .15); --cx: calc(100vw - var(--mw) * 1.02 + .75rem); --cy: calc(56% - var(--mw) * .185 - var(--w) * .393 + 1%); }
-  .cs-ajto { --cx: calc(100vw - var(--mw) * 1.06 + .75rem); --cy: 80%; }
-}
-
-/* --- Díszek (layouts/_partials/disz.html, disz-reteg.html; oldalanként szoveg-disz, szoveg-alma, esemeny-disz, esemeny-monstera,
-   zene-disz, zene-disz-sajto, kep-disz, kep-fust, cv-disz, cv-hatter) ---
-   Egy csoport (.disz-…) minden rétege egy közös középpont körül áll, mint a nyitóoldalon: --w a rajz szélessége, --cx/--cy a középpont,
-   rétegenként --k a réteg szélessége a rajzéhoz képest, --dx/--dy eltolás a rajz szélességének arányában.
-   A rajzok helyenként félig átlátszók, elmosódnak (a főoldalon nem): az éles rajzot és a fényét egy felhős maszk (felho-a.png) halványítja el
-   foltokban, ott egy elmosott másolat (felho-b.png maszkkal) látszik helyette. --mp: a maszk melyik részét kapja a rajz, hogy mindegyik másutt foszoljon.
-   Maszkolt rétegre ne tegyél filter: blur-t (a maszk egyenes szélt hagyna a doboz szélén): az elmosott másolat maszk nélkül mosódik el. */
-.disz { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow-x: clip; --mp: 15% 15%; }
-.disz .csoport { position: absolute; inset: 0; }
-.disz img { position: absolute; max-width: none; height: auto; user-select: none; }
-.disz .r { left: calc(var(--cx) + var(--w) * var(--dx, 0)); top: calc(var(--cy) + var(--w) * var(--dy, 0)); translate: -50% -50%; width: calc(var(--w) * var(--k, 1)); }
-.disz .felho { opacity: .8; }
-.disz .arnyek { opacity: .85; }
-.disz .kod-tav { opacity: .55; }
-.disz .kod { opacity: .75; }
-.disz .fatyol { opacity: .3; mix-blend-mode: screen; }
-.disz .szellem { filter: blur(calc(var(--w) * .03)); opacity: .14; translate: calc(-50% - var(--w) * .06) calc(-50% - var(--w) * .04); }
-.disz .feny-tag { opacity: .3; mix-blend-mode: screen; }
-.disz .feny { opacity: .5; mix-blend-mode: screen; }
-.disz .gomb { opacity: .5; mix-blend-mode: normal; }
-.disz .eles { opacity: .9; }
-.disz .eles-mos { filter: blur(calc(var(--w) * .02)); opacity: .5; }
-.disz .eles-arny { filter: brightness(0) blur(calc(var(--w) * .025)); opacity: .55; translate: calc(-50% + var(--w) * .035) calc(-50% + var(--w) * .045); }
-.disz .fatyol-elol { opacity: .2; mix-blend-mode: screen; }
-.disz .felho-elol { opacity: .6; }
-/* fotóból készült rétegek (CV: arc, Zene: szellemkép és vízvonalak): sötét felhő, eltolt sötét árnyék, fátyol, maga a kép (felhős maszkkal), puha fény */
-.disz .arc-arnyek { filter: brightness(0); opacity: .85; }
-.disz .arc-arny { filter: brightness(0); opacity: .8; translate: calc(-50% + var(--w) * .03) calc(-50% + var(--w) * .04); }
-.disz .arc-fatyol { opacity: .45; mix-blend-mode: screen; }
-.disz .arc { opacity: .75; }
-.disz .arc-feny { opacity: .3; mix-blend-mode: screen; }
-.disz .fust { opacity: .9; }
-.disz .fust-fatyol { opacity: .5; }
-/* felhős maszkok: --maszk a kép, --mm a mérete */
-.disz :is(.eles, .feny, .feny-tag, .folt, .arc) { --maszk: url("/images/maszk/felho-a.png"); }
-.disz :is(.eles-mos, .fatyol-elol, .felho-elol) { --maszk: url("/images/maszk/felho-b.png"); }
-.disz :is(.eles, .eles-mos, .folt) { --mm: 220% 220%; }
-.disz :is(.feny, .feny-tag) { --mm: 190% 190%; }
-.disz .fatyol-elol { --mm: 150% 150%; }
-.disz .felho-elol { --mm: 140% 140%; }
-.disz .arc { --mm: 160% 160%; }
-.disz :is(.eles, .eles-mos, .feny, .feny-tag, .folt, .arc, .fatyol-elol, .felho-elol) {
-  -webkit-mask: var(--maszk) var(--mp) / var(--mm) no-repeat; mask: var(--maszk) var(--mp) / var(--mm) no-repeat; }
-/* a nagy háttérképek (Esemény: monstera, Kép: a lenti füstkéz) doboza a lábléc aljáig ér, és ott levágja a képet,
-   hogy ne lehessen az oldal alján a semmibe görgetni */
-.disz .disz-fustkez2, .disz .disz-monst { bottom: -12rem; overflow: clip; }
-.van-disz { position: relative; isolation: isolate; }
-
-/* Szöveg: a koponya jobbról lóg be a cím mellé */
-.disz-koponya { --w: clamp(12rem, 27vw, 27rem); --cx: calc(100% - var(--w) * .42); --cy: 14rem; --mp: 8% 10%; }
-.disz-koponya .feny { opacity: .38; }
-.disz-koponya .kod { opacity: .95; }
-/* Szöveg: az alma (eredeti irányában) a Fordítás csoport magasságában jobbra úszik, a tételek kikerülik; a bal széle a doboz bal széle,
-   a nagyobb része a jobb margóba lóg (a lap széle levághatja). --alma-w: az alma szélessége, a rajz magassága ennek kb. 0,77-szerese.
-   A lista dobozában az alma teljes magassága benne van (flow-root), így az utolsó csoport mellől se lóg a láblécbe. */
-.szoveg-lista { display: flow-root; }
-.alma-hely { --alma-w: clamp(15rem, 25.5vw, 25.5rem); position: relative; float: right; width: calc(var(--alma-w) * .5); height: calc(var(--alma-w) * .8);
-  margin: .25rem calc(var(--alma-w) * -.15) 1.5rem 2rem; }
-.alma-hely .disz { overflow: visible; }
-.kind-section.section-kutatas main { overflow-x: clip; }  /* az alma ködje ne nyújtsa oldalra az oldalt */
-.disz-alma { --w: var(--alma-w); --cx: calc(var(--w) * .5); --cy: 50%; --mp: 70% 75%; }
-.disz-alma .kod { opacity: .45; }
-.disz-alma .kod-tav { opacity: .4; }
-
-/* Esemény: a tábortűz kicsit jobbra az oldal függőleges felezővonalától, az ESEMÉNY szó alja alatt, 15°-kal jobbra forgatva
-   (a cím teteje az oldalfej felső térközénél, a szó alja kb. 1.1 × betűméret alatta). A monstera teteje a tűz közepének magasságában. */
-.section-koncertek { --tuz-w: clamp(4.55rem, 9.1vw, 8.75rem); --tuz-cy: calc(var(--fej) + var(--t-display) * 1.1 + var(--tuz-w) * .25 + 2.5rem); }
-.disz-tuz { --w: var(--tuz-w); --cx: calc(50% + 4rem); --cy: var(--tuz-cy); --mp: 40% 40%; }
-.disz-tuz .r { rotate: 15deg; }
-.disz-tuz .feny { opacity: .4; }
-/* a meleg festékfoltok élesen, laposan, és egészen kicsi, saját színű fénnyel (ugyanaz a kép, maszk nélkül elmosva) */
-.disz-tuz .folt { opacity: .6; }
-.disz-tuz .folt-feny { filter: blur(calc(var(--w) * .03)); opacity: .75; mix-blend-mode: screen; }
-/* a Greener monsterás-kávés rajza az Esemény oldal hátterében: nagy, hullámos, sötét, elmosott (a rajz 1.19 × olyan magas, mint széles); a jobb szélét a lap levágja */
-.disz-monst { --w: clamp(42.5rem, 94vw, 91rem); --cx: 66%; --cy: calc(var(--tuz-cy) + var(--w) * .5957); --mp: 40% 42%; }
-
-/* Zene: a csörgősipka középtájt, a ZENE cím magasságában (nem a betűkön), 20°-kal jobbra döntve, halkan derengve */
-.disz-bohoc { --w: clamp(7rem, 14vw, 13rem); --cx: 50%; --cy: calc(var(--fej) + var(--t-display) * .5); --mp: 40% 42%; }
-.disz-bohoc .r { rotate: 20deg; }
-.disz-bohoc .feny { opacity: .35; } .disz-bohoc .feny-tag { opacity: .2; } .disz-bohoc .fatyol { opacity: .2; }
-.disz-bohoc .eles { opacity: 1; } .disz-bohoc .eles-arny { opacity: .25; }
-/* Zene: az Inertia zine hullámos vízvonalai balra, a háttérben, a cím mellől folynak le a lemezek mögött
-   (a rajz 2.904 × olyan magas, mint széles; a víz a kivágás jobb kétharmadában van, ezért a középpont kicsit kilóg balra) */
-.disz-zviz { --w: clamp(16rem, 34vw, 34rem); --cx: 9%; --cy: calc(var(--w) * 1.452 + 4rem); --mp: 30% 60%; }
-.disz-zviz .arc { opacity: .6; }
-/* Zene: az Inertia-virág a sajtó-lista mellett jobbra, hullámoztatva (a rajz 1.76 × olyan magas, mint széles), a teteje 1rem-mel a szakasz teteje alatt;
-   alatta kezdődik a Variations on a Photo 02 szellemképe, és az Ágencia rész mögé is lenyúlik */
-.section-zene { --ivirag-w: clamp(32.5rem, 46.5vw, 46.5rem); }
-.disz-ivirag { --w: var(--ivirag-w); --cx: calc(50% + min(100% - 5rem, 67rem) * .3); --cy: calc(var(--w) * .88 + 1rem); --mp: 10% 85%; }
-.disz-zszellem { --w: clamp(30rem, 78vw, 76rem); --cx: 46%; --cy: calc(1rem + var(--ivirag-w) * 1.76 + var(--w) * .28); --mp: 60% 40%; }
-/* az Inertia-virág és a monstera háttérként: sötétebb, elmosódottabb, felhősebb; az éles vonal halványabb és sötétebb,
-   az elmosott másolat maszk nélkül; kevesebb fény, erősebb sötét felhő mögötte, elöl sötét felhőfoltok */
-:is(.disz-ivirag, .disz-monst) .eles { opacity: .42; filter: brightness(.7); }
-:is(.disz-ivirag, .disz-monst) .eles-mos { filter: brightness(.65) blur(calc(var(--w) * .018)); opacity: .6; --maszk: none; }
-:is(.disz-ivirag, .disz-monst) .feny { opacity: .22; }
-:is(.disz-ivirag, .disz-monst) .feny-tag { opacity: .14; }
-:is(.disz-ivirag, .disz-monst) .kod { opacity: .45; }
-:is(.disz-ivirag, .disz-monst) .fatyol { opacity: .18; }
-:is(.disz-ivirag, .disz-monst) .fatyol-elol { opacity: .14; }
-:is(.disz-ivirag, .disz-monst) .felho { opacity: 1; }
-.disz-ivirag .gomb { opacity: .3; }
-/* a monstera szöveg mögött van: az éles vonala még halványabb, az elmosott másolata erősebb */
-.disz-monst .eles { opacity: .32; } .disz-monst .eles-mos { opacity: .7; }
-
-/* Kép: a Greener keze 60°-kal jobbra forgatva fekszik a cím és a képek között, középtől kicsit balra;
-   a rajz alja (forgatva .35w a középponttól) 1rem-mel a képek fölött */
-.disz-kez { --w: clamp(7rem, 13.3vw, 12.6rem); --cx: 38%; --cy: calc(var(--szakasz) - 1rem - var(--w) * .35); --mp: 70% 45%; }
-.disz-kez .r { rotate: 60deg; }
-/* Kép: a fotóról vett füstkéz fent a háttérben, és még egyszer jobbra lent: kétszer akkora, 20°-kal jobbra forgatva, sötétebb, kontrasztosabb */
-.disz-fustkez { --w: clamp(16rem, 38vw, 36rem); --cx: 70%; --cy: calc(var(--w) * .38); }
-.disz-fustkez2 { --w: clamp(32rem, 76vw, 72rem); --cx: 84%; --cy: calc(100% - var(--w) * .4); }
-.disz-fustkez2 .r { rotate: 20deg; filter: brightness(.68) contrast(1.5); }
-
-/* CV: Éva szkennerrel torzított arca a háttérben, balra lent, jóval a portré alatt (a kép .58/.47 pontja); a bal széle kilóg a lapról */
-.disz-cvarc { --w: clamp(30rem, 72vw, 68rem); --cx: calc(20% - var(--w) * .08); --cy: calc(29rem + var(--w) * .68); --mp: 35% 30%; }
-/* CV: az iskolai szék (Greener 38_39) jobbra fent a cím mellett; a díszdoboz a lap jobb széléig ér, a szöveg egy jobbra úszó, üres helyfoglalóval kerüli ki.
-   --szw a szék szélessége, --szr a távolsága a lap jobb szélétől, --szt a teteje, --M a lapszél és az oszlop közti sáv (a kép magassága 1.537 × szélesség).
-   A vonal éles marad, körülötte halvány, maszk nélküli elmosott derengés. */
-.about .van-disz { --szw: clamp(12rem, 20vw, 19rem); --szr: 1.5rem; --szt: 3rem; --M: calc((100vw - min(100vw, var(--wrap))) / 2 + var(--gutter)); }
-.about .van-disz > .disz { right: calc(var(--M) * -1); }
-.about .van-disz::before { content: ""; float: right; width: max(0px, calc(var(--szw) + var(--szr) - var(--M) + 1rem)); height: calc(var(--szt) + var(--szw) * 1.537 + .5rem); }
-.disz-szek { --w: var(--szw); --cx: calc(100% - var(--szr) - var(--w) * .5); --cy: calc(var(--szt) + var(--w) * .7685); --mp: 40% 42%; }
-.disz-szek .eles-mos { filter: blur(calc(var(--w) * .014)); opacity: .35; --maszk: none; }
-
-/* díszek kisebb képernyőn */
-@media (max-width: 51.99rem) {
-  .about .van-disz { --szw: 9rem; --szr: .5rem; --szt: 1rem; }
-  .disz-cvarc { --w: max(26rem, 135vw); --cx: calc(40% - var(--w) * .08); --cy: calc(100vw * 1.25 + 34rem); }
-}
-@media (max-width: 40rem) {
-  .disz-koponya { --w: 9rem; --cx: calc(100% - var(--w) * .4); --cy: 5.5rem; }
-  .alma-hely { --alma-w: 15rem; float: none; width: 100%; height: calc(var(--alma-w) * .8); margin: 1.5rem 0 2rem; }
-  .alma-hely .disz-alma { --cx: 50%; }
-  .section-koncertek { --tuz-w: 3.85rem; --tuz-cy: calc(var(--fej) + var(--t-display) * 1.1 + var(--tuz-w) * .75 + 1rem); }
-  .disz-tuz { --cx: calc(50% + 2rem); }
-  .disz-monst { --w: 37.5rem; --cx: 62%; }
-  .disz-ivirag { display: none; }
-  .disz-zszellem { --w: 150vw; --cx: 50%; --cy: 50%; }
-  .disz-zviz { --w: 15rem; --cx: 4%; }
-  .disz-kez { --w: 5.25rem; --cx: calc(100% - var(--w) * 1.6); }
-  .disz-fustkez { --w: 15rem; --cx: 60%; }
-  .disz-fustkez2 { --w: 30rem; --cx: 75%; }
-}
+.nyito-hatter { position: absolute; inset: 0; pointer-events: none; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
@@ -649,6 +426,6 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- Nyomtatás --- */
 @media print {
-  .site-header nav, .site-footer, .embed, .disz, .nyito { display: none !important; }
+  .site-header nav, .site-footer, .embed, .nyito { display: none !important; }
   body { background: #fff; color: #000; }
 }

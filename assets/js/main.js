@@ -99,7 +99,7 @@ document.addEventListener('click', function (e) {
   });
 })();
 
-// a kis szekciócímek sorban a rajzok színeit kapják; a nagy oldalcím (h1) marad
+// a kis szekciócímek sorban különböző színeket kapnak; a nagy oldalcím (h1) marad
 (function () {
   var sz = ['rozsaszin', 'turkiz', 'barack', 'kek', 'zold', 'lila', 'piros'];
   [].forEach.call(document.querySelectorAll('main h2:not(.visually-hidden)'), function (h, i) { h.classList.add('szin-' + sz[i % sz.length]); });
@@ -119,22 +119,6 @@ document.addEventListener('click', function (e) {
           if (p) p.classList.toggle('nyitva', be);
         });
       });
-    });
-  });
-})();
-
-/* Nyitóoldal: a rajzok (macska, ajtós ember, kis virág, hold) egy véletlen oldalra visznek (nem az aktuálisra) */
-(function () {
-  var el = document.getElementById('veletlen-oldalak');
-  if (!el) return;
-  var lista;
-  try { lista = JSON.parse(el.textContent); } catch (e) { return; }
-  [].forEach.call(document.querySelectorAll('.ugro'), function (a) {
-    a.addEventListener('click', function (e) {
-      var j = lista.filter(function (u) { return u !== location.pathname; });
-      if (!j.length) return;
-      e.preventDefault();
-      location.href = j[Math.floor(Math.random() * j.length)];
     });
   });
 })();
