@@ -297,9 +297,13 @@ body > main { flex: 1; }
 
 /* --- Nyitóoldal: fent csak a név és a nyelvváltó, alatta a menüpontok egymás alatt, a cím méretében --- */
 .kind-home .site-footer { margin-top: 0; }
-.nyito-menu ul { list-style: none; margin: 0; padding: var(--fej) 0; display: grid; gap: .5rem; justify-items: start; }
+/* a név bal fent ugyanakkora, mint a menüpontok, és ugyanott kezdődik, de vékonyabb (300); sosem dől meg */
+.kind-home .site-name { font-size: var(--t-cim); font-weight: 300; line-height: 1.15; font-style: normal; }
+.kind-home .site-header .wrap { padding-top: calc(var(--fej) * .75); }
+.nyito-menu ul { list-style: none; margin: 0; padding: calc(var(--fej) * .75) 0 var(--fej); display: grid; gap: .5rem; justify-items: start; }
 .nyito-menu a { font-size: var(--t-cim); font-weight: 400; line-height: 1.15; color: var(--ink); text-decoration: none; }
-.nyito-menu a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; }
+/* rámutatva a menüpont dőlt és vékony (300) lesz */
+.nyito-menu a:hover, .nyito-menu a:focus-visible { font-style: italic; font-weight: 300; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
