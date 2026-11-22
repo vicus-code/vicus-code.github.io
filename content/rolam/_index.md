@@ -88,6 +88,6 @@ body_en: |-
 
   She paints, draws and makes zines. She studied art history, aesthetics, history and cultural studies at ELTE, CEU and BME, and wrote her MA thesis on how contemporary Hungarian popular music uses folk music. Today she is a museologist at Artpool Art Research Center.
 ---
-Bárdits Éva (Vicus) Budapesten élő művész és kulturális munkás. 2013 óta ad ki zenét: játszott az Aires Altosban, Trutat néven szólóprojektként, majd a Holnaplányok feminista punkzenekarban; 2022 óta Bertók Mártonnal a Gondozási Központ népi-gépi duóban zenél. 2026-ban a saját neve alatt jelent meg *Inertia* című albuma az Ágencia Kollektívánál.
+Bárdits Éva (Vicus) Budapesten élő művész és kulturális munkás. 2013 óta ad ki zenét: játszott az Aires Altosban, Trutat néven (szólóprojekt), majd a Holnaplányok feminista punkzenekarban; 2022 óta Bertók Mártonnal a Gondozási Központ népi-gépi duóban zenél. 2026-ban a saját neve alatt jelent meg *Inertia* című albuma az Ágencia Kollektívánál.
 
 Fest, rajzol és zine-eket készít. Művészettörténetet, esztétikát, történelmet és kultúratudományt tanult (ELTE, CEU, BME), diplomamunkája a népzene kortárs könnyűzenei felhasználásáról szól. Az Artpool Művészetkutató Központ muzeológusa.
