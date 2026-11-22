@@ -2,7 +2,6 @@
 title: Festmény
 date: 2023-06-01
 evek: 2014–
-technika: akril, olaj, szén, vegyes technika; vászon, karton
 borito: /images/vizualis/pathosformel-5-6/02.jpg
 linkek:
   - nev: Man and his Buchla (Behance)
@@ -46,14 +45,4 @@ kepek:
     alt: "Pathosformel, expresszív portré"
     alt_en: "Pathosformel, expressive portrait"
 title_en: "Painting"
-technika_en: "acrylic, oil, charcoal, mixed media; canvas, cardboard"
-body_en: |-
-  *Pathosformel*, 2014
-
-  - III. *Self-portrait – eyes closed*, 30 × 40 cm, acrylic on canvas, 2014
-  - IV. *Looking at oneself*, 40 × 50 cm, oil and acrylic on canvas, 2014
 ---
-*Pathosformel*, 2014
-
-- III. *Self-portrait – eyes closed*, 30 × 40 cm, akril, vászon, 2014
-- IV. *Looking at oneself*, 40 × 50 cm, olaj és akril, vászon, 2014

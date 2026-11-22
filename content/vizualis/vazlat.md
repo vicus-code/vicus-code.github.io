@@ -2,7 +2,6 @@
 title: Vázlat
 date: 2018-01-01
 evek: 2012–2018
-technika: vázlatfüzetek és lapok – rajz, festés, akvarell, kollázs, kézírás
 borito: /images/vizualis/vazlatfuzet-2014/03.jpg
 # a négyzetes képgomb kivágása: a jobb oldali arc
 borito_pozicio: "100% 50%"
@@ -119,5 +118,4 @@ kepek:
     alt: "Folyóparti tájvázlat: zöld part, világos víz"
     alt_en: "Riverside sketch: a green bank, pale water"
 title_en: "Sketch"
-technika_en: "sketchbooks and loose sheets – drawing, painting, watercolour, collage, handwriting"
 ---

@@ -2,7 +2,6 @@
 title: Tanulmány
 evek: 2011–2014
 date: 2014-04-01
-technika: szén, papír; vegyes technika, vászon
 kepek:
   - kep: /images/vizualis/tanulmanyok/01.jpg
     alt: Ülő akt, szénrajz
@@ -29,5 +28,4 @@ kepek:
     alt: "Ülő akt hátulról, lehajtott fejjel, halvány okker, szürke és zöld festés csorgásokkal, vonalrajzzal"
     alt_en: "Seated nude from behind, head bowed, pale ochre, grey and green paint with drips and line drawing"
 title_en: "Study"
-technika_en: "charcoal on paper; mixed media on canvas"
 ---

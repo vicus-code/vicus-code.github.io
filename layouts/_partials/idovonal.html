@@ -6,6 +6,10 @@
 {{- $max := index $years 0 }}
 <div class="idovonal" data-idovonal>
   <div class="iv-sav">
+    {{- /* az évek előtt, velük egy sorban a felirat (pl. „Koncertek:”); a felolvasóknak a rejtett h2 szól, ezért ez rejtve marad előlük */}}
+    {{- with .felirat }}
+    <span class="iv-felirat" aria-hidden="true">{{ . }}:</span>
+    {{- end }}
     {{- range $y := sort $years }}
       {{- $rows := slice }}
       {{- range $sorted }}{{ if eq (time.AsTime .datum).Year $y }}{{ $rows = $rows | append . }}{{ end }}{{ end }}

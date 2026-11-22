@@ -19,7 +19,7 @@
     {{- with $past }}
     <h3 class="visually-hidden">{{ T "past" }}</h3>
     {{- /* idovonal: kézzel húzott vonal, évenként egy gomb; a kiválasztott évek gördülnek le, akár mind egyszerre */}}
-    {{ partial "idovonal.html" (dict "rows" .) }}
+    {{ partial "idovonal.html" (dict "rows" . "felirat" (T "concerts")) }}
     {{- end }}
     {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
     <h3 class="visually-hidden">{{ T "gallery" }}</h3>

@@ -2,7 +2,6 @@
 title: Zine
 kepek_cim: "*But It Actually Is Greener*"
 date: 2026-03-08
-technika: zine – toll, akrilfilc, digitális nyomat
 lapozo: true
 # a négyzetes képgomb kivágása a Kép oldalon: a borító teteje, hogy a teljes cím látsszon
 borito_pozicio: "50% 0%"
@@ -79,7 +78,6 @@ kepek:
   - kep: /images/vizualis/but-it-actually-is-greener/23.jpg
     alt: "But It Actually Is Greener, zine, fekete lapokon fehér tollrajzok és színes akrilfilc – 23. kép"
     alt_en: "But It Actually Is Greener, travel zine: white pen drawings and coloured acrylic marker on black pages – image 23"
-technika_en: "zine – pen, acrylic markers, digital print"
 title_en: "Zine"
 zine_cim: "*Inertia* – dalszövegzine"
 zine_cim_en: "*Inertia* – lyrics zine"

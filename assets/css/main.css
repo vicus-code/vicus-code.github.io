@@ -97,7 +97,7 @@ h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 300; line-
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* apró: címke */
-.label, .kicker, nav, .btn, th, .facts dt, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
+.label, .kicker, nav, .btn, th, .facts dt, .lapozo-sav, .iv-ev, .iv-felirat, .iv-cim, .site-name {
   font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.4; letter-spacing: 0;
 }
 /* a szakaszcím a szöveg méretében, félkövéren; a név bal fent és a kiválasztott év is félkövér */
@@ -205,6 +205,7 @@ mark.todo {
 .iv-sav { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .25rem 0 1.25rem; }
 .iv-ev { padding: .2rem 0; border: 0; background: none; cursor: pointer; font-variant-numeric: tabular-nums; }
 .iv-ev[aria-expanded="true"] { font-weight: 700; }
+.iv-felirat { padding: .2rem 0; color: var(--ink); }
 .iv-ev:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 /* lenyíló év: JS nélkül minden év látszik; JS-sel a kiválasztottak gördülnek le (akár mind egyszerre); fölöttük mindig az évszám */
 .iv-cim { margin: 1.5rem 0 .25rem; }
@@ -351,3 +352,10 @@ body > main { flex: 1; }
   .site-header nav, .site-footer, .embed { display: none !important; }
   body { background: #fff; color: #000; }
 }
+/* Művek oldalak: a Behance-linkek előtt egyszer a Behance-logó (page.html) */
+.links-behance { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; }
+.links-behance .ikon { flex: none; width: 1.35rem; height: 1.35rem; display: block; color: var(--muted); }
+.links-behance .ikon svg { display: block; width: 100%; height: 100%; }
+/* Művek oldalak alja: kapcsolódó művek és linkek a képek után */
+.kep-utan { margin-top: 2.5rem; }
+.kep-utan .links { margin-bottom: 0; }

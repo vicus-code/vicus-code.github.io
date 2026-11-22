@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- /* Ha a képeknek saját címe van (kepek_cim, pl. a Zine oldalon: But It Actually Is Greener), az adatok, a leírás, a linkek és a képek
+{{- /* Ha a képeknek saját címe van (kepek_cim, pl. a Zine oldalon: But It Actually Is Greener), az adatok, a leírás és a képek
      egy saját, címes részbe kerülnek; a „zine” mező egy második lapozható zine-t ad alá (Zine oldal: az Inertia dalszövegzine). */}}
 {{- $reszek := .Params.kepek_cim }}
 <article class="wrap">
@@ -22,11 +22,11 @@
   {{- with .Params.zine }}
   <section class="section kep-resz">
     <h2>{{ partial "md.html" (partial "loc.html" (dict "m" $.Params "k" "zine_cim")) | default "Zine" }}</h2>
-    {{- with partial "loc.html" (dict "m" $.Params "k" "zine_kapcsolodo") }}
-    <dl class="facts"><dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd></dl>
-    {{- end }}
-    {{- /* az Inertia-zine nézegetője 30%-kal kisebb a Greenerénél */}}
+    {{- /* az Inertia-zine nézegetője 30%-kal kisebb a Greenerénél; a kapcsolódó mű a képek után */}}
     <div class="lapozo-kisebb">{{ partial "lapozo.html" . }}</div>
+    {{- with partial "loc.html" (dict "m" $.Params "k" "zine_kapcsolodo") }}
+    <dl class="facts kep-utan"><dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd></dl>
+    {{- end }}
   </section>
   {{- end }}
   {{- /* más zine-ek, amelyekben Éva részt vett (Zine oldal: NEM!-zine-ek, Hüvelygomba), évvel és linkkel */}}
@@ -38,18 +38,32 @@
     </dl>
   </section>
   {{- end }}
+  {{- /* az oldal alján, a képek után: kapcsolódó művek és a linkek (Behance stb.) */}}
+  {{- $kapcs := partial "loc.html" (dict "m" .Params "k" "kapcsolodo") }}
+  {{- if or $kapcs .Params.linkek }}
+  <footer class="kep-utan">
+    {{- with $kapcs }}
+    <dl class="facts"><dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd></dl>
+    {{- end }}
+    {{- /* a Behance-linkek egy sorban, előttük egyszer a Behance-logó; a nevükből a „(Behance)” elmarad */}}
+    {{- with $.Params.linkek }}
+    {{- $be := slice }}{{ $mas := slice }}
+    {{- range . }}{{ if strings.Contains .url "behance.net" }}{{ $be = $be | append . }}{{ else }}{{ $mas = $mas | append . }}{{ end }}{{ end }}
+    <ul class="links">
+      {{- with $be }}
+      <li class="links-behance">{{ partial "linksor-ikon.html" "behance.svg" }}<span class="visually-hidden">Behance:</span>
+        {{- range . }}<a class="btn" href="{{ .url }}">{{ partial "loc.html" (dict "m" . "k" "nev") | replaceRE `\s*\(Behance\)$` "" }}</a>{{ end }}</li>
+      {{- end }}
+      {{- range $mas }}<li><a class="btn" href="{{ .url }}">{{ partial "loc.html" (dict "m" . "k" "nev") }}</a></li>{{ end }}
+    </ul>
+    {{- end }}
+  </footer>
+  {{- end }}
 </article>
 {{ end }}
 
-{{- /* Egy munka adatai (technika, méret, kapcsolódó), leírása és linkjei: a fejben, vagy ha a képeknek saját címük van, a címes részben. */}}
+{{- /* Egy munka adatai (méret; technika nincs kiírva) és leírása: a fejben, vagy ha a képeknek saját címük van, a címes részben. */}}
 {{- define "_partials/inline/kep-adatok.html" }}
-    <dl class="facts">
-      {{- with partial "loc.html" (dict "m" .Params "k" "technika") }}<dt>{{ T "technique" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
-      {{- with .Params.meret }}<dt>{{ T "size" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
-      {{- with partial "loc.html" (dict "m" .Params "k" "kapcsolodo") }}<dt>{{ T "related" }}</dt><dd>{{ partial "md.html" . }}</dd>{{ end }}
-    </dl>
+    {{- with .Params.meret }}<dl class="facts"><dt>{{ T "size" }}</dt><dd>{{ partial "md.html" . }}</dd></dl>{{ end }}
     {{- with partial "body.html" . }}<div class="prose">{{ partial "todo.html" . }}</div>{{ end }}
-    {{- with .Params.linkek }}
-    <ul class="links">{{ range . }}<li><a class="btn" href="{{ .url }}">{{ partial "loc.html" (dict "m" . "k" "nev") }}</a></li>{{ end }}</ul>
-    {{- end }}
 {{- end }}

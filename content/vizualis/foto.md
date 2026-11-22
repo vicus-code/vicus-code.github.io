@@ -2,7 +2,6 @@
 title: Fotó
 date: 2016-07-01
 evek: 2014–2016
-technika: analóg fotó, instant fotó, átfestett fotó, szkennelt negatív
 borito: /images/vizualis/serult-filmek/04.jpg
 # a négyzetes képgomb kivágása: a két alak
 borito_pozicio: "88% 50%"
@@ -109,5 +108,4 @@ kepek:
     alt: "Sérült, szkennelt filmkocka"
     alt_en: "Damaged, scanned film frame"
 title_en: "Photo"
-technika_en: "analogue photographs, instant photos, overpainted photos, scanned negatives"
 ---

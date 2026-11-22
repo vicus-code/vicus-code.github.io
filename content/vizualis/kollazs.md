@@ -2,7 +2,6 @@
 title: Kollázs
 date: 2024-05-01
 evek: 2019–2024
-technika: kollázs, papír; tus, akvarell
 kapcsolodo: "[*Paraszttá leendés*](/zene/parasztta-leendes/) (Gondozási Központ, 2023); *Hüvelygomba* femzine, 6. szám (2019)"
 linkek:
   - nev: "Hüvelygomba #6 (ISBN+)"
@@ -47,6 +46,5 @@ kepek:
     felirat: "*Hüvelygomba* 6., 2019, tus, akvarell"
     felirat_en: "*Hüvelygomba* no. 6, 2019, ink and watercolour"
 title_en: "Collage"
-technika_en: "collage on paper; ink, watercolour"
 kapcsolodo_en: "[*Paraszttá leendés*](/en/music/parasztta-leendes/) (Gondozási Központ, 2023); *Hüvelygomba* femzine, no. 6 (2019)"
 ---
