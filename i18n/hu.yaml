@@ -22,6 +22,7 @@ format: Formátum
 licence: Licenc
 tracks: Számok
 photos: Fotók
+gallery: Galéria
 artists: Előadók
 upcoming: Következő
 upcomingGigs: Következő események
@@ -67,7 +68,6 @@ monthFormat: "2006. January"
 prevPage: előző
 nextPage: következő
 zineFlip: "A zine lapjai – lapozható"
-eventPhotos: Fotók a koncertekről (oldalra görgethető)
 eventCount:
   one: "{{ .Count }} esemény"
   other: "{{ .Count }} esemény"

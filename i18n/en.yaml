@@ -22,6 +22,7 @@ format: Format
 licence: Licence
 tracks: Tracks
 photos: Photos
+gallery: Gallery
 artists: Artists
 upcoming: Upcoming
 upcomingGigs: Upcoming events
@@ -85,7 +86,6 @@ Válogatás LP: Compilation LP
 prevPage: previous
 nextPage: next
 zineFlip: "The zine, page by page"
-eventPhotos: Concert photos (scroll sideways)
 eventCount:
   one: "{{ .Count }} event"
   other: "{{ .Count }} events"

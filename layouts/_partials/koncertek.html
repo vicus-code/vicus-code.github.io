@@ -1,4 +1,4 @@
-{{- /* Koncertek a Zene oldalon: a következő események, a koncertfotók képsora és a korábbiak idővonala.
+{{- /* Koncertek a Zene oldalon: a következő események, a korábbiak idővonala, alattuk a koncertfotók galériája.
      Az események a data/koncertek.yaml-ből, a fotók a content/koncertek/_index.md „kepek” listájából (annak saját oldala nincs). */ -}}
 {{- $all := hugo.Data.koncertek | default slice }}
 {{- $today := now.Format "2006-01-02" }}
@@ -15,15 +15,19 @@
     <h3>{{ T "upcoming" }}</h3>
     {{ partial "gigs.html" (dict "rows" (sort . "datum" "asc")) }}
     {{- end }}
-    {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
-    <h3 class="visually-hidden">{{ T "photos" }}</h3>
-    {{- /* egy sorban, oldalra görgethetően, a legújabbal kezdve */}}
-    {{ partial "kepsor.html" (dict "kepek" (sort . "datum" "desc") "cimke" (T "eventPhotos") "credit" true) }}
-    {{- end }}{{ end }}
     {{- with $past }}
     <h3>{{ T "past" }}</h3>
     {{- /* idovonal: kézzel húzott vonal, évenként egy festékpötty; mindig csak a kiválasztott év gördül le */}}
     {{ partial "idovonal.html" (dict "rows" .) }}
     {{- end }}
+    {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
+    <h3>{{ T "gallery" }}</h3>
+    {{- /* a koncertfotók egymás alatt, a legújabbal kezdve */}}
+    <div class="galeria-lista">
+      {{- range sort . "datum" "desc" }}
+      {{ partial "figure.html" (dict "kep" .kep "alt" (partial "loc.html" (dict "m" . "k" "alt")) "felirat" (partial "loc.html" (dict "m" . "k" "felirat")) "credit" (partial "loc.html" (dict "m" . "k" "credit")) "sizes" "(min-width: 48rem) 44rem, 92vw") }}
+      {{- end }}
+    </div>
+    {{- end }}{{ end }}
   </div>
 </section>

@@ -1,13 +1,6 @@
 {{ define "main" }}
 {{ partial "oldalfej.html" . }}
 
-<section class="section">
-  <div class="wrap">
-    <h2>{{ T "social" }}</h2>
-    {{ partial "linksor.html" . }}
-  </div>
-</section>
-
 {{- with site.GetPage "/zene" }}
 <section class="section" id="megjelenesek">
   <div class="wrap">
@@ -16,4 +9,11 @@
   </div>
 </section>
 {{- end }}
+
+<section class="section">
+  <div class="wrap">
+    <h2>{{ T "social" }}</h2>
+    {{ partial "linksor.html" . }}
+  </div>
+</section>
 {{ end }}
