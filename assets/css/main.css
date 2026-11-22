@@ -97,7 +97,7 @@ h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 600; line-
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* apró: címke */
-.label, .kicker, nav, .btn, th, .facts dt, .gigs .video, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
+.label, .kicker, nav, .btn, th, .facts dt, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
   font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.4; letter-spacing: 0;
 }
 /* a szakaszcím a szöveg méretében, félkövéren; a név bal fent és a kiválasztott év is félkövér */
@@ -106,12 +106,12 @@ h2 { font-family: var(--serif); font-size: var(--t-body); font-weight: 700; line
 /* ha a szakaszcím nem az első egy oszlopban (lemez oldala, CV), ugyanannyi hely kerül fölé */
 h2:not(:first-child), .cv h2 { margin-top: 2.5rem; }
 /* apró: adat (kisbetűs) */
-.meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .tag, .draft-badge, .tracks li::marker {
+.meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .draft-badge, .tracks li::marker {
   font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.45;
   letter-spacing: 0; font-variant-numeric: tabular-nums;
 }
 /* szürke: minden kísérő adat és címke; fekete: a szöveg, a címek, és amire rámutatnak vagy ami ki van választva */
-.meta, .date, .pubs .year, .cv-list dt, .tag, .kicker, figcaption, .facts dt, .empty, .site-footer small, .gigs th, .gigs .where .city, .lapozo-szam, .tracks li::marker { color: var(--muted); }
+.meta, .date, .pubs .year, .cv-list dt, .kicker, figcaption, .facts dt, .empty, .site-footer small, .lapozo-szam, .tracks li::marker { color: var(--muted); }
 .kicker { margin: 0 0 1rem; }
 .kicker a { text-decoration: none; }
 em, i { font-style: italic; }
@@ -174,10 +174,14 @@ mark.todo {
 .embed.is-loaded.video iframe { height: 100%; }
 /* Ágencia Kollektíva a Zene oldal alján */
 .label-motto { white-space: pre-line; margin: 0; }
+/* mellette a színes banánlogó, viszonylag nagyban */
+.agencia { display: flex; align-items: center; gap: clamp(1.5rem, 5vw, 4rem); }
+.agencia-banan { flex: none; width: clamp(7rem, 20vw, 14rem); height: auto; }
 
-/* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak; a galéria képei egymás alatt, a saját arányukban */
-.galeria-lista { display: grid; gap: 2.5rem; justify-items: start; }
-.galeria-lista img { width: auto; max-width: min(100%, 44rem); max-height: 80svh; }
+/* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak; a koncertfotók tömbösítve (gallery.sorok), a felirat a kép alatt */
+.koncert-galeria { margin-top: 2.5rem; }
+.gallery.sorok.koncert-galeria { row-gap: 1.75rem; }
+.gallery.sorok.koncert-galeria > figure > figcaption { position: static; width: auto; max-width: none; }
 .koncertek h3 { margin: 2.5rem 0 .75rem; }
 .koncertek h2 + h3 { margin-top: 0; }
 .koncertek h2 + .kepsor { margin-top: 0; }
@@ -193,40 +197,17 @@ mark.todo {
 .sajto-lemez { text-decoration: none; }
 .sajto-lemez:hover { text-decoration: underline; }
 
-/* --- Események --- */
-.gigs { width: 100%; border-collapse: collapse; table-layout: fixed; }
-/* rögzített oszlopok: minden év táblázata ugyanott kezdi az oszlopokat */
-.gigs .c-date { width: 8rem; }
-.gigs .c-where { width: 30%; }
-.gigs .c-proj { width: 10rem; }
-.gigs td.proj { text-align: right; }
-.gigs th { text-align: left; padding: .3rem .75rem .5rem 0; }
-.gigs td { vertical-align: baseline; padding: var(--sor) .75rem var(--sor) 0; }
-.gigs .date { padding-right: 1rem; }
+/* --- Események (gigs.html): bibliográfiai tételként, mint a CV: bal oldalt a dátum, jobbra egy folyó sor, elöl félkövéren a projekt --- */
+.esemenyek { grid-template-columns: 7.5rem 1fr; }
+.esemeny-projekt { font-weight: 700; }
 .nw { white-space: nowrap; }
-.gigs td:last-child { padding-right: 0; }
-.gigs .where strong { font-weight: inherit; }
-.gigs .video { margin-left: .6rem; white-space: nowrap; }
-.gigs .video.solo { margin-left: 0; }
-/* minden helyszínnek és minden projektnek saját színe van (a város halvány, az esemény fekete) */
-.tag { white-space: nowrap; }
-@media (max-width: 40rem) {
-  .gigs thead { position: absolute; left: -9999px; }
-  .gigs tr { display: grid; grid-template-columns: 1fr auto; gap: .1rem .75rem; padding: var(--sor) 0; align-items: baseline; }
-  .gigs td { border: 0; padding: 0; }
-  .gigs colgroup { display: none; }
-  .gigs td.date { grid-column: 1; }
-  .gigs td.proj { grid-column: 2; grid-row: 1; }
-  .gigs td.where, .gigs td.what { grid-column: 1 / -1; }
-}
 /* Korábbi koncertek évenként (layouts/_partials/idovonal.html): az évszámok egy sorban, gombként; a kiválasztott év kiemelve */
 .iv-sav { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .25rem 0 1.25rem; }
 .iv-ev { padding: .2rem 0; border: 0; background: none; cursor: pointer; font-variant-numeric: tabular-nums; }
 .iv-ev[aria-expanded="true"] { font-weight: 700; }
 .iv-ev:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-/* lenyíló év: JS nélkül minden év látszik, az évszámmal; JS-sel csak a kiválasztott, és az legördül */
+/* lenyíló év: JS nélkül minden év látszik; JS-sel a kiválasztottak gördülnek le (akár mind egyszerre); fölöttük mindig az évszám */
 .iv-cim { margin: 1.5rem 0 .25rem; }
-.js .iv-cim { display: none; }
 .iv-panel > div { min-height: 0; overflow: hidden; }
 .js .iv-panel { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; }
 .js .iv-panel.nyitva { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition: grid-template-rows .5s ease, opacity .45s ease; }

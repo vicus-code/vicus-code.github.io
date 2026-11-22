@@ -99,20 +99,15 @@ document.addEventListener('click', function (e) {
   });
 })();
 
-/* Koncertek idővonala (Zene oldal): egy évre kattintva csak az az év gördül le (a nyitott évre újra kattintva bezárul) */
+/* Koncertek idővonala (Zene oldal): egy évre kattintva az az év lenyílik, újra kattintva bezárul;
+   a többi nyitott év nyitva marad, így akár az összes év egyszerre nyitva lehet */
 (function () {
-  [].forEach.call(document.querySelectorAll('[data-idovonal]'), function (iv) {
-    var gombok = iv.querySelectorAll('.iv-ev');
-    [].forEach.call(gombok, function (g) {
-      g.addEventListener('click', function () {
-        var mar = g.getAttribute('aria-expanded') === 'true';
-        [].forEach.call(gombok, function (m) {
-          var be = m === g && !mar;
-          m.setAttribute('aria-expanded', be ? 'true' : 'false');
-          var p = document.getElementById(m.getAttribute('aria-controls'));
-          if (p) p.classList.toggle('nyitva', be);
-        });
-      });
+  [].forEach.call(document.querySelectorAll('[data-idovonal] .iv-ev'), function (g) {
+    g.addEventListener('click', function () {
+      var be = g.getAttribute('aria-expanded') !== 'true';
+      g.setAttribute('aria-expanded', be ? 'true' : 'false');
+      var p = document.getElementById(g.getAttribute('aria-controls'));
+      if (p) p.classList.toggle('nyitva', be);
     });
   });
 })();

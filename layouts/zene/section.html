@@ -22,6 +22,10 @@
       <h2>Ágencia Kollektíva</h2>
       {{- with .leiras }}<p class="label-motto">{{ . }}</p>{{ end }}
     </div>
+    {{- /* a kiadó színes banánlogója, viszonylag nagyban, a név mellett */}}
+    {{- with resources.Get "images/agencia/banan-szines.png" }}{{ with .Resize "560x png" }}
+    <img class="agencia-banan" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy">
+    {{- end }}{{ end }}
   </div>
 </section>
 {{- end }}

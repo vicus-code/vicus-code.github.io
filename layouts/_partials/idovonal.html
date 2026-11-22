@@ -1,5 +1,5 @@
-{{- /* Korábbi koncertek évenként (Zene oldal, Koncertek): fent az évszámok egy sorban, gombként; egy évre kattintva csak az az év
-  gördül le alatta (main.js), a legfrissebb nyitva van. JS nélkül minden év látszik, az évszámmal. */ -}}
+{{- /* Korábbi koncertek évenként (Zene oldal, Koncertek): fent az évszámok egy sorban, gombként; egy évre kattintva az az év
+  gördül le alatta, újra kattintva bezárul; a többi nyitott év nyitva marad (main.js). A legfrissebb nyitva van. JS nélkül minden év látszik, az évszámmal. */ -}}
 {{- $sorted := sort .rows "datum" "desc" }}
 {{- $years := slice }}
 {{- range $sorted }}{{ $y := (time.AsTime .datum).Year }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end }}

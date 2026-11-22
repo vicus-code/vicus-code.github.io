@@ -1,4 +1,4 @@
-{{- /* Koncertek a Zene oldalon: a következő események, a korábbiak idővonala, alattuk a koncertfotók galériája.
+{{- /* Koncertek a Zene oldalon: a következő események, a korábbiak idővonala, alattuk a koncertfotók (cím nélkül, tömbösítve).
      Az események a data/koncertek.yaml-ből, a fotók a content/koncertek/_index.md „kepek” listájából (annak saját oldala nincs). */ -}}
 {{- $all := hugo.Data.koncertek | default slice }}
 {{- $today := now.Format "2006-01-02" }}
@@ -17,15 +17,17 @@
     {{- end }}
     {{- with $past }}
     <h3>{{ T "past" }}</h3>
-    {{- /* idovonal: kézzel húzott vonal, évenként egy festékpötty; mindig csak a kiválasztott év gördül le */}}
+    {{- /* idovonal: kézzel húzott vonal, évenként egy gomb; a kiválasztott évek gördülnek le, akár mind egyszerre */}}
     {{ partial "idovonal.html" (dict "rows" .) }}
     {{- end }}
     {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
-    <h3>{{ T "gallery" }}</h3>
-    {{- /* a koncertfotók egymás alatt, a legújabbal kezdve */}}
-    <div class="galeria-lista">
+    <h3 class="visually-hidden">{{ T "gallery" }}</h3>
+    {{- /* a koncertfotók tömbösítve, mint a Művek vázlatai: egyforma magas, kitöltött sorokban (gallery.sorok, main.js),
+         a legújabbal kezdve; a felirat itt a kép alatt áll, mert minden képnek van */}}
+    <div class="gallery sorok koncert-galeria">
       {{- range sort . "datum" "desc" }}
-      {{ partial "figure.html" (dict "kep" .kep "alt" (partial "loc.html" (dict "m" . "k" "alt")) "felirat" (partial "loc.html" (dict "m" . "k" "felirat")) "credit" (partial "loc.html" (dict "m" . "k" "credit")) "sizes" "(min-width: 48rem) 44rem, 92vw") }}
+      {{- $ar := "" }}{{ with resources.Get (strings.TrimPrefix "/" .kep) }}{{ $ar = printf "%.3f" (div (float .Width) .Height) }}{{ end }}
+      {{ partial "figure.html" (dict "kep" .kep "alt" (partial "loc.html" (dict "m" . "k" "alt")) "felirat" (partial "loc.html" (dict "m" . "k" "felirat")) "credit" (partial "loc.html" (dict "m" . "k" "credit")) "ar" $ar "sizes" "(min-width: 74rem) 30rem, (min-width: 40rem) 50vw, 92vw") }}
       {{- end }}
     </div>
     {{- end }}{{ end }}
