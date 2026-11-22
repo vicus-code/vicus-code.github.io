@@ -1,4 +1,4 @@
 ---
-title: Művek
+title: Kép
 title_en: Artwork
 ---

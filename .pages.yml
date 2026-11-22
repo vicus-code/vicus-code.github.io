@@ -201,9 +201,9 @@ content:
       - { name: body, label: Bevezető, type: rich-text }
       - { name: body_en, label: "Bevezető – angolul", type: rich-text }
 
-  # ---------- Művek ----------
+  # ---------- Kép ----------
   - name: kepi-dolgok
-    label: Művek
+    label: Kép
     type: collection
     path: content/vizualis
     exclude: [_index.md]
@@ -218,7 +218,7 @@ content:
       - { name: draft, label: Vázlat (élesben nem jelenik meg), type: boolean }
       - { name: meret, label: Méret, type: string }
       - { name: borito, label: "Borítókép a listában (ha nem az első kép)", type: image }
-      - { name: borito_pozicio, label: "A borító kivágása a Művek oldalon (pl. 50% 0% = a kép teteje; üresen középre vágódik)", type: string }
+      - { name: borito_pozicio, label: "A borító kivágása a Kép oldalon (pl. 50% 0% = a kép teteje; üresen középre vágódik)", type: string }
       - { name: lapozo, label: "Lapozható zine (a képek oldalpárok: álló kép = egy lap, fekvő = két lap)", type: boolean }
       - { name: kepek_cim, label: "A képek címe, ha az oldalon több rész van (pl. But It Actually Is Greener a Zine oldalon)", type: string }
       - { name: kepek_cim_en, label: "A képek címe – angolul", type: string }
