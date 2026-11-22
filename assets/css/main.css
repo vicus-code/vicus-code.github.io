@@ -267,7 +267,12 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- CV --- */
 .about { display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; padding-block: var(--fej) 2.5rem; }
-@media (min-width: 52rem) { .about { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+@media (min-width: 52rem) {
+  .about { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  /* a portré teteje a „CV” cím nagybetűinek tetejével egy vonalban: a cím sorában a nagybetű teteje
+     a betűméret 0,194-szeresével lejjebb kezdődik (Source Serif 4, sormagasság 1,05) */
+  .about-side { margin-top: calc(var(--t-cim) * .194); }
+}
 .about-side { display: grid; gap: 2rem; justify-items: start; }
 .portrait { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; max-width: 24rem; }
 .cv-list { grid-template-columns: var(--evoszlop) 1fr; gap: .45rem 1rem; }
