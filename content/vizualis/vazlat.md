@@ -1,7 +1,7 @@
 ---
 title: Vázlat
 date: 2018-01-01
-evek: 2012–2018
+evek: 2012–2025
 borito: /images/vizualis/vazlatfuzet-2014/03.jpg
 # a négyzetes képgomb kivágása: a jobb oldali arc
 borito_pozicio: "100% 50%"
@@ -9,6 +9,21 @@ linkek:
   - nev: sketchbook #1 (Behance)
     url: https://www.behance.net/gallery/10195727/sketchbook-1
 kepek:
+  - kep: /images/vizualis/vazlatok-2023-2025/01.jpg
+    alt: "Akvarell: csukott szemű rózsaszín macska ceruzás körvonallal, lent jobbra egy kis csibe"
+    alt_en: "Watercolour: a pink cat with closed eyes and a pencil outline, a small chick at the bottom right"
+    felirat: "2025"
+  - kep: /images/vizualis/vazlatok-2023-2025/02.jpg
+    alt: "Akvarell: gömbölyű rózsaszín-lila-kék ló ceruzával rajzolt lábakkal és szürke árnyékkal"
+    alt_en: "Watercolour: a round pink, purple and blue horse with pencil-drawn legs and a grey shadow"
+  - kep: /images/vizualis/vazlatok-2023-2025/03.jpg
+    alt: "Rajz: két piros paradicsom kék szárral és levelekkel, mögöttük barna fatörzs és rózsaszín pöttyös háttér"
+    alt_en: "Drawing: two red tomatoes with a blue stem and leaves, a brown tree trunk and a pink speckled background behind them"
+    felirat: "2024"
+  - kep: /images/vizualis/vazlatok-2023-2025/04.jpg
+    alt: "Kis festett portré: Marci"
+    alt_en: "Small painted portrait: Marci"
+    felirat: "2023"
   - kep: /images/vizualis/vazlatok-2018/01.jpg
     alt: "Vázlat, 2018"
     alt_en: "Sketch, 2018"
