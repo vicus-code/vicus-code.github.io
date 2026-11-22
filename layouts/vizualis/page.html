@@ -33,8 +33,14 @@
   {{- with .Params.kozremukodes }}
   <section class="section kep-resz">
     <h2>{{ T "contributions" }}</h2>
-    <dl class="facts cv-list">
-      {{- range . }}<dt>{{ .ev }}</dt><dd>{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "szoveg")) }}</dd>{{ end }}
+    {{- /* évenként: az év egyszer, mellette az abban az évben megjelent tételek egymás alatt */}}
+    {{- $tetelek := . }}
+    {{- $evek := slice }}{{ range . }}{{ if not (in $evek .ev) }}{{ $evek = $evek | append .ev }}{{ end }}{{ end }}
+    <dl class="facts cv-list kozremukodes">
+      {{- range $ev := $evek }}
+      <dt>{{ $ev }}</dt>
+      <dd>{{ range $tetelek }}{{ if eq .ev $ev }}<p>{{ partial "md.html" (partial "loc.html" (dict "m" . "k" "szoveg")) }}</p>{{ end }}{{ end }}</dd>
+      {{- end }}
     </dl>
   </section>
   {{- end }}

@@ -392,3 +392,6 @@ body > main { flex: 1; }
   .cv .cv-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   .cv .cv-list dd { margin-bottom: .9rem; }
 }
+/* Zine oldal, közreműködések: az év egyszer, a tételek alatta egymás alatt, a CV soraival egyező közzel */
+.kozremukodes dd p { margin: 0 0 .45rem; }
+.kozremukodes dd p:last-child { margin-bottom: 0; }
