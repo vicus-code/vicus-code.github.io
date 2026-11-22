@@ -20,7 +20,7 @@ agencia:
     - nev: Bandcamp
       url: https://agenciakollektiva.bandcamp.com
     - nev: YouTube
-      url: https://youtube.com/@agenciakollektiva
+      url: https://www.youtube.com/@agenciakoll
 projektek:
   - nev: Bárdits Éva
     nev_en: "Éva Bárdits"
