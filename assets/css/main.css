@@ -1,8 +1,8 @@
 /* ==========================================================================
    Bárdits Éva – weboldal
-   Két betűcsalád, mindkettő ingyenes (SIL Open Font License, static/fonts):
-   Source Serif 4 – minden olvasnivaló; Nunito – a rendszer hangja (oldalcím, menü, címkék, adatok).
-   Három betűméret (cím, szöveg, apró), két vastagság (400, 700), három szín (fekete, szürke, fehér).
+   Egy betűcsalád minden szövegre: Source Serif 4 (ingyenes, SIL Open Font License, static/fonts).
+   A különbséget csak a méret, a vastagság, a dőlés és a szín adja; csupa nagybetűs (verzál) szöveg nincs.
+   Három betűméret (cím, szöveg, apró), három vastagság (400, 600, 700), három szín (fekete, szürke, fehér).
    Részek: betűk · színek és méretek · alap · szedés · fejléc · szakaszok · kiadványok · sajtó ·
    események és idővonal · képek · szövegek · CV · lábléc · nyitóoldal · díszek · lapozható zine · nyomtatás
    ========================================================================== */
@@ -32,43 +32,17 @@
   font-weight: 200 900; font-style: italic; font-display: swap;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-@font-face {
-  font-family: "Nunito";
-  src: url("/fonts/nunito-latin.woff2") format("woff2");
-  font-weight: 200 1000; font-style: normal; font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Nunito";
-  src: url("/fonts/nunito-latin-ext.woff2") format("woff2");
-  font-weight: 200 1000; font-style: normal; font-display: swap;
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Nunito";
-  src: url("/fonts/nunito-latin-italic.woff2") format("woff2");
-  font-weight: 200 1000; font-style: italic; font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Nunito";
-  src: url("/fonts/nunito-latin-ext-italic.woff2") format("woff2");
-  font-weight: 200 1000; font-style: italic; font-display: swap;
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
 
 /* --- Színek, méretek --- */
 :root {
   --serif: "Source Serif", "Iowan Old Style", Georgia, serif;
-  --sans: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Szedés – két betűcsalád, három méret, két vastagság:
-     cím    – az oldal neve (h1): Nunito 700, verzál
-     szöveg – minden olvasnivaló, a tételek neve is (h3): Source Serif 400; dőlt csak mű címe és idézet
-     apró   – Nunito: a szakaszcím (h2) 700 verzál; menü, címke, gomb 400 verzál, ritkítva; dátum, év, képaláírás 400 kisbetűs */
+  /* Szedés – egy betű (Source Serif 4), három méret, három vastagság, verzál nélkül:
+     cím    – az oldal neve (h1): 600
+     szöveg – minden olvasnivaló, a tételek neve is (h3): 400; a szakaszcím (h2) 700; dőlt csak mű címe és idézet
+     apró   – menü, címke, gomb, dátum, év, képaláírás: 400 (a név bal fent és a kiválasztott év 700) */
   --t-cim: clamp(2rem, 3vw + .9rem, 3.25rem);
   --t-body: clamp(1.0625rem, .25vw + 1rem, 1.1875rem);
-  --t-small: .8125rem;
-  --track-label: .1em;
+  --t-small: .875rem;
   --wrap: 72rem;
   --measure: 36rem;
   --gutter: clamp(1rem, 4vw, 2.5rem);
@@ -119,23 +93,22 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
 /* --- Szedés --- */
 h1, h2, h3, h4 { margin: 0 0 .6em; text-wrap: balance; font-weight: 400; }
 /* cím: minden oldalon egy méret */
-h1 { font-family: var(--sans); font-size: var(--t-cim); font-weight: 700; line-height: 1; letter-spacing: -.01em; text-transform: uppercase; hyphens: auto; overflow-wrap: break-word; }
+h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 600; line-height: 1.05; letter-spacing: -.01em; hyphens: auto; overflow-wrap: break-word; }
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
-/* apró: címke (verzál, ritkítva) */
-h2, .label, .kicker, nav, .btn, th, .facts dt, .gigs .video, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
-  font-family: var(--sans); font-size: var(--t-small); font-weight: 400; line-height: 1.4;
-  letter-spacing: var(--track-label); text-transform: uppercase;
+/* apró: címke */
+.label, .kicker, nav, .btn, th, .facts dt, .gigs .video, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
+  font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.4; letter-spacing: 0;
 }
-/* a szakaszcím, a név bal fent és a kiválasztott év félkövér */
-h2, .site-name, .iv-cim { font-weight: 700; }
-h2 { margin: 0 0 1.5rem; }
+/* a szakaszcím a szöveg méretében, félkövéren; a név bal fent és a kiválasztott év is félkövér */
+h2 { font-family: var(--serif); font-size: var(--t-body); font-weight: 700; line-height: 1.35; letter-spacing: 0; margin: 0 0 1.25rem; }
+.site-name, .iv-cim { font-weight: 700; }
 /* ha a szakaszcím nem az első egy oszlopban (lemez oldala, CV), ugyanannyi hely kerül fölé */
 h2:not(:first-child), .cv h2 { margin-top: 2.5rem; }
 /* apró: adat (kisbetűs) */
 .meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .tag, .draft-badge, .tracks li::marker {
-  font-family: var(--sans); font-size: var(--t-small); font-weight: 400; line-height: 1.45;
-  letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums;
+  font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.45;
+  letter-spacing: 0; font-variant-numeric: tabular-nums;
 }
 /* szürke: minden kísérő adat és címke; fekete: a szöveg, a címek, és amire rámutatnak vagy ami ki van választva */
 .meta, .date, .pubs .year, .cv-list dt, .tag, .kicker, figcaption, .facts dt, .empty, .site-footer small, .gigs th, .gigs .where .city, .lapozo-szam, .tracks li::marker { color: var(--muted); }
@@ -144,7 +117,7 @@ h2:not(:first-child), .cv h2 { margin-top: 2.5rem; }
 em, i { font-style: italic; }
 
 /* Linkek: a szövegben feketék, halványan aláhúzva (rámutatva teljesen);
-   a menük, a gombok és az évszámok szürke verzál címkék, aláhúzás nélkül, rámutatva és kiválasztva feketék */
+   a menük, a gombok és az évszámok szürke apró címkék, aláhúzás nélkül, rámutatva és kiválasztva feketék */
 .links a, .btn, .site-nav a, .kicker a, .iv-ev, .lapozo-gomb { color: var(--muted); text-decoration: none; }
 .links a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .iv-ev:hover, .iv-ev[aria-expanded="true"], .lapozo-gomb:hover { color: var(--ink); }
 .btn { display: inline-block; background: none; border: 0; padding: 0; cursor: pointer; }
@@ -284,7 +257,7 @@ figcaption .credit { white-space: nowrap; }
 .gallery.sorok.kitolt::after { display: none; }
 .gallery.sorok.meres::after { flex-grow: 100000; }  /* mérés közben a képek az alapméretükön állnak */
 /* Kép oldal: négyzetes képgombok, hármasával (telefonon kettesével); a kivágás helye képenként állítható (borito_pozicio).
-   Alattuk csak a név, jól láthatóan: fekete, félkövér verzál, a szöveg méretében */
+   Alattuk csak a név, a szöveg méretében */
 .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.75rem; }
 .work-grid .card img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
 .work-grid .card h3 { margin: 1rem 0 .2rem; }
@@ -318,8 +291,8 @@ figcaption .credit { white-space: nowrap; }
 .portrait { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; max-width: 24rem; }
 .cv-list { grid-template-columns: var(--evoszlop) 1fr; gap: .45rem 1rem; }
 @media (max-width: 30rem) { .cv-list { grid-template-columns: 1fr; } .cv-list dd { margin-bottom: .6rem; } }
-/* glitches e-mail-cím (rendszerbetűvel): a ráhalmozott jeleknek hely kell; a cím és az e-mail közti rés kicsi (negatív felső margó) */
-.email-line { margin-top: -1rem; padding-block: 0 1.75rem; line-height: 2.2; font-size: var(--t-body); font-family: "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif; white-space: nowrap; overflow: visible; }
+/* glitches e-mail-cím (talpas rendszerbetűvel, mert a Source Serifben nincsenek meg a ráhalmozott jelek): a ráhalmozott jeleknek hely kell; a cím és az e-mail közti rés kicsi (negatív felső margó) */
+.email-line { margin-top: -1rem; padding-block: 0 1.75rem; line-height: 2.2; font-size: var(--t-body); font-family: "Times New Roman", Times, serif; white-space: nowrap; overflow: visible; }
 
 /* --- Lábléc --- */
 .site-footer { margin-top: 5rem; padding-block: 2.5rem; }
@@ -336,8 +309,11 @@ figcaption .credit { white-space: nowrap; }
 body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
 body > main { flex: 1; }
 
-/* --- Nyitóoldal: a menü és a lábléc között üres, sima fehér --- */
+/* --- Nyitóoldal: fent csak a név és a nyelvváltó, alatta a menüpontok egymás alatt, a cím méretében --- */
 .kind-home .site-footer { margin-top: 0; }
+.nyito-menu ul { list-style: none; margin: 0; padding: var(--fej) 0; display: grid; gap: .5rem; justify-items: start; }
+.nyito-menu a { font-size: var(--t-cim); font-weight: 400; line-height: 1.15; color: var(--ink); text-decoration: none; }
+.nyito-menu a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
@@ -349,7 +325,7 @@ body > main { flex: 1; }
 .lap { flex: 0 0 auto; height: var(--mag); margin: 0; position: relative; overflow: hidden; scroll-snap-align: center; border-radius: var(--kep-r); background: var(--paper-2); }
 .lap img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; border-radius: 0 !important; box-shadow: none !important; }
 .lapozo-sav { display: flex; justify-content: center; align-items: center; gap: 2.25rem; margin-top: 1.25rem; }
-.lapozo-gomb { background: none; border: 0; padding: .5rem .25rem; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+.lapozo-gomb { background: none; border: 0; padding: .5rem .25rem; font: inherit; cursor: pointer; }
 .lapozo-gomb:disabled { opacity: .3; cursor: default; color: var(--muted); }
 .lapozo-szam { min-width: 6.5rem; text-align: center; font-variant-numeric: tabular-nums; }
 /* könyv: a JS építi a lapokból; a borító és a hátlap zárt állapotban középen áll */

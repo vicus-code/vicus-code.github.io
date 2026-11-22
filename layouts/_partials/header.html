@@ -4,9 +4,12 @@
     <nav class="site-nav" aria-label="{{ T "mainMenu" }}">
       <ul>
         {{- $page := . }}
+        {{- /* a nyitóoldalon a menüpontok nem itt, hanem az oldalon egymás alatt állnak (home.html) */}}
+        {{- if not .IsHome }}
         {{- range $i, $m := site.Menus.main }}
         {{- $active := or ($page.IsMenuCurrent "main" $m) ($page.HasMenuCurrent "main" $m) }}
         <li><a href="{{ $m.URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ $m.Name }}</a></li>
+        {{- end }}
         {{- end }}
         {{- $other := "" }}
         {{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}

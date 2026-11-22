@@ -47,13 +47,13 @@ disableKinds = ['taxonomy', 'term', 'rss']
     locale = 'hu-HU'
     title = 'Bárdits Éva'
     [languages.hu.params]
-      description = 'Bárdits Éva budapesti művész, kulturális munkás weboldala: zene, koncert, képzőművészet, szöveg.'
+      description = 'Bárdits Éva budapesti művész, kulturális munkás weboldala: zene, koncert, művek, szöveg.'
     [[languages.hu.menus.main]]
       name = 'Zene'
       pageRef = '/zene'
       weight = 10
     [[languages.hu.menus.main]]
-      name = 'Képzőművészet'
+      name = 'Művek'
       pageRef = '/vizualis'
       weight = 30
     [[languages.hu.menus.main]]

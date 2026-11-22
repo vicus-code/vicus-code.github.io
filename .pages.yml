@@ -201,9 +201,9 @@ content:
       - { name: body, label: Bevezető, type: rich-text }
       - { name: body_en, label: "Bevezető – angolul", type: rich-text }
 
-  # ---------- Képzőművészet ----------
+  # ---------- Művek ----------
   - name: kepi-dolgok
-    label: Képzőművészet
+    label: Művek
     type: collection
     path: content/vizualis
     exclude: [_index.md]
