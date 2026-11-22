@@ -1,6 +1,0 @@
-{{- /* Egysoros, oldalra görgethető képsor (koncertfotók a Zene oldalon, egy lemez fotósorozata). A képek egyforma magasak, a saját arányukban
-     (a szélesebbek szélesek maradnak), a felirat a kép szélességéig tördelődik.
-     Bemenet: dict "kepek" (lista), "cimke" (a sor neve képernyőolvasóknak), "credit" (true: a fotós neve minden kép alatt). */ -}}
-<div class="kepsor" tabindex="0" role="region" aria-label="{{ .cimke }}">
-  {{- range .kepek }}{{ partial "figure.html" (dict "kep" .kep "alt" (partial "loc.html" (dict "m" . "k" "alt")) "felirat" (partial "loc.html" (dict "m" . "k" "felirat")) "credit" (cond $.credit (partial "loc.html" (dict "m" . "k" "credit")) "") "sizes" "(min-width: 40rem) 34rem, 24rem") }}{{ end }}
-</div>

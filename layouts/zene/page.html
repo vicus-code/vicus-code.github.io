@@ -48,12 +48,18 @@
     {{ partial "lapozo.html" . }}
   </section>
   {{- end }}
-  {{- /* a lemez fotói egy sorban, oldalra görgethetően; a cím felülírható (kepek_cim), és ha a cím már megnevezi a fotóst, a képek alatt nem ismételjük */}}
+  {{- /* a lemez fotói galériaként, mint a Kép oldal vázlatai: egyforma magas, kitöltött sorokban (gallery.sorok, main.js);
+       a cím felülírható (kepek_cim), és ha a cím már megnevezi a fotóst, a képek alatt nem ismételjük */}}
   {{- with .Params.kepek }}
   {{- $cim := partial "loc.html" (dict "m" $.Params "k" "kepek_cim") }}
   <section class="section">
     <h2>{{ $cim | default (T "photos") }}</h2>
-    {{ partial "kepsor.html" (dict "kepek" . "cimke" ($cim | default (T "photos")) "credit" (not $cim)) }}
+    <div class="gallery sorok fotosor">
+      {{- range . }}
+      {{- $ar := "" }}{{ with resources.Get (strings.TrimPrefix "/" .kep) }}{{ $ar = printf "%.3f" (div (float .Width) .Height) }}{{ end }}
+      {{ partial "figure.html" (dict "kep" .kep "alt" (partial "loc.html" (dict "m" . "k" "alt")) "felirat" (partial "loc.html" (dict "m" . "k" "felirat")) "credit" (cond (not $cim) (partial "loc.html" (dict "m" . "k" "credit")) "") "ar" $ar "sizes" "(min-width: 74rem) 30rem, (min-width: 40rem) 50vw, 92vw") }}
+      {{- end }}
+    </div>
   </section>
   {{- end }}
 </div>

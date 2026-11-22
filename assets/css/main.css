@@ -192,9 +192,10 @@ mark.todo {
 .koncert-galeria { margin-top: 2.5rem; }
 .gallery.sorok.koncert-galeria { row-gap: 1.75rem; }
 .gallery.sorok.koncert-galeria > figure > figcaption { position: static; width: auto; max-width: none; }
+/* egy lemez fotósorozata (zene/page.html): felirat nélkül, a sorok közt csak kis köz */
+.gallery.sorok.fotosor { row-gap: 1rem; }
 .koncertek h3 { margin: 2.5rem 0 .75rem; }
 .koncertek h2 + h3 { margin-top: 0; }
-.koncertek h2 + .kepsor { margin-top: 0; }
 
 /* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
 /* évenként, mint a Szöveg oldal tételei (megjelenesek.html): bal oldalt az év, jobbra tételenként elöl a cím (linkként),
@@ -240,18 +241,12 @@ figcaption .credit { white-space: nowrap; }
 .work-grid .card img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
 .work-grid .card h3 { margin: 1rem 0 .2rem; }
 @media (max-width: 40rem) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1rem; } }
-/* egysoros képsor (koncertfotók, egy lemez fotósorozata; kepsor.html): oldalra görgethető; a képek egyforma magasak, a saját arányukban,
-   a felirat a kép szélességéig tördelődik */
-.kepsor { display: flex; gap: 1.25rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: .6rem .1rem 1rem; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-.kepsor:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-.kepsor figure { flex: 0 0 auto; width: min-content; margin: 0; scroll-snap-align: start; }
-.kepsor img { height: clamp(15rem, 28vw, 22rem); width: auto; max-width: none; }
 /* képek: szögletes sarok, rámutatásra puha derengés; a rajzok és az ikonok kimaradnak */
-.card .cover, .card .cover-empty, .release .cover, .gallery img, .work-grid .card img, .kepsor img, .portrait, figure > img, .prose img {
+.card .cover, .card .cover-empty, .release .cover, .gallery img, .work-grid .card img, .portrait, figure > img, .prose img {
   transition: box-shadow .35s ease; }
-.card:hover .cover, .work-grid .card:hover img, .release .cover:hover, .gallery img:hover, .kepsor img:hover, .portrait:hover, figure > img:hover, .prose img:hover {
+.card:hover .cover, .work-grid .card:hover img, .release .cover:hover, .gallery img:hover, .portrait:hover, figure > img:hover, .prose img:hover {
   box-shadow: var(--kep-feny); }
-@media (prefers-reduced-motion: reduce) { .card .cover, .release .cover, .gallery img, .kepsor img, .portrait, figure > img, .prose img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .card .cover, .release .cover, .gallery img, .portrait, figure > img, .prose img { transition: none; } }
 
 /* --- Szövegek --- */
 .pubs { list-style: none; padding: 0; margin: 0 0 2.5rem; }
