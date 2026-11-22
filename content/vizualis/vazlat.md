@@ -21,8 +21,6 @@ kepek:
     alt_en: "Drawing: two red tomatoes with a blue stem and leaves, a brown tree trunk and a pink speckled background behind them"
     felirat: "2024"
   - kep: /images/vizualis/vazlatok-2023-2025/04.jpg
-    alt: "Kis festett portré"
-    alt_en: "Small painted portrait"
     felirat: "2023"
   - kep: /images/vizualis/vazlatok-2018/01.jpg
     alt: "Vázlat, 2018"
