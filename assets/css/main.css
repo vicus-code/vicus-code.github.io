@@ -136,7 +136,8 @@ mark.todo {
 .fejsor .site-name { grid-area: nev; }
 .fejsor .site-nav { grid-area: menu; justify-self: end; }
 .nyelv { grid-area: nyelv; justify-self: end; margin-left: 1.25rem; font-family: var(--serif); font-size: .8125rem; line-height: calc(var(--t-small) * 1.4); color: var(--muted); text-decoration: none; }
-.nyelv:hover, .nyelv:focus-visible { color: var(--ink); }
+.nyelv { font-style: italic; }
+.nyelv:hover, .nyelv:focus-visible { color: var(--ink); font-style: normal; }
 /* keskeny képernyőn: fent a név és a nyelv, alattuk a menü */
 @media (max-width: 44rem) {
   .fejsor { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nev nyelv" "menu menu"; }
@@ -318,11 +319,13 @@ body > main { flex: 1; }
 /* Rámutatáskor dőltté váló szöveg ugrás nélkül: két láthatatlan, nulla magas másolat (::before álló, ::after dőlt)
    lefoglalja a szélesebb változat helyét. Így a doboz mindig
    ugyanolyan széles: a dőltté váló szöveg semmit nem tol el, és a doboz sem keskenyedik ki az egér alól. */
-.nyito-menu a { display: inline-flex; flex-direction: column; align-items: flex-start; }
-.nyito-menu a::before, .nyito-menu a::after {
+.nyito-menu a, .nyelv { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.nyito-menu a::before, .nyito-menu a::after, .nyelv::before, .nyelv::after {
   content: attr(data-t); height: 0; overflow: hidden; visibility: hidden; pointer-events: none; user-select: none; font-style: normal;
 }
-.nyito-menu a::after { font-style: italic; }
+.nyito-menu a::after, .nyelv::after { font-style: italic; }
+/* a másolatok a szöveg után állnak, így a doboz alapvonala a szövegé marad */
+.nyito-menu a::before, .nyelv::before, .nyito-menu a::after, .nyelv::after { order: 1; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }

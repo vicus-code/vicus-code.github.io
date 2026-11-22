@@ -1,5 +1,5 @@
 {{- /* Koncertek évenként, mint a Megjelenések és a Szöveg tételei: bal oldalt az év (egyszer), jobbra tételenként elöl az esemény
-     (linkként, ha van link), alatta kisebben, szürkén: a nap · a projekt · a helyszín, a város · Videó · megjegyzés. Ami hiányzik, kimarad.
+     (linkként, ha van link), alatta kisebben, szürkén: a nap · a projekt · a helyszín, a város (félkövéren) · Videó · megjegyzés. Ami hiányzik, kimarad.
      Bemenet: dict "rows" (már sorba rendezve) és "cimke" (a lista neve a felolvasóknak, ha kell).
      A projekt neve angolul a Zene oldal projektlistájának nev_en mezőjéből (pl. Éva Bárdits), a magyar név szerint. */ -}}
 {{- $projNev := dict }}
@@ -32,7 +32,7 @@
     {{- $bits := slice $nap }}
     {{- if and $proj $ev }}{{ $bits = $bits | append $proj }}{{ end }}
     {{- $helyCity := delimit (slice $hely $city | complement (slice "")) ", " }}
-    {{- with $helyCity }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
+    {{- with $helyCity }}{{ $bits = $bits | append (printf "<strong class=\"helyszin\">%s</strong>" (partial "md.html" .)) }}{{ end }}
     {{- with .video }}{{ $bits = $bits | append (printf "<a href=\"%s\">%s</a>" . (strings.FirstUpper (T "video"))) }}{{ end }}
     {{- with $note }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
     <div class="sajto-sor">
