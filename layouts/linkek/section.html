@@ -1,20 +1,16 @@
 {{ define "main" }}
-{{- /* balra a cím és a megjelenések, jobbra egy dobozban a social linkek, a doboz teteje a cím nagybetűinek tetejénél
-     (telefonon egymás alatt); a két rész címe (Megjelenések, Social) nem látszik, csak a felolvasóknak szól */}}
+{{ partial "oldalfej.html" . }}
+{{- /* A cím alatt két oszlop: balra a megjelenések évenként (mint a Szöveg oldal tételei), jobbra keret nélkül a profilok (logóval);
+     a profilok első sora a megjelenések első sorával egy magasságban kezdődik, és görgetéskor a helyén marad (sticky).
+     Telefonon a profilok a cím alatt, a megjelenések előtt állnak. A két rész címe csak a felolvasóknak szól. */}}
 <div class="wrap linkek-oldal">
-  <div class="linkek-bal">
-    <header class="page-head">
-      <h1>{{ partial "loc.html" (dict "m" .Params "k" "title") }}</h1>
-      {{- with partial "body.html" . }}<div class="lead prose">{{ partial "todo.html" . }}</div>{{ end }}
-    </header>
-    {{- with site.GetPage "/zene" }}
-    <section id="megjelenesek">
-      <h2 class="visually-hidden">{{ T "press" }}</h2>
-      {{ partial "megjelenesek.html" (dict "lapok" .Pages "lemez" true) }}
-    </section>
-    {{- end }}
-  </div>
-  <aside class="social-doboz" aria-labelledby="social-cim">
+  {{- with site.GetPage "/zene" }}
+  <section id="megjelenesek">
+    <h2 class="visually-hidden">{{ T "press" }}</h2>
+    {{ partial "megjelenesek.html" (dict "lapok" .Pages "lemez" true) }}
+  </section>
+  {{- end }}
+  <aside class="profilok" aria-labelledby="social-cim">
     <h2 class="visually-hidden" id="social-cim">{{ T "social" }}</h2>
     {{ partial "linksor.html" . }}
   </aside>

@@ -1,22 +1,24 @@
+{{- /* Fejléc. Jobbra fent, minden oldalon ugyanott, a másik nyelv kicsiben, kiírva (English / Magyar): külön áll, nem a menü része.
+     Aloldalon balra a név, mellette jobbra a menü; telefonon a név és a nyelv egy sorban, alattuk a menü.
+     A nyitóoldalon csak a nyelv áll itt; a név és a menü ott az oldalon van (home.html). */ -}}
+{{- $other := "" }}
+{{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}
+{{- if not $other }}{{ $other = cond (eq site.Language.Lang "en") "/" "/en/" }}{{ end }}
+{{- $masik := cond (eq site.Language.Lang "en") "hu" "en" }}
 <header class="site-header">
-  <div class="wrap">
+  <div class="wrap fejsor">
+    {{- if not .IsHome }}
     <a class="site-name" href="{{ "/" | relLangURL }}">{{ site.Title }}</a>
     <nav class="site-nav" aria-label="{{ T "mainMenu" }}">
       <ul>
         {{- $page := . }}
-        {{- /* a nyitóoldalon a menüpontok nem itt, hanem az oldalon egymás alatt állnak (home.html) */}}
-        {{- if not .IsHome }}
         {{- range $i, $m := site.Menus.main }}
         {{- $active := or ($page.IsMenuCurrent "main" $m) ($page.HasMenuCurrent "main" $m) }}
         <li><a href="{{ $m.URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ $m.Name }}</a></li>
         {{- end }}
-        {{- end }}
-        {{- $other := "" }}
-        {{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}
-        {{- if not $other }}{{ $other = cond (eq site.Language.Lang "en") "/" "/en/" }}{{ end }}
-        <li class="lang"><a href="{{ $other }}" hreflang="{{ if eq site.Language.Lang "en" }}hu{{ else }}en{{ end }}" title="{{ T "otherLang" }}">
-<span>{{ T "otherLangCode" }}</span></a></li>
       </ul>
     </nav>
+    {{- end }}
+    <a class="nyelv" href="{{ $other }}" hreflang="{{ $masik }}" lang="{{ $masik }}">{{ T "otherLang" }}</a>
   </div>
 </header>

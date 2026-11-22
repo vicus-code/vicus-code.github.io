@@ -51,10 +51,9 @@
   --szakasz: clamp(2.5rem, 5vw, 4rem);
   /* listák: egy sor függőleges térköze, és az év/hónap oszlop szélessége (CV, Szöveg, Sajtó, Közreműködés) */
   --sor: .75rem;
-  --evoszlop: 5rem;
   /* Színek: csak fekete, szürke és fehér (fehér háttér, fekete szöveg) */
   --paper: #ffffff; --paper-2: #ebebeb; --ink: #000000; --muted: #646464; --line: #c5c5c5;
-  /* képek (borítók, fotók, festmények, portré): szögletes sarok (a Művek és a lemezek gombjai négyzetesek), rámutatásra puha derengés */
+  /* képek (borítók, fotók, festmények, portré): szögletes sarok (a Kép és a lemezek gombjai négyzetesek), rámutatásra puha derengés */
   --kep-feny: 0 0 1.6rem rgba(0, 0, 0, .18), 0 0 .35rem rgba(0, 0, 0, .22);
   color-scheme: light;
 }
@@ -86,8 +85,8 @@ hr { border: 0; margin: 3rem 0; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: .5rem 1rem; z-index: 10; }
 .skip:focus { left: 0; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-/* a fejléc, a tartalom és a lábléc a díszek fölött; a menü legfölül (a nagy rajzok és felhők benyúlhatnak alá, de nem takarják a betűit) */
-main, .site-header, .site-footer { position: relative; z-index: 1; }
+/* a fejléc és a tartalom a díszek fölött; a menü legfölül (a nagy rajzok és felhők benyúlhatnak alá, de nem takarják a betűit) */
+main, .site-header { position: relative; z-index: 1; }
 .site-header { z-index: 2; }
 
 /* --- Szedés --- */
@@ -97,29 +96,29 @@ h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 300; line-
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* apró: címke */
-.label, .kicker, nav, .btn, th, .facts dt, .lapozo-sav, .iv-ev, .iv-felirat, .iv-cim, .site-name {
+.label, .kicker, nav, .btn, th, .facts dt, .lapozo-sav, .site-name {
   font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.4; letter-spacing: 0;
 }
 /* a szakaszcím a szöveg méretében, félkövéren; a név bal fent és a kiválasztott év is félkövér */
 h2 { font-family: var(--serif); font-size: var(--t-body); font-weight: 700; line-height: 1.35; letter-spacing: 0; margin: 0 0 1.25rem; }
-.site-name, .iv-cim { font-weight: 700; }
+.site-name { font-weight: 700; }
 /* ha a szakaszcím nem az első egy oszlopban (lemez oldala, CV), ugyanannyi hely kerül fölé */
 h2:not(:first-child), .cv h2 { margin-top: 2.5rem; }
 /* apró: adat (kisbetűs) */
-.meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .draft-badge, .tracks li::marker {
+.meta, figcaption, .date, .draft-badge, .tracks li::marker {
   font-family: var(--serif); font-size: var(--t-small); font-weight: 400; line-height: 1.45;
   letter-spacing: 0; font-variant-numeric: tabular-nums;
 }
 /* szürke: minden kísérő adat és címke; fekete: a szöveg, a címek, és amire rámutatnak vagy ami ki van választva */
-.meta, .date, .pubs .year, .cv-list dt, .kicker, figcaption, .facts dt, .empty, .site-footer small, .lapozo-szam, .tracks li::marker { color: var(--muted); }
+.meta, .date, .kicker, figcaption, .facts dt, .empty, .lapozo-szam, .tracks li::marker { color: var(--muted); }
 .kicker { margin: 0 0 1rem; }
 .kicker a { text-decoration: none; }
 em, i { font-style: italic; }
 
 /* Linkek: a szövegben feketék, halványan aláhúzva (rámutatva teljesen);
    a menük, a gombok és az évszámok szürke apró címkék, aláhúzás nélkül, rámutatva és kiválasztva feketék */
-.links a, .btn, .site-nav a, .kicker a, .iv-ev, .lapozo-gomb { color: var(--muted); text-decoration: none; }
-.links a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .iv-ev:hover, .iv-ev[aria-expanded="true"], .lapozo-gomb:hover { color: var(--ink); }
+.links a, .btn, .site-nav a, .kicker a, .lapozo-gomb { color: var(--muted); text-decoration: none; }
+.links a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .lapozo-gomb:hover { color: var(--ink); }
 .btn { display: inline-block; background: none; border: 0; padding: 0; cursor: pointer; }
 
 /* Jóváhagyásra váró szöveg (⟦…⟧) – csak az előnézetben látszik így */
@@ -131,11 +130,21 @@ mark.todo {
 .draft-badge { display: inline-block; color: var(--muted); border: 1px dashed var(--muted); padding: .05rem .4rem; margin: 0 .5rem .4rem 0; vertical-align: middle; }
 
 /* --- Fejléc --- */
-.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 2rem; padding-block: .9rem; }
+/* egy sor: név | menü (jobbra) | a másik nyelv (a jobb felső sarokban, kisebben, a menütől nagyobb közzel); a sorok az alapvonalukon.
+   A sor magassága minden oldalon ugyanannyi (2 × ,9rem + a kis betű sora), a nyitóoldalon is, ahol csak a nyelv áll benne. */
+.fejsor { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "nev menu nyelv"; align-items: baseline; column-gap: 2rem; row-gap: .6rem; padding-block: .9rem; }
+.fejsor .site-name { grid-area: nev; }
+.fejsor .site-nav { grid-area: menu; justify-self: end; }
+.nyelv { grid-area: nyelv; justify-self: end; margin-left: 1.25rem; font-family: var(--serif); font-size: .8125rem; line-height: calc(var(--t-small) * 1.4); color: var(--muted); text-decoration: none; }
+.nyelv:hover, .nyelv:focus-visible { color: var(--ink); }
+/* keskeny képernyőn: fent a név és a nyelv, alattuk a menü */
+@media (max-width: 44rem) {
+  .fejsor { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nev nyelv" "menu menu"; }
+  .fejsor .site-nav { justify-self: start; }
+}
 .site-name { color: var(--ink); text-decoration: none; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem 1.15rem; }
-/* nyelvváltó: kicsit távolabb a menütől */
-.site-nav .lang { margin-left: 1.4rem; }
+
 
 /* --- Szakaszok --- */
 .section { padding-block: var(--szakasz); }
@@ -175,8 +184,8 @@ mark.todo {
 /* Ágencia Kollektíva a Zene oldal alján */
 .label-motto { white-space: pre-line; margin: 0; }
 /* mellette a színes banánlogó, viszonylag nagyban */
-.agencia { display: flex; align-items: center; gap: clamp(1.5rem, 5vw, 4rem); }
-.agencia-banan { flex: none; width: clamp(7rem, 20vw, 14rem); height: auto; }
+.agencia { display: flex; align-items: center; gap: clamp(3rem, 10vw, 8rem); }
+.agencia-banan { flex: none; width: clamp(4rem, 9vw, 7rem); height: auto; }
 
 /* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak; a koncertfotók tömbösítve (gallery.sorok), a felirat a kép alatt */
 .koncert-galeria { margin-top: 2.5rem; }
@@ -187,33 +196,21 @@ mark.todo {
 .koncertek h2 + .kepsor { margin-top: 0; }
 
 /* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
-/* évenként, mint a CV (megjelenesek.html): bal oldalt az év, jobbra tételenként egy folyó sor (sajto-sor.html), az idézet halványan */
-.sajto { margin: 0; }
-.sajto dd + dt, .sajto dd + dt + dd { margin-top: .9rem; }
-.sajto-sor { margin: 0 0 .35rem; }
+/* évenként, mint a Szöveg oldal tételei (megjelenesek.html): bal oldalt az év, jobbra tételenként elöl a cím (linkként),
+   alatta kisebben, szürkén a forrás, a műfaj és a lemez (sajto-sor.html); az idézet dőlten */
+.sajto { margin: 0; row-gap: 0; }
+.sajto dd + dt, .sajto dd + dt + dd { margin-top: 1.4rem; }
+.sajto-sor { margin: 0 0 .9rem; }
 .sajto-sor:last-child { margin-bottom: 0; }
-.sajto-forras { font-weight: 700; }
-.sajto-sor .quote { color: var(--muted); font-style: italic; }
-.sajto-lemez { text-decoration: none; }
+.sajto-sor p { margin: 0; }
+.sajto-sor .meta { margin-top: .15rem; }
+.sajto-sor .quote { font-style: italic; }
+.sajto-lemez { color: inherit; text-decoration: none; }
 .sajto-lemez:hover { text-decoration: underline; }
 
-/* --- Események (gigs.html): bibliográfiai tételként, mint a CV: bal oldalt a dátum, jobbra egy folyó sor, elöl félkövéren a projekt --- */
-.esemenyek { grid-template-columns: 7.5rem 1fr; }
+/* --- Események (gigs.html): évenként, soronként a nap és egy folyó sor, elöl félkövéren a projekt --- */
 .esemeny-projekt { font-weight: 700; }
 .nw { white-space: nowrap; }
-/* Korábbi koncertek évenként (layouts/_partials/idovonal.html): az évszámok egy sorban, gombként; a kiválasztott év kiemelve */
-.iv-sav { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .25rem 0 1.25rem; }
-.iv-ev { padding: .2rem 0; border: 0; background: none; cursor: pointer; font-variant-numeric: tabular-nums; }
-.iv-ev[aria-expanded="true"] { font-weight: 700; }
-.iv-felirat { padding: .2rem 0; color: var(--ink); font-weight: 700; }
-.iv-ev:hover, .iv-ev:focus-visible { font-style: italic; }
-.iv-ev:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-/* lenyíló év: JS nélkül minden év látszik; JS-sel a kiválasztottak gördülnek le (akár mind egyszerre); fölöttük mindig az évszám */
-.iv-cim { margin: 1.5rem 0 .25rem; }
-.iv-panel > div { min-height: 0; overflow: hidden; }
-.js .iv-panel { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; }
-.js .iv-panel.nyitva { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition: grid-template-rows .5s ease, opacity .45s ease; }
-@media (prefers-reduced-motion: reduce) { .js .iv-panel.nyitva { transition: none; } }
 
 /* --- Képek --- */
 figure { margin: 0; }
@@ -260,7 +257,7 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- Szövegek --- */
 .pubs { list-style: none; padding: 0; margin: 0 0 2.5rem; }
-.pubs li { display: grid; grid-template-columns: var(--evoszlop) 1fr; gap: .25rem 1rem; padding: var(--sor) 0; align-items: baseline; }
+.pubs li { display: grid; grid-template-columns: var(--evoszlop) minmax(0, 1fr); column-gap: var(--evkoz); row-gap: .25rem; padding: var(--sor) 0; align-items: baseline; }
 .pubs p { margin: 0; }
 .pubs .meta { margin-top: .15rem; }
 /* hivatkozás egy írás alján: doboz és vonal nélkül */
@@ -277,23 +274,22 @@ figcaption .credit { white-space: nowrap; }
 }
 .about-side { display: grid; gap: 2rem; justify-items: start; }
 .portrait { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; max-width: 24rem; }
-.cv-list { grid-template-columns: var(--evoszlop) 1fr; gap: .45rem 1rem; }
-@media (max-width: 30rem) { .cv-list { grid-template-columns: 1fr; } .cv-list dd { margin-bottom: .6rem; } }
+
 /* glitches e-mail-cím (talpas rendszerbetűvel, mert a Source Serifben nincsenek meg a ráhalmozott jelek): a ráhalmozott jeleknek hely kell; a cím és az e-mail közti rés kicsi (negatív felső margó) */
 .email-line { margin-top: -1rem; padding-block: 0 1.75rem; line-height: 2.2; font-size: var(--t-body); font-family: "Times New Roman", Times, serif; white-space: nowrap; overflow: visible; }
 
-/* --- Lábléc --- */
-.site-footer { margin-top: 5rem; padding-block: 2.5rem; }
-/* Linkek oldal: balra a megjelenések, jobbra a social linkek egy szögletes, vékony vonalas dobozban; telefonon egymás alatt */
-.linkek-oldal { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; align-items: start; padding-block: 0 var(--szakasz); }
-.linkek-bal #megjelenesek { margin-top: calc(var(--szakasz) - .5rem); }
-/* széles képernyőn a doboz teteje a cím L-jének tetejénél: a betűméret 0,201-szeresével a sor teteje alatt (a C íve kicsit magasabb, ezért a CV-n 0,186) */
+/* --- Az oldal alja: lábléc nincs, csak üres hely a tartalom után --- */
+body > main { padding-bottom: clamp(4rem, 9vw, 7.5rem); }
+/* Linkek oldal: a cím alatt balra a megjelenések, jobbra keret nélkül a profilok; a profilok listája a megjelenések első sorával
+   egy magasságban kezdődik (a logók a sor közepén, a nevük a szöveg betűméretében) és görgetéskor a helyén marad.
+   Telefonon a profilok a cím alatt, a megjelenések előtt. */
+.linkek-oldal { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; align-items: start; padding-top: calc(var(--szakasz) - .5rem); }
+.profilok { order: -1; }
 @media (min-width: 52rem) {
-  .linkek-oldal { grid-template-columns: minmax(0, 1fr) 19rem; gap: 4rem; }
-  .linkek-oldal .social-doboz { margin-top: calc(var(--fej) + var(--t-cim) * .201); }
+  .linkek-oldal { grid-template-columns: minmax(0, 1fr) 16rem; column-gap: clamp(3rem, 7vw, 6rem); }
+  .profilok { order: 0; position: sticky; top: 2rem; margin-top: -.2rem; }
 }
-.social-doboz { border: 1px solid var(--ink); padding: 1.25rem 1.5rem; }
-.social-doboz .linksor-al { padding-left: 2.3rem; }
+.profilok .linksor-al { padding-left: 2.3rem; }
 /* profilok és linkek egymás alatt, előttük a logójuk (Linkek oldal, linksor.html) */
 .linksor { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .linksor a, .linksor-cim { display: inline-flex; align-items: center; gap: .8rem; text-decoration: none; }
@@ -303,19 +299,33 @@ figcaption .credit { white-space: nowrap; }
 /* a Bandcamp-oldalak a „Bandcamp” sor alatt, beljebb húzva */
 .linksor-al { list-style: none; margin: .55rem 0 0; padding: 0 0 0 calc(2.3rem + 1.5rem); display: grid; gap: .45rem; }
 
-/* minden oldal legalább a képernyő magasságú: rövid oldalon is az ablak alján van a lábléc */
+/* minden oldal legalább a képernyő magasságú */
 body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
 body > main { flex: 1; }
 
-/* --- Nyitóoldal: fent csak a név és a nyelvváltó, alatta a menüpontok egymás alatt, a cím méretében --- */
-.kind-home .site-footer { margin-top: 0; }
-/* a név bal fent ugyanakkora, mint a menüpontok, és ugyanott kezdődik, de vékonyabb (300); sosem dől meg */
-.kind-home .site-name { font-size: var(--t-cim); font-weight: 300; line-height: 1.15; font-style: normal; }
-.kind-home .site-header .wrap { padding-top: calc(var(--fej) * .75); }
-.nyito-menu ul { list-style: none; margin: 0; padding: calc(var(--fej) * .75) 0 var(--fej); display: grid; gap: .5rem; justify-items: start; }
-.nyito-menu a { font-size: var(--t-cim); font-weight: 400; line-height: 1.15; color: var(--ink); text-decoration: none; }
-/* rámutatva a menüpont dőlt és vékony (300) lesz */
-.nyito-menu a:hover, .nyito-menu a:focus-visible { font-style: italic; font-weight: 300; }
+/* --- Nyitóoldal (home.html): egy oszlop, egy betűméret (a cím mérete), egy sorköz (1,15).
+   Fent a név 200-as vastagsággal, egy üres sor, a menüpontok 300-assal egymás alatt; a másik nyelv a fejlécben, jobbra fent.
+   A név B-je ugyanott áll, ahol az aloldalakon a cím: a fejléc sora és a --fej alatt;
+   a két sorköz különbsége (1,15 és 1,05) miatt fél sorközkülönbséggel (0,05 em) feljebb. --- */
+.nyito { --sor: calc(var(--t-cim) * 1.15); padding-top: calc(var(--fej) - var(--t-cim) * .05); }
+.kind-home main { padding-bottom: var(--fej); }
+.nyito-nev, .nyito-menu a { font-family: var(--serif); font-size: var(--t-cim); line-height: 1.15; letter-spacing: 0; }
+.nyito-nev { margin: 0 0 var(--sor); font-weight: 200; font-style: normal; hyphens: none; }
+.nyito-menu ul { list-style: none; margin: 0; padding: 0; display: grid; justify-items: start; }
+/* a sor magassága pontosan egy sorköz (a li és a p saját sorköze nem nyújtja meg) */
+.nyito-menu li { display: flex; }
+.nyito-menu a { font-weight: 300; color: var(--ink); text-decoration: none; }
+/* rámutatva dőlt lesz (ugyanazzal a vastagsággal); a név sosem */
+.nyito-menu a:hover, .nyito-menu a:focus-visible { font-style: italic; }
+
+/* Rámutatáskor dőltté váló szöveg ugrás nélkül: két láthatatlan, nulla magas másolat (::before álló, ::after dőlt)
+   lefoglalja a szélesebb változat helyét. Így a doboz mindig
+   ugyanolyan széles: a dőltté váló szöveg semmit nem tol el, és a doboz sem keskenyedik ki az egér alól. */
+.nyito-menu a { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.nyito-menu a::before, .nyito-menu a::after {
+  content: attr(data-t); height: 0; overflow: hidden; visibility: hidden; pointer-events: none; user-select: none; font-style: normal;
+}
+.nyito-menu a::after { font-style: italic; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
@@ -355,13 +365,36 @@ body > main { flex: 1; }
 
 /* --- Nyomtatás --- */
 @media print {
-  .site-header nav, .site-footer, .embed { display: none !important; }
+  .site-header nav, .embed { display: none !important; }
   body { background: #fff; color: #000; }
 }
-/* Művek oldalak: a Behance-linkek előtt egyszer a Behance-logó (page.html) */
+/* Kép oldalak: a Behance-linkek előtt egyszer a Behance-logó (page.html) */
 .links-behance { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; }
 .links-behance .ikon { flex: none; width: 1.35rem; height: 1.35rem; display: block; color: var(--muted); }
 .links-behance .ikon svg { display: block; width: 100%; height: 100%; }
-/* Művek oldalak alja: kapcsolódó művek és linkek a képek után */
+/* Kép oldalak alja: kapcsolódó művek és linkek a képek után */
 .kep-utan { margin-top: 2.5rem; }
 .kep-utan .links { margin-bottom: 0; }
+
+/* --- Évszámos sorok (CV, Szöveg, Megjelenések, Koncertek) ---
+   Az évszám ugyanakkora, mint a szöveg, és vele egy alapvonalon áll (az első sorral); vékony (300), fekete, egyforma szélességű számjegyekkel.
+   Az évoszlop a betűmérethez kötött: egy évszámnak 2,6 em, a CV évtartományainak (2011–2013) 5 em; utána mindig 1,25 em köz.
+   Telefonon a CV és a Koncertek évszáma a tételek fölé kerül (ott hosszabbak a sorok), a Szöveg és a Megjelenések évszáma oldalt marad. */
+.cv-list, .pubs { --evoszlop: 2.6em; --evkoz: 1.25em; }
+.cv .cv-list { --evoszlop: 5em; }
+.cv-list { display: grid; grid-template-columns: var(--evoszlop) minmax(0, 1fr); column-gap: var(--evkoz); row-gap: .45rem; align-items: baseline; margin: 0 0 1.5rem; }
+.cv-list dd { margin: 0; }
+.cv-list dt, .pubs .year {
+  font-family: var(--serif); font-size: inherit; font-weight: 300; line-height: inherit; letter-spacing: 0;
+  color: var(--ink); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap;
+}
+/* koncertek: évenként a napok egymás alatt; a nap (hónap, nap) szürkén, a sor elején, a saját oszlopában */
+.koncertlista { row-gap: 1.1rem; }
+.napsor { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.napsor li { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); column-gap: 1em; align-items: baseline; }
+.napsor .nap { color: var(--muted); font-weight: 300; font-variant-numeric: tabular-nums lining-nums; }
+@media (max-width: 30rem) {
+  .cv .cv-list, .koncertlista { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .cv .cv-list dd, .koncertlista dd { margin-bottom: .9rem; }
+  .koncertlista dd { margin-top: .2rem; }
+}

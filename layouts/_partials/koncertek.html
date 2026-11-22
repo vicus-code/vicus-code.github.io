@@ -1,4 +1,4 @@
-{{- /* Koncertek a Zene oldalon: a következő események, a korábbiak idővonala, alattuk a koncertfotók (cím nélkül, tömbösítve).
+{{- /* Koncertek a Zene oldalon: a következő események, a korábbiak évenkénti listája, alattuk a koncertfotók (cím nélkül, tömbösítve).
      Az események a data/koncertek.yaml-ből, a fotók a content/koncertek/_index.md „kepek” listájából (annak saját oldala nincs). */ -}}
 {{- $all := hugo.Data.koncertek | default slice }}
 {{- $today := now.Format "2006-01-02" }}
@@ -9,21 +9,20 @@
 {{- end }}
 <section class="section koncertek" id="koncertek">
   <div class="wrap">
-    {{- /* a Koncertek és a Korábban cím nem látszik, csak a felolvasóknak szól */}}
-    <h2 class="visually-hidden">{{ T "concerts" }}</h2>
-    {{- /* a következő események csak akkor, ha van ilyen (üres lista esetén se cím, se „nincs” szöveg) */}}
+    <h2>{{ T "concerts" }}</h2>
+    {{- /* a következő események csak akkor, ha van ilyen (üres lista esetén se cím, se „nincs” szöveg); a korábbiak címe csak a felolvasóknak szól */}}
     {{- with $up }}
     <h3>{{ T "upcoming" }}</h3>
     {{ partial "gigs.html" (dict "rows" (sort . "datum" "asc")) }}
     {{- end }}
     {{- with $past }}
     <h3 class="visually-hidden">{{ T "past" }}</h3>
-    {{- /* idovonal: kézzel húzott vonal, évenként egy gomb; a kiválasztott évek gördülnek le, akár mind egyszerre */}}
-    {{ partial "idovonal.html" (dict "rows" . "felirat" (T "concerts")) }}
+    {{- /* a korábbi koncertek végig látható listában, évenként, a legújabbal kezdve */}}
+    {{ partial "gigs.html" (dict "rows" (sort . "datum" "desc")) }}
     {{- end }}
     {{- with site.GetPage "/koncertek" }}{{ with .Params.kepek }}
     <h3 class="visually-hidden">{{ T "gallery" }}</h3>
-    {{- /* a koncertfotók tömbösítve, mint a Művek vázlatai: egyforma magas, kitöltött sorokban (gallery.sorok, main.js),
+    {{- /* a koncertfotók tömbösítve, mint a Kép vázlatai: egyforma magas, kitöltött sorokban (gallery.sorok, main.js),
          a legújabbal kezdve; a felirat itt a kép alatt áll, mert minden képnek van */}}
     <div class="gallery sorok koncert-galeria">
       {{- range sort . "datum" "desc" }}

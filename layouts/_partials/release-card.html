@@ -1,3 +1,4 @@
+{{- /* Lemez a Zene oldal listájában: borító, cím, előadó és év (a típus, pl. EP, csak a lemez saját oldalán áll). */ -}}
 {{- $t := partial "loc.html" (dict "m" .Params "k" "title") }}
 <a class="card" href="{{ .RelPermalink }}">
   {{- with .Params.borito_negyzet | default .Params.borito }}
@@ -6,5 +7,5 @@
   <div class="cover-empty" aria-hidden="true"></div>
   {{- end }}
   <h3>{{ if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}{{ partial "md.html" $t }}</h3>
-  <p class="meta">{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "eloado")) }} · {{ .Date.Year }}{{ with .Params.tipus }} · {{ partial "tipus.html" . }}{{ end }}</p>
+  <p class="meta">{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "eloado")) }} · {{ .Date.Year }}</p>
 </a>

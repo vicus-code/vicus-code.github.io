@@ -99,19 +99,6 @@ document.addEventListener('click', function (e) {
   });
 })();
 
-/* Koncertek idővonala (Zene oldal): egy évre kattintva az az év lenyílik, újra kattintva bezárul;
-   a többi nyitott év nyitva marad, így akár az összes év egyszerre nyitva lehet */
-(function () {
-  [].forEach.call(document.querySelectorAll('[data-idovonal] .iv-ev'), function (g) {
-    g.addEventListener('click', function () {
-      var be = g.getAttribute('aria-expanded') !== 'true';
-      g.setAttribute('aria-expanded', be ? 'true' : 'false');
-      var p = document.getElementById(g.getAttribute('aria-controls'));
-      if (p) p.classList.toggle('nyitva', be);
-    });
-  });
-})();
-
 /* Sorokba rendezett galéria (gallery.html, „sorok”): a sormagasságot az alapérték körül (−20% … +15%) úgy választja,
    hogy az utolsó sor a lehető legjobban kitöltődjön. Ha legalább 80%-ig kitöltődik, az utolsó sor is a teljes szélességre nyúlik
    („kitolt”). Szkript nélkül a CSS-elrendezés marad, csak az utolsó sor lehet rövidebb. */

@@ -1,15 +1,14 @@
 {{ define "main" }}
-{{- /* Nyitóoldal: fent csak a név és a nyelvváltó; a menüpontok az oldalon, egymás alatt.
-     A név és a bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól. */}}
-<div class="visually-hidden">
-  <h1>{{ site.Title }}</h1>
-  {{ partial "body.html" . }}
-</div>
-<div class="wrap">
+{{- /* Nyitóoldal: egy oszlop, egy betűméret, egy sorköz. Fent a név (a legvékonyabb), egy üres sor, a menüpontok egymás alatt.
+     A másik nyelv a fejlécben, jobbra fent, mint minden oldalon (header.html). A bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól.
+     A data-t a rámutatáskor dőltté váló szöveg helyét foglalja le, hogy semmi ne ugorjon (main.css). */}}
+<div class="wrap nyito">
+  <h1 class="nyito-nev">{{ site.Title }}</h1>
+  <div class="visually-hidden">{{ partial "body.html" . }}</div>
   <nav class="nyito-menu" aria-label="{{ T "mainMenu" }}">
     <ul>
       {{- range site.Menus.main }}
-      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      <li><a href="{{ .URL }}" data-t="{{ .Name }}">{{ .Name }}</a></li>
       {{- end }}
     </ul>
   </nav>

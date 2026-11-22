@@ -1,12 +1,20 @@
-{{- /* Egy sajtómegjelenés egy folyó sorban: Forrás – „Cím” (linkként), szerző (Lemez, linkként a lemez oldalára);
-     ha nincs cím, a forrás a link. Az idézet, ha van, utána halványan. Az évet a megjelenesek.html írja ki a bal oszlopba.
+{{- /* Egy sajtómegjelenés bibliográfiai tételként, mint a Szöveg oldal tételei: elöl a cím (linkként), alatta kisebben, szürkén
+     a forrás, a műfaj vagy a szerző és a lemez (linkként a lemez oldalára, csak a Linkek oldalon); az idézet, ha van, a végén dőlten.
+     Ha nincs cím, a forrás a cím. Az évet a megjelenesek.html írja ki a bal oszlopba.
      Bemenet: dict "t" (a lemez „kritikak” listájának egy tétele), "lemez" és "lemezLink" (csak a Linkek oldalon). */ -}}
 {{- $t := .t }}
 {{- $szerzo := partial "loc.html" (dict "m" $t "k" "szerzo") }}
-<p class="sajto-sor">
-  {{- if and $t.url (not $t.cim) }}<a href="{{ $t.url }}" class="sajto-forras">{{ $t.forras }}</a>{{ else }}<span class="sajto-forras">{{ $t.forras }}</span>{{ end }}
-  {{- with $t.cim }} – {{ with $t.url }}<a href="{{ . }}">{{ end }}{{ T "qo" }}{{ partial "md.html" $t.cim }}{{ T "qc" }}{{ with $t.url }}</a>{{ end }}{{ end }}
-  {{- with $szerzo }}, {{ partial "md.html" . }}{{ end }}
-  {{- with .lemez }} (<a href="{{ $.lemezLink }}" class="sajto-lemez"><em>{{ partial "md.html" . }}</em></a>){{ end }}
-  {{- with $t.idezet }} <span class="quote">{{ T "qo" }}{{ partial "md.html" . }}{{ T "qc" }}</span>{{ end -}}
-</p>
+{{- $cim := $t.cim | default $t.forras }}
+<div class="sajto-sor">
+  <p class="sajto-cim">{{ with $t.url }}<a href="{{ . }}">{{ end }}{{ partial "md.html" $cim }}{{ with $t.url }}</a>{{ end }}</p>
+  {{- $bits := slice }}
+  {{- if $t.cim }}{{ $bits = $bits | append (htmlEscape $t.forras) }}{{ end }}
+  {{- with $szerzo }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
+  {{- if or $bits .lemez $t.idezet }}
+  <p class="meta">
+    {{- delimit $bits " · " | safeHTML }}
+    {{- with .lemez }}{{ if $bits }} · {{ end }}<a href="{{ $.lemezLink }}" class="sajto-lemez"><em>{{ partial "md.html" . }}</em></a>{{ end }}
+    {{- with $t.idezet }}{{ if or $bits $.lemez }} · {{ end }}<span class="quote">{{ T "qo" }}{{ partial "md.html" . }}{{ T "qc" }}</span>{{ end -}}
+  </p>
+  {{- end }}
+</div>

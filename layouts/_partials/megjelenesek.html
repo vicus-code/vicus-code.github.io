@@ -1,6 +1,6 @@
-{{- /* Megjelenések (sajtó, rádió) a lemezek „kritikak” listájából, évenként, a legújabbal kezdve, mint a CV:
-     bal oldalt az év, jobbra a tételek, tételenként egy folyó sor (sajto-sor.html). A dátum nélküli tételek a végén, év nélkül.
-     Bemenet: dict "lapok" (a lemezek oldalai) és "lemez" (true: a sor végén zárójelben a lemez címe, linkként; a Linkek oldalon). */ -}}
+{{- /* Megjelenések (sajtó, rádió) a lemezek „kritikak” listájából, évenként, a legújabbal kezdve, mint a CV és a Szöveg:
+     bal oldalt az év, jobbra a tételek bibliográfiai tételként: elöl a cím, alatta a forrás (sajto-sor.html). A dátum nélküli tételek a végén, év nélkül.
+     Bemenet: dict "lapok" (a lemezek oldalai) és "lemez" (true: a forrás után a lemez címe, linkként; a Linkek oldalon). */ -}}
 {{- $tetelek := slice }}
 {{- range $p := .lapok }}{{ range $p.Params.kritikak }}
   {{- $tetelek = $tetelek | append (merge . (dict "rend" (cond (isset . "datum") (string .datum) "0000") "lemez" (partial "loc.html" (dict "m" $p.Params "k" "title")) "lemezLink" $p.RelPermalink)) }}
