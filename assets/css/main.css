@@ -296,6 +296,11 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- Lábléc --- */
 .site-footer { margin-top: 5rem; padding-block: 2.5rem; }
+/* Linkek oldal: balra a megjelenések, jobbra a social linkek egy szögletes, vékony vonalas dobozban; telefonon egymás alatt */
+.linkek-oldal { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; align-items: start; padding-block: var(--szakasz); }
+@media (min-width: 52rem) { .linkek-oldal { grid-template-columns: minmax(0, 1fr) 19rem; gap: 4rem; } }
+.social-doboz { border: 1px solid var(--ink); padding: 1.25rem 1.5rem; }
+.social-doboz .linksor-al { padding-left: 2.3rem; }
 /* profilok és linkek egymás alatt, előttük a logójuk (Linkek oldal, linksor.html) */
 .linksor { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .linksor a, .linksor-cim { display: inline-flex; align-items: center; gap: .8rem; text-decoration: none; }
