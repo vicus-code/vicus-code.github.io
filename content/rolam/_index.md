@@ -76,8 +76,8 @@ oneletrajz:
     cim_en: "Activism"
     tetelek:
       - evek: "2025"
-        szoveg: "[KKDSZ](https://kkdsz.hu/) – Szépművészeti Múzeum, alapszervezeti titkár"
-        szoveg_en: "[KKDSZ](https://kkdsz.hu/) (trade union) – Museum of Fine Arts Budapest, branch secretary"
+        szoveg: Közgyűjteményi és Közművelődési Dolgozók Szakszervezete – Szépművészeti Múzeum, alapszervezeti titkár
+        szoveg_en: "Közgyűjteményi és Közművelődési Dolgozók Szakszervezete (trade union) – Museum of Fine Arts Budapest, branch secretary"
       - evek: 2018–2023
         szoveg: NEM! Nők Egymásért Mozgalom – társalapító, olvasókör-koordinátor
         szoveg_en: "NEM! Women for Each Other Movement – co-founder, reading group coordinator"
