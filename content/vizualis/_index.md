@@ -1,4 +1,4 @@
 ---
-title: Kép
+title: Képzőművészet
 title_en: Artwork
 ---
