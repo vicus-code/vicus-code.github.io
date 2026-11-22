@@ -1,14 +1,19 @@
 {{ define "main" }}
-{{ partial "oldalfej.html" . }}
-{{- /* balra a megjelenések, jobbra egy dobozban a social linkek (telefonon egymás alatt);
-     a két rész címe (Megjelenések, Social) nem látszik, csak a felolvasóknak szól */}}
+{{- /* balra a cím és a megjelenések, jobbra egy dobozban a social linkek, a doboz teteje a cím nagybetűinek tetejénél
+     (telefonon egymás alatt); a két rész címe (Megjelenések, Social) nem látszik, csak a felolvasóknak szól */}}
 <div class="wrap linkek-oldal">
-  {{- with site.GetPage "/zene" }}
-  <section id="megjelenesek">
-    <h2 class="visually-hidden">{{ T "press" }}</h2>
-    {{ partial "megjelenesek.html" (dict "lapok" .Pages "lemez" true) }}
-  </section>
-  {{- end }}
+  <div class="linkek-bal">
+    <header class="page-head">
+      <h1>{{ partial "loc.html" (dict "m" .Params "k" "title") }}</h1>
+      {{- with partial "body.html" . }}<div class="lead prose">{{ partial "todo.html" . }}</div>{{ end }}
+    </header>
+    {{- with site.GetPage "/zene" }}
+    <section id="megjelenesek">
+      <h2 class="visually-hidden">{{ T "press" }}</h2>
+      {{ partial "megjelenesek.html" (dict "lapok" .Pages "lemez" true) }}
+    </section>
+    {{- end }}
+  </div>
   <aside class="social-doboz" aria-labelledby="social-cim">
     <h2 class="visually-hidden" id="social-cim">{{ T "social" }}</h2>
     {{ partial "linksor.html" . }}
