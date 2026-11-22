@@ -2,7 +2,7 @@
    Bárdits Éva – weboldal
    Egy betűcsalád minden szövegre: Source Serif 4 (ingyenes, SIL Open Font License, static/fonts).
    A különbséget csak a méret, a vastagság, a dőlés és a szín adja; csupa nagybetűs (verzál) szöveg nincs.
-   Három betűméret (cím, szöveg, apró), három vastagság (400, 600, 700), három szín (fekete, szürke, fehér).
+   Három betűméret (cím, szöveg, apró), három vastagság (300, 400, 700), három szín (fekete, szürke, fehér).
    Részek: betűk · színek és méretek · alap · szedés · fejléc · szakaszok · kiadványok · sajtó ·
    események és idővonal · képek · szövegek · CV · lábléc · nyitóoldal · díszek · lapozható zine · nyomtatás
    ========================================================================== */
@@ -37,7 +37,7 @@
 :root {
   --serif: "Source Serif", "Iowan Old Style", Georgia, serif;
   /* Szedés – egy betű (Source Serif 4), három méret, három vastagság, verzál nélkül:
-     cím    – az oldal neve (h1): 600
+     cím    – az oldal neve (h1): 300 (vékony)
      szöveg – minden olvasnivaló, a tételek neve is (h3): 400; a szakaszcím (h2) 700; dőlt csak mű címe és idézet
      apró   – menü, címke, gomb, dátum, év, képaláírás: 400 (a név bal fent és a kiválasztott év 700) */
   --t-cim: clamp(2rem, 3vw + .9rem, 3.25rem);
@@ -93,7 +93,7 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
 /* --- Szedés --- */
 h1, h2, h3, h4 { margin: 0 0 .6em; text-wrap: balance; font-weight: 400; }
 /* cím: minden oldalon egy méret */
-h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 600; line-height: 1.05; letter-spacing: -.01em; hyphens: auto; overflow-wrap: break-word; }
+h1 { font-family: var(--serif); font-size: var(--t-cim); font-weight: 300; line-height: 1.05; letter-spacing: -.01em; hyphens: auto; overflow-wrap: break-word; }
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* apró: címke */
@@ -270,8 +270,8 @@ figcaption .credit { white-space: nowrap; }
 @media (min-width: 52rem) {
   .about { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
   /* a portré teteje a „CV” cím nagybetűinek tetejével egy vonalban: a cím sorában a nagybetű teteje
-     a betűméret 0,194-szeresével lejjebb kezdődik (Source Serif 4, sormagasság 1,05) */
-  .about-side { margin-top: calc(var(--t-cim) * .194); }
+     a betűméret 0,186-szorosával lejjebb kezdődik (Source Serif 4, 300-as, sormagasság 1,05) */
+  .about-side { margin-top: calc(var(--t-cim) * .186); }
 }
 .about-side { display: grid; gap: 2rem; justify-items: start; }
 .portrait { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; max-width: 24rem; }
