@@ -1,8 +1,27 @@
-{{- /* A profilok és linkek (data/linkek.yaml) egy sorban (Linkek oldal). */ -}}
+{{- /* A profilok és linkek (data/linkek.yaml) egymás alatt, mindegyik előtt a logója (Linkek oldal).
+     A Bandcamp-oldalak (minden bandcamp.com link) egy „Bandcamp” sor alatt, beljebb húzva, logó nélkül állnak; a Bandcamp-logó csak egyszer van.
+     A logót a link címéből választja: assets/ikonok/<név>.svg (fehér, a betűszínnel).
+     Az Instagram, YouTube, Bandcamp, Behance és Academia logó a Simple Icons gyűjteményből (CC0), a Subverté a subvert.fm-ről. */ -}}
+{{- $ikonok := slice (dict "k" "instagram" "f" "instagram.svg") (dict "k" "subvert" "f" "subvert.svg") (dict "k" "youtube" "f" "youtube.svg") (dict "k" "behance" "f" "behance.svg") (dict "k" "academia" "f" "academia.svg") }}
 {{- with hugo.Data.linkek }}
+{{- $bc := slice }}{{ range . }}{{ if strings.Contains .url "bandcamp.com" }}{{ $bc = $bc | append . }}{{ end }}{{ end }}
 <ul class="linksor">
-  {{- range . }}
-  <li><a href="{{ .url }}" rel="me">{{ partial "loc.html" (dict "m" . "k" "nev") }}</a></li>
+  {{- $bcKesz := false }}
+  {{- range $l := . }}
+  {{- if strings.Contains $l.url "bandcamp.com" }}
+    {{- if not $bcKesz }}{{ $bcKesz = true }}
+  <li><span class="linksor-cim">{{ partial "linksor-ikon.html" "bandcamp.svg" }}<span>Bandcamp</span></span>
+    <ul class="linksor-al">
+      {{- range $bc }}
+      <li><a href="{{ .url }}" rel="me"><span>{{ partial "loc.html" (dict "m" . "k" "nev") }}</span></a></li>
+      {{- end }}
+    </ul>
+  </li>
+    {{- end }}
+  {{- else }}
+  {{- $ikon := "" }}{{ range $ikonok }}{{ if and (not $ikon) (strings.Contains $l.url .k) }}{{ $ikon = .f }}{{ end }}{{ end }}
+  <li><a href="{{ $l.url }}" rel="me">{{ partial "linksor-ikon.html" $ikon }}<span>{{ partial "loc.html" (dict "m" $l "k" "nev") }}</span></a></li>
+  {{- end }}
   {{- end }}
 </ul>
 {{- end }}

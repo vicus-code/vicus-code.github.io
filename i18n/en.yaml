@@ -90,5 +90,4 @@ eventCount:
   one: "{{ .Count }} event"
   other: "{{ .Count }} events"
 contributions: Contributions
-pressDate: "Jan 2006"
 randomPage: Random page

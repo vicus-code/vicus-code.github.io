@@ -36,21 +36,14 @@
 <meta name="twitter:card" content="summary_large_image">
 {{- end }}
 {{- /* böngészőfül-ikon: a kis kék virág a Greener zine hátsó borítójáról */}}
-<link rel="icon" href="{{ "favicon.ico" | relURL }}?v=2" sizes="any">
-<link rel="icon" href="{{ "favicon-32.png" | relURL }}?v=2" type="image/png" sizes="32x32">
-<link rel="icon" href="{{ "favicon-192.png" | relURL }}?v=2" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}?v=2">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}?v=3" sizes="any">
+<link rel="icon" href="{{ "favicon-32.png" | relURL }}?v=3" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ "favicon-192.png" | relURL }}?v=3" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}?v=3">
 <link rel="preload" href="{{ "fonts/sourceserif-latin-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ "fonts/nunito-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{- with resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
-{{- end }}
-{{- /* Általános háttér minden oldal mögött: Weboldal-grafika/Weboldal-kepernyokepek/hatter_general.png,
-     a lábléc-sáv nélkül, alul-felül egymásba úsztatva, hogy ismételve se legyen varrata (assets/images/hatter/hatter-general.png).
-     Kisebb (600 px), veszteségmentes PNG-ként: a tömörített WebP-ben (még q95-ön is) a sima, sötét átmenetek kockásodtak, „pixelesnek”
-     látszottak; a kép eleve elmosott, így a böngésző simán, kockák nélkül nagyítja fel. */}}
-{{- with resources.Get "images/hatter/hatter-general.png" }}{{ $bg := .Resize "600x png" }}
-<style>body{background-image:url({{ $bg.RelPermalink | safeCSS }})}</style>
 {{- end }}
 {{- if .IsHome }}{{ partial "jsonld.html" . }}{{ end }}
 {{- partial "scholar.html" . }}

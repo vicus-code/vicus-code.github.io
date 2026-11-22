@@ -88,6 +88,12 @@ kritikak:
     szerzo_en: "interview"
     datum: 2026-08-21
     url: https://recorder.blog.hu/2026/08/21/_most_megjott_a_jo_resz_bardits_eva_interju
+  - forras: Lock Magazine (UK)
+    cim: "Bárdits Éva makes stillness feel unsettling on her intimate debut album ‘Inertia’"
+    szerzo: kritika
+    szerzo_en: "review"
+    datum: 2026-08-07
+    url: https://www.lockmag.co.uk/bardits-eva-makes-stillness-feel-unsettling-on-her-intimate-debut-album-inertia/
   - forras: Recorder
     cim: "Egyszerűségével vonz, összetettségével visszahív"
     szerzo: Rónai András
@@ -101,6 +107,7 @@ kritikak:
     datum: 2026-06-10
     url: https://recorder.blog.hu/2026/06/10/tehetetlenseg_tetlenseg_ellenallas_megjelent_bardits_eva_szoloalbuma_az_inertia
   - forras: Obscure Sound (US)
+    datum: 2026-07-01
     url: https://www.obscuresound.com/2026/07/bardits-eva-inertia/
 formatum_en: "Cassette, digital"
 borito_alt_en: "Black, starry background; in the middle a white line figure with a shadow, flower petals floating around it, INERTIA in the top right"

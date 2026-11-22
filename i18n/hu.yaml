@@ -72,5 +72,4 @@ eventCount:
   one: "{{ .Count }} esemény"
   other: "{{ .Count }} esemény"
 contributions: Közreműködés
-pressDate: "2006. 01."
 randomPage: Véletlen oldal

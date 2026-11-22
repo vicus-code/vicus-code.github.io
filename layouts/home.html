@@ -1,28 +1,7 @@
 {{ define "main" }}
-{{- /* Nyitóoldal: a menü és a lábléc között csak a köd. A név és a bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól. */}}
+{{- /* Nyitóoldal: a menü és a lábléc között csak a sima fekete háttér. A név és a bemutatkozó mondat a képernyőolvasóknak és a keresőknek szól. */}}
 <div class="visually-hidden">
   <h1>{{ site.Title }}</h1>
   {{ partial "body.html" . }}
 </div>
-<section class="nyito">
-  {{- /* felhősség: sötét felhőfoltok és világos ködfátylak az egész kép előtt-mögött */}}
-  <div class="nyito-hatter">
-    {{- range $k := slice
-      (dict "f" "fooldal/borito-kod-tav.png" "c" "lk lk1")
-      (dict "f" "kod/felho-nagy-1.png" "c" "lf lf1")
-      (dict "f" "kod/felho-nagy-2.png" "c" "lf lf2")
-      (dict "f" "kod/felho-nagy-1.png" "c" "lf lf3")
-      (dict "f" "kod/felho-nagy-2.png" "c" "lf lf4")
-      (dict "f" "fooldal/fatyol-1.png" "c" "fv fv1")
-      (dict "f" "fooldal/fatyol-2.png" "c" "fv fv2") }}
-    {{- with resources.Get (printf "images/%s" $k.f) }}{{ $r := .Resize "700x webp q72" }}
-    <img class="{{ $k.c }}" src="{{ $r.RelPermalink }}" alt="">
-    {{- end }}
-    {{- end }}
-  </div>
-  {{- /* elöl egy halvány ködfátyol */}}
-  {{- with resources.Get "images/fooldal/fatyol-2.png" }}{{ $r := .Resize "700x webp q72" }}
-  <img class="fv fv3" src="{{ $r.RelPermalink }}" alt="">
-  {{- end }}
-</section>
 {{ end }}

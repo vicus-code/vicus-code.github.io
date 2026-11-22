@@ -12,7 +12,7 @@
 <section class="section" id="megjelenesek">
   <div class="wrap">
     <h2>{{ T "press" }}</h2>
-    {{ partial "megjelenesek.html" . }}
+    {{ partial "megjelenesek.html" (dict "lapok" .Pages "lemez" true) }}
   </div>
 </section>
 {{- end }}

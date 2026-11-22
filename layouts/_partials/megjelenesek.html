@@ -1,25 +1,20 @@
-{{- /* Megjelenések (sajtó, rádió): a Zene oldal lemezeinek „kritikak” listájából, projektenként (a lemez „eloado” mezője) csoportosítva,
-     a projektek a legfrissebb megjelenésükkel kezdve. A sorokat a sajto-sor.html rajzolja (ugyanígy a lemezek oldalán).
-     A projektek angol neve a content/zene/_index.md projektek listájából, a magyar név szerint. Bemenet: a Zene szakaszoldal. */ -}}
-{{- $projNev := dict }}
-{{- range .Params.projektek }}{{ $nev := .nev }}{{ $projNev = merge $projNev (dict $nev (partial "loc.html" (dict "m" . "k" "nev"))) }}{{ end }}
+{{- /* Megjelenések (sajtó, rádió) a lemezek „kritikak” listájából, évenként, a legújabbal kezdve, mint a CV:
+     bal oldalt az év, jobbra a tételek, tételenként egy folyó sor (sajto-sor.html). A dátum nélküli tételek a végén, év nélkül.
+     Bemenet: dict "lapok" (a lemezek oldalai) és "lemez" (true: a sor végén zárójelben a lemez címe, linkként; a Linkek oldalon). */ -}}
 {{- $tetelek := slice }}
-{{- range $p := .Pages }}{{ range $p.Params.kritikak }}
-  {{- $tetelek = $tetelek | append (merge . (dict "rend" (cond (isset . "datum") (string .datum) "0000") "projekt" ($p.Params.eloado | default "") "projektNev" (partial "loc.html" (dict "m" $p.Params "k" "eloado") | default "") "lemez" (partial "loc.html" (dict "m" $p.Params "k" "title")) "lemezLink" $p.RelPermalink)) }}
+{{- range $p := .lapok }}{{ range $p.Params.kritikak }}
+  {{- $tetelek = $tetelek | append (merge . (dict "rend" (cond (isset . "datum") (string .datum) "0000") "lemez" (partial "loc.html" (dict "m" $p.Params "k" "title")) "lemezLink" $p.RelPermalink)) }}
 {{- end }}{{ end }}
 {{- with $tetelek }}
-{{- $projektek := slice }}{{ range sort . "rend" "desc" }}{{ if not (in $projektek .projekt) }}{{ $projektek = $projektek | append .projekt }}{{ end }}{{ end }}
-<div class="sajto measure">
-  {{- range $pr := $projektek }}
-  <div class="sajto-csop">
-    {{- $nev := index $projNev $pr | default (index (where $tetelek "projekt" $pr) 0).projektNev | default $pr }}
-    <h3>{{ $nev }}</h3>
-    <ul class="sajto-lista">
-      {{- range sort (where $tetelek "projekt" $pr) "rend" "desc" }}
-      {{ partial "sajto-sor.html" (dict "t" . "lemez" .lemez "lemezLink" .lemezLink) }}
-      {{- end }}
-    </ul>
-  </div>
+{{- $evek := slice }}{{ range sort . "rend" "desc" }}{{ $ev := substr .rend 0 4 }}{{ if not (in $evek $ev) }}{{ $evek = $evek | append $ev }}{{ end }}{{ end }}
+<dl class="facts cv-list sajto">
+  {{- range $ev := $evek }}
+  <dt>{{ if ne $ev "0000" }}{{ $ev }}{{ end }}</dt>
+  <dd>
+    {{- range sort $tetelek "rend" "desc" }}{{ if eq (substr .rend 0 4) $ev }}
+    {{ partial "sajto-sor.html" (dict "t" . "lemez" (cond $.lemez .lemez "") "lemezLink" .lemezLink) }}
+    {{- end }}{{ end }}
+  </dd>
   {{- end }}
-</div>
+</dl>
 {{- end }}

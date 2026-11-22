@@ -64,8 +64,8 @@ kritikak:
     url: https://linktr.ee/grrrlpedia
   - forras: Recorder
     cim: "Bocs h feloszlottunk. Holnaplányok: Bocs h élek"
-    szerzo: Frank Olivér, 7/10 (Recorder 100.)
-    szerzo_en: "Olivér Frank, 7/10 (Recorder no. 100)"
+    szerzo: Frank Olivér, 7/10, 100. szám
+    szerzo_en: "Olivér Frank, 7/10, no. 100"
     datum: 2023-02-03
     url: https://recorder.blog.hu/2023/02/03/holnaplanyok_bocs_h_elek_lemezkritika
 formatum_en: "Cassette, digital"

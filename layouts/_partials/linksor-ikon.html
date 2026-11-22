@@ -1,0 +1,2 @@
+{{- /* Egy logó a Linkek oldal profillistájához (linksor.html): assets/ikonok/<fájl>.svg beágyazva, a betű színével. Bemenet: a fájlnév. */ -}}
+{{- with and . (resources.Get (printf "ikonok/%s" .)) }}<span class="ikon" aria-hidden="true">{{ .Content | replaceRE "<svg " "<svg fill=\"currentColor\" focusable=\"false\" " | safeHTML }}</span>{{ end -}}

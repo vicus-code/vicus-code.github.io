@@ -79,7 +79,7 @@
   --sor: .75rem;
   --evoszlop: 5rem;
   /* Színek: csak fehér, szürke és fekete (a háttér a ködös kép, alatta fekete) */
-  --paper: #1a1919; --paper-2: #232221; --ink: #ffffff; --muted: #9b9b9b; --line: #3a3a3a;
+  --paper: #000000; --paper-2: #141414; --ink: #ffffff; --muted: #9b9b9b; --line: #3a3a3a;
   /* képek (borítók, fotók, festmények, portré): lekerekített sarok, rámutatásra puha, meleg derengés */
   --kep-r: .7rem;
   --kep-feny: 0 0 1.6rem rgba(255, 255, 255, .18), 0 0 .35rem rgba(255, 255, 255, .22);
@@ -92,10 +92,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   background-color: var(--paper);
-  /* a háttérkép útvonalát a head.html adja; görgetéskor együtt mozog a szöveggel, lefelé ismétlődik */
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-size: max(100%, 60rem) auto;
   color: var(--ink);
   font-family: var(--serif);
   font-size: var(--t-body);
@@ -127,7 +123,7 @@ h1 { font-family: var(--sans); font-size: var(--t-cim); font-weight: 700; line-h
 /* szöveg – a tétel neve is az, csak a helye más */
 h3 { font-family: var(--serif); font-size: var(--t-body); font-weight: 400; line-height: 1.35; letter-spacing: 0; }
 /* apró: címke (verzál, ritkítva) */
-h2, .label, .kicker, nav, .linksor, .btn, th, .facts dt, .gigs .video, .sajto-forras, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
+h2, .label, .kicker, nav, .btn, th, .facts dt, .gigs .video, .lapozo-sav, .iv-ev, .iv-cim, .site-name {
   font-family: var(--sans); font-size: var(--t-small); font-weight: 400; line-height: 1.4;
   letter-spacing: var(--track-label); text-transform: uppercase;
 }
@@ -137,20 +133,20 @@ h2 { margin: 0 0 1.5rem; }
 /* ha a szakaszcím nem az első egy oszlopban (lemez oldala, CV), ugyanannyi hely kerül fölé */
 h2:not(:first-child), .cv h2 { margin-top: 2.5rem; }
 /* apró: adat (kisbetűs) */
-.meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .tag, .draft-badge, .sajto-datum, .tracks li::marker {
+.meta, figcaption, .site-footer small, .date, .pubs .year, .cv-list dt, .tag, .draft-badge, .tracks li::marker {
   font-family: var(--sans); font-size: var(--t-small); font-weight: 400; line-height: 1.45;
   letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums;
 }
 /* szürke: minden kísérő adat és címke; fehér: a szöveg, a címek, és amire rámutatnak vagy ami ki van választva */
-.meta, .date, .pubs .year, .cv-list dt, .tag, .kicker, figcaption, .facts dt, .empty, .site-footer small, .sajto-datum, .gigs th, .gigs .where .city, .lapozo-szam, .tracks li::marker { color: var(--muted); }
+.meta, .date, .pubs .year, .cv-list dt, .tag, .kicker, figcaption, .facts dt, .empty, .site-footer small, .gigs th, .gigs .where .city, .lapozo-szam, .tracks li::marker { color: var(--muted); }
 .kicker { margin: 0 0 1rem; }
 .kicker a { text-decoration: none; }
 em, i { font-style: italic; }
 
 /* Linkek: a szövegben fehérek, halványan aláhúzva (rámutatva teljesen);
-   a menük, a linksorok, a gombok és az évszámok szürke verzál címkék, aláhúzás nélkül, rámutatva és kiválasztva fehérek */
-:is(.links, .linksor) a, .btn, .site-nav a, .kicker a, .iv-ev, .lapozo-gomb { color: var(--muted); text-decoration: none; }
-:is(.links, .linksor) a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .iv-ev:hover, .iv-ev[aria-expanded="true"], .lapozo-gomb:hover { color: var(--ink); }
+   a menük, a gombok és az évszámok szürke verzál címkék, aláhúzás nélkül, rámutatva és kiválasztva fehérek */
+.links a, .btn, .site-nav a, .kicker a, .iv-ev, .lapozo-gomb { color: var(--muted); text-decoration: none; }
+.links a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .iv-ev:hover, .iv-ev[aria-expanded="true"], .lapozo-gomb:hover { color: var(--ink); }
 .btn { display: inline-block; background: none; border: 0; padding: 0; cursor: pointer; }
 
 /* Jóváhagyásra váró szöveg (⟦…⟧) – csak az előnézetben látszik így */
@@ -207,25 +203,21 @@ mark.todo {
 /* Ágencia Kollektíva a Zene oldal alján */
 .label-motto { white-space: pre-line; margin: 0; }
 
-/* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
 /* Koncertek a Zene oldalon (koncertek.html): az alcímek h3-ak */
 .koncertek h3 { margin: 2.5rem 0 .75rem; }
 .koncertek h2 + h3 { margin-top: 0; }
 .koncertek h2 + .kepsor { margin-top: 0; }
-/* a Zene oldalon projektenként (a projekt neve a saját színében), a lemezek oldalán ugyanígy, csoport nélkül:
-   soronként hónap | forrás | cím, alatta halványan műfaj/szerző (és a Zene oldalon a lemez) */
-.sajto-csop { margin: 0 0 2.4rem; }
-.sajto-csop:last-child { margin-bottom: 0; }
-.sajto-csop h3 { margin: 0 0 .25rem; }
-.sajto-lista { list-style: none; margin: 0 0 1.5rem; padding: 0; }
-.sajto-csop .sajto-lista { margin-bottom: 0; }
-.sajto-sor { display: grid; grid-template-columns: var(--evoszlop) 7.6rem minmax(0, 1fr); gap: .15rem 1rem; align-items: baseline; padding: var(--sor) 0; border-bottom: 1px solid var(--line); }
-.sajto-datum { white-space: nowrap; }
-.sajto-cim .quote, .sajto-cim .meta { display: block; }
-.sajto-cim .meta { margin-top: .1rem; }
-.sajto-cim .meta a { color: inherit; text-decoration: none; }
-.quote { font-style: italic; }
-@media (max-width: 40rem) { .sajto-sor { grid-template-columns: auto minmax(0, 1fr); } .sajto-datum:empty { display: none; } .sajto-cim { grid-column: 1 / -1; } }
+
+/* --- Megjelenések: sajtó, rádió (Linkek oldal és a lemezek oldala; megjelenesek.html, sajto-sor.html) --- */
+/* évenként, mint a CV (megjelenesek.html): bal oldalt az év, jobbra tételenként egy folyó sor (sajto-sor.html), az idézet halványan */
+.sajto { margin: 0; }
+.sajto dd + dt, .sajto dd + dt + dd { margin-top: .9rem; }
+.sajto-sor { margin: 0 0 .35rem; }
+.sajto-sor:last-child { margin-bottom: 0; }
+.sajto-forras { font-weight: 700; }
+.sajto-sor .quote { color: var(--muted); font-style: italic; }
+.sajto-lemez { text-decoration: none; }
+.sajto-lemez:hover { text-decoration: underline; }
 
 /* --- Események --- */
 .gigs { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -331,31 +323,21 @@ figcaption .credit { white-space: nowrap; }
 
 /* --- Lábléc --- */
 .site-footer { margin-top: 5rem; padding-block: 2.5rem; }
-/* profilok és linkek egy sorban (Linkek oldal, linksor.html) */
-.linksor { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.15rem; }
+/* profilok és linkek egymás alatt, előttük a logójuk (Linkek oldal, linksor.html) */
+.linksor { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.linksor a, .linksor-cim { display: inline-flex; align-items: center; gap: .8rem; text-decoration: none; }
+.linksor a:hover span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.linksor .ikon { flex: none; width: 1.5rem; height: 1.5rem; display: block; }
+.linksor .ikon svg { display: block; width: 100%; height: 100%; }
+/* a Bandcamp-oldalak a „Bandcamp” sor alatt, beljebb húzva */
+.linksor-al { list-style: none; margin: .55rem 0 0; padding: 0 0 0 calc(2.3rem + 1.5rem); display: grid; gap: .45rem; }
 
 /* minden oldal legalább a képernyő magasságú: rövid oldalon is az ablak alján van a lábléc */
 body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
 body > main { flex: 1; }
 
-/* --- Nyitóoldal: a menü és a lábléc között csak a köd --- */
-.kind-home main { display: flex; flex-direction: column; }
+/* --- Nyitóoldal: a menü és a lábléc között üres, sima fekete --- */
 .kind-home .site-footer { margin-top: 0; }
-.nyito { position: relative; flex: 1; min-height: 30rem; overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent); mask-image: linear-gradient(to bottom, #000 72%, transparent); }
-.nyito img { position: absolute; max-width: none; height: auto; pointer-events: none; user-select: none; }
-/* felhősség: távoli színköd, sötét felhőfoltok, világos fátylak */
-.nyito .lk1 { width: 70vw; left: -26vw; top: 18%; opacity: .35; }
-.nyito .lf { opacity: .8; }
-.nyito .lf1 { width: 70vw; left: -8vw; top: 4%; transform: rotate(-12deg); }
-.nyito .lf2 { width: 64vw; right: -10vw; top: 20%; transform: rotate(18deg) scaleX(-1); }
-.nyito .lf3 { width: 80vw; left: 6vw; top: 50%; transform: rotate(160deg); opacity: .65; }
-.nyito .lf4 { width: 58vw; right: -6vw; top: 70%; transform: rotate(-30deg); opacity: .6; }
-.nyito .fv { mix-blend-mode: screen; }
-.nyito .fv1 { width: 90vw; left: -20vw; top: -6%; opacity: .26; }
-.nyito .fv2 { width: 84vw; right: -24vw; top: 38%; opacity: .2; transform: scaleX(-1); }
-.nyito .fv3 { width: 110vw; left: -10vw; top: 46%; opacity: .1; transform: rotate(8deg); }
-.nyito-hatter { position: absolute; inset: 0; pointer-events: none; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
@@ -396,6 +378,6 @@ body > main { flex: 1; }
 
 /* --- Nyomtatás --- */
 @media print {
-  .site-header nav, .site-footer, .embed, .nyito { display: none !important; }
+  .site-header nav, .site-footer, .embed { display: none !important; }
   body { background: #fff; color: #000; }
 }

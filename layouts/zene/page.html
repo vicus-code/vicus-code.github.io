@@ -36,12 +36,8 @@
       {{- with partial "body.html" . }}<div class="prose">{{ partial "todo.html" . }}</div>{{ end }}
       {{- with .Params.kritikak }}
       <h2>{{ T "press" }}</h2>
-      {{- /* ugyanaz a sor, mint a Zene oldal Sajtó és rádió listájában (sajto-sor.html) */}}
-      <ul class="sajto-lista">
-        {{- range . }}
-        {{ partial "sajto-sor.html" (dict "t" .) }}
-        {{- end }}
-      </ul>
+      {{- /* ugyanaz az évenkénti, egysoros lista, mint a Linkek oldalon, csak a lemez címe nélkül */}}
+      {{ partial "megjelenesek.html" (dict "lapok" (slice $) "lemez" false) }}
       {{- end }}
     </div>
   </article>

@@ -25,8 +25,8 @@ kepek:
 kritikak:
   - forras: Recorder
     cim: "Magyarradar: Aires Altos"
-    szerzo: bemutatkozás, a *Dust, Dirt, Clay* premierjével
-    szerzo_en: "profile, with the premiere of *Dust, Dirt, Clay*"
+    szerzo: bemutatkozás és lemezpremier
+    szerzo_en: "profile and album premiere"
     datum: 2014-01-24
     url: https://recorder.blog.hu/2014/01/24/magyarradar_aires_altos
 formatum_en: "Digital"
