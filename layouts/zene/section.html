@@ -3,7 +3,7 @@
 
 <section class="section">
   <div class="wrap">
-    <h2>{{ T "releases" }}</h2>
+    <h2 class="visually-hidden">{{ T "releases" }}</h2>
     <div class="grid">
       {{- range .Pages.ByDate.Reverse }}{{ partial "release-card.html" . }}{{ end }}
     </div>

@@ -9,14 +9,15 @@
 {{- end }}
 <section class="section koncertek" id="koncertek">
   <div class="wrap">
-    <h2>{{ T "concerts" }}</h2>
+    {{- /* a Koncertek és a Korábban cím nem látszik, csak a felolvasóknak szól */}}
+    <h2 class="visually-hidden">{{ T "concerts" }}</h2>
     {{- /* a következő események csak akkor, ha van ilyen (üres lista esetén se cím, se „nincs” szöveg) */}}
     {{- with $up }}
     <h3>{{ T "upcoming" }}</h3>
     {{ partial "gigs.html" (dict "rows" (sort . "datum" "asc")) }}
     {{- end }}
     {{- with $past }}
-    <h3>{{ T "past" }}</h3>
+    <h3 class="visually-hidden">{{ T "past" }}</h3>
     {{- /* idovonal: kézzel húzott vonal, évenként egy gomb; a kiválasztott évek gördülnek le, akár mind egyszerre */}}
     {{ partial "idovonal.html" (dict "rows" .) }}
     {{- end }}
