@@ -35,7 +35,6 @@ event: Event
 project: Project
 details: details
 video: video
-technique: Technique
 size: Size
 related: Related
 researchWriting: Text

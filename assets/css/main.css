@@ -205,7 +205,8 @@ mark.todo {
 .iv-sav { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: .25rem 0 1.25rem; }
 .iv-ev { padding: .2rem 0; border: 0; background: none; cursor: pointer; font-variant-numeric: tabular-nums; }
 .iv-ev[aria-expanded="true"] { font-weight: 700; }
-.iv-felirat { padding: .2rem 0; color: var(--ink); }
+.iv-felirat { padding: .2rem 0; color: var(--ink); font-weight: 700; }
+.iv-ev:hover, .iv-ev:focus-visible { font-style: italic; }
 .iv-ev:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 /* lenyíló év: JS nélkül minden év látszik; JS-sel a kiválasztottak gördülnek le (akár mind egyszerre); fölöttük mindig az évszám */
 .iv-cim { margin: 1.5rem 0 .25rem; }
