@@ -1,45 +1,45 @@
-{{- /* Koncertek évenként, mint a CV, a Szöveg és a Megjelenések évszámos sorai: bal oldalt az év (egyszer), mellette soronként
-     a nap (hónap, nap) és egy folyó sor: **Projekt**: Esemény (link). Helyszín, Város. Videó.  – ami hiányzik, kimarad.
+{{- /* Koncertek évenként, mint a Megjelenések és a Szöveg tételei: bal oldalt az év (egyszer), jobbra tételenként elöl az esemény
+     (linkként, ha van link), alatta kisebben, szürkén: a nap · a projekt · a helyszín, a város · Videó · megjegyzés. Ami hiányzik, kimarad.
      Bemenet: dict "rows" (már sorba rendezve) és "cimke" (a lista neve a felolvasóknak, ha kell).
      A projekt neve angolul a Zene oldal projektlistájának nev_en mezőjéből (pl. Éva Bárdits), a magyar név szerint. */ -}}
 {{- $projNev := dict }}
 {{- with site.GetPage "/zene" }}{{ range $p := .Params.projektek }}{{ $projNev = merge $projNev (dict $p.nev (partial "loc.html" (dict "m" $p "k" "nev"))) }}{{ end }}{{ end }}
+{{- $en := eq site.Language.Lang "en" }}
+{{- $napForma := cond $en "2 January" "January 2." }}
 {{- $evek := slice }}
 {{- range .rows }}{{ $y := (time.AsTime .datum).Year }}{{ if not (in $evek $y) }}{{ $evek = $evek | append $y }}{{ end }}{{ end }}
 {{- $rows := .rows }}
-<dl class="cv-list evsorok koncertlista"{{ with .cimke }} aria-label="{{ . }}"{{ end }}>
+<dl class="cv-list sajto koncertlista"{{ with .cimke }} aria-label="{{ . }}"{{ end }}>
   {{- range $y := $evek }}
   <dt>{{ $y }}</dt>
   <dd>
-    <ul class="napsor">
-      {{- range $r := $rows }}{{ if eq (time.AsTime .datum).Year $y }}
-      {{- $ev := partial "loc.html" (dict "m" . "k" "esemeny") }}
-      {{- $hely := partial "loc.html" (dict "m" . "k" "helyszin") }}
-      {{- $city := partial "loc.html" (dict "m" . "k" "varos") }}
-      {{- $note := partial "loc.html" (dict "m" . "k" "megjegyzes") }}
-      {{- $kezd := time.AsTime .datum }}
-      <li>
-        {{- /* a nap az év nélkül: magyarul „09. 20.”, angolul „20 Sept”; többnapos: „10. 28.–11. 04.”, „28 Oct – 4 Nov”;
-             ha más évre nyúlik át, a vége teljes dátum; csak hónap ismert: a hónap neve */}}
-        <span class="nap">
-          {{- if .datum_vege }}{{ $veg := time.AsTime .datum_vege }}
-            {{- $vege := cond (eq $kezd.Year $veg.Year) (time.Format (T "dateShort") $veg) (time.Format (T "dateFormat") $veg) }}
-            <span class="nw">{{ time.Format (T "dateShort") $kezd }}</span>{{ if eq site.Language.Lang "en" }} – {{ else }}–{{ end }}<span class="nw">{{ $vege }}</span>
-          {{- else if .csak_honap }}{{ time.Format "January" $kezd }}
-          {{- else }}{{ time.Format (T "dateShort") $kezd }}{{ end -}}
-        </span>
-        <span class="esemeny">
-          {{- with .projekt }}<span class="esemeny-projekt">{{ index $projNev . | default . }}</span>{{ if $ev }}: {{ else }}. {{ end }}{{ end }}
-          {{- /* a pont nem kerül oda, ha az esemény neve már írásjellel végződik (! ? . …) */}}
-          {{- with $ev }}{{ $vege := strings.TrimSpace (partial "sima.html" $ev) | strings.TrimRight "*_" }}{{ with $r.link }}<a href="{{ . }}">{{ end }}{{ partial "md.html" $ev }}{{ with $r.link }}</a>{{ end }}{{ if not (findRE `[.!?…]$` $vege) }}.{{ end }} {{ end }}
-          {{- with $hely }}{{ partial "md.html" . }}{{ end }}{{ with $city }}{{ if $hely }}, {{ end }}{{ partial "md.html" . }}{{ end }}{{ if or $hely $city }}.{{ end }}
-          {{- if and .link (not $ev) }} <a href="{{ .link }}">{{ strings.FirstUpper (T "details") }}</a>.{{ end }}
-          {{- with .video }} <a href="{{ . }}">{{ strings.FirstUpper (T "video") }}</a>.{{ end }}
-          {{- with $note }} <span class="meta">{{ partial "md.html" . }}</span>{{ end -}}
-        </span>
-      </li>
-      {{- end }}{{ end }}
-    </ul>
+    {{- range $r := $rows }}{{ if eq (time.AsTime .datum).Year $y }}
+    {{- $ev := partial "loc.html" (dict "m" . "k" "esemeny") }}
+    {{- $hely := partial "loc.html" (dict "m" . "k" "helyszin") }}
+    {{- $city := partial "loc.html" (dict "m" . "k" "varos") }}
+    {{- $note := partial "loc.html" (dict "m" . "k" "megjegyzes") }}
+    {{- $proj := "" }}{{ with .projekt }}{{ $proj = index $projNev . | default . }}{{ end }}
+    {{- /* ha nincs eseménynév, a projekt neve a cím */}}
+    {{- $cim := $ev | default $proj }}
+    {{- $kezd := time.AsTime .datum }}
+    {{- /* a nap az év nélkül, kiírt hónappal: „szeptember 20.”, „20 September”; többnapos: „október 28. – november 4.”;
+         ha más évre nyúlik át, a vége évvel; ha csak a hónap ismert: „szeptember” */}}
+    {{- $nap := "" }}
+    {{- if .datum_vege }}{{ $veg := time.AsTime .datum_vege }}
+      {{- $nap = printf "%s – %s" (time.Format $napForma $kezd) (cond (eq $kezd.Year $veg.Year) (time.Format $napForma $veg) (time.Format (T "dateFormat") $veg)) }}
+    {{- else if .csak_honap }}{{ $nap = time.Format "January" $kezd }}
+    {{- else }}{{ $nap = time.Format $napForma $kezd }}{{ end }}
+    {{- $bits := slice $nap }}
+    {{- if and $proj $ev }}{{ $bits = $bits | append $proj }}{{ end }}
+    {{- $helyCity := delimit (slice $hely $city | complement (slice "")) ", " }}
+    {{- with $helyCity }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
+    {{- with .video }}{{ $bits = $bits | append (printf "<a href=\"%s\">%s</a>" . (strings.FirstUpper (T "video"))) }}{{ end }}
+    {{- with $note }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
+    <div class="sajto-sor">
+      <p class="sajto-cim">{{ with $r.link }}<a href="{{ . }}">{{ end }}{{ partial "md.html" $cim }}{{ with $r.link }}</a>{{ end }}</p>
+      <p class="meta">{{ delimit $bits " · " | safeHTML }}</p>
+    </div>
+    {{- end }}{{ end }}
   </dd>
   {{- end }}
 </dl>

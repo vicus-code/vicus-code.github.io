@@ -208,9 +208,6 @@ mark.todo {
 .sajto-lemez { color: inherit; text-decoration: none; }
 .sajto-lemez:hover { text-decoration: underline; }
 
-/* --- Események (gigs.html): évenként, soronként a nap és egy folyó sor, elöl félkövéren a projekt --- */
-.esemeny-projekt { font-weight: 700; }
-.nw { white-space: nowrap; }
 
 /* --- Képek --- */
 figure { margin: 0; }
@@ -379,7 +376,7 @@ body > main { flex: 1; }
 /* --- Évszámos sorok (CV, Szöveg, Megjelenések, Koncertek) ---
    Az évszám ugyanakkora, mint a szöveg, és vele egy alapvonalon áll (az első sorral); vékony (300), fekete, egyforma szélességű számjegyekkel.
    Az évoszlop a betűmérethez kötött: egy évszámnak 2,6 em, a CV évtartományainak (2011–2013) 5 em; utána mindig 1,25 em köz.
-   Telefonon a CV és a Koncertek évszáma a tételek fölé kerül (ott hosszabbak a sorok), a Szöveg és a Megjelenések évszáma oldalt marad. */
+   Telefonon a CV évtartományai a tételek fölé kerülnek, a többi évszám oldalt marad. A Koncertek tételei olyanok, mint a Megjelenéseké (sajto-sor). */
 .cv-list, .pubs { --evoszlop: 2.6em; --evkoz: 1.25em; }
 .cv .cv-list { --evoszlop: 5em; }
 .cv-list { display: grid; grid-template-columns: var(--evoszlop) minmax(0, 1fr); column-gap: var(--evkoz); row-gap: .45rem; align-items: baseline; margin: 0 0 1.5rem; }
@@ -388,13 +385,7 @@ body > main { flex: 1; }
   font-family: var(--serif); font-size: inherit; font-weight: 300; line-height: inherit; letter-spacing: 0;
   color: var(--ink); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap;
 }
-/* koncertek: évenként a napok egymás alatt; a nap (hónap, nap) szürkén, a sor elején, a saját oszlopában */
-.koncertlista { row-gap: 1.1rem; }
-.napsor { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
-.napsor li { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); column-gap: 1em; align-items: baseline; }
-.napsor .nap { color: var(--muted); font-weight: 300; font-variant-numeric: tabular-nums lining-nums; }
 @media (max-width: 30rem) {
-  .cv .cv-list, .koncertlista { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
-  .cv .cv-list dd, .koncertlista dd { margin-bottom: .9rem; }
-  .koncertlista dd { margin-top: .2rem; }
+  .cv .cv-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .cv .cv-list dd { margin-bottom: .9rem; }
 }
