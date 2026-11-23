@@ -6,6 +6,7 @@
   {{- else }}
   <div class="cover-empty" aria-hidden="true"></div>
   {{- end }}
-  <h3>{{ if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}{{ partial "md.html" $t }}</h3>
+  {{- $cim := partial "md.html" $t }}
+  <h3 class="dolt" data-t="{{ $cim | plainify | htmlUnescape }}"><span>{{ if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}{{ $cim }}</span></h3>
   <p class="meta">{{ partial "md.html" (partial "loc.html" (dict "m" .Params "k" "eloado")) }} · {{ .Date.Year }}</p>
 </a>

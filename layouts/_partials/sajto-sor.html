@@ -6,7 +6,7 @@
 {{- $szerzo := partial "loc.html" (dict "m" $t "k" "szerzo") }}
 {{- $cim := $t.cim | default $t.forras }}
 <div class="sajto-sor">
-  <p class="sajto-cim">{{ with $t.url }}<a href="{{ . }}">{{ end }}{{ partial "md.html" $cim }}{{ with $t.url }}</a>{{ end }}</p>
+  <p class="sajto-cim">{{ partial "cim-link.html" (dict "href" $t.url "html" (partial "md.html" $cim)) }}</p>
   {{- $bits := slice }}
   {{- if $t.cim }}{{ $bits = $bits | append (htmlEscape $t.forras) }}{{ end }}
   {{- with $szerzo }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}

@@ -1,0 +1,5 @@
+{{- /* Egy tétel címe linkként (Szöveg, Koncertek, Linkek): rámutatva dőlt lesz. A dőlt betű keskenyebb, ezért egy láthatatlan,
+     álló másolat (data-t, ::before) tartja a helyét: a cím nem lesz rövidebb, és alatta semmi nem ugrik feljebb.
+     Bemenet: dict "href" (ha üres, csak a cím áll ott) és "html" (a kész cím). */ -}}
+{{- with .href }}<a class="dolt" href="{{ . }}" data-t="{{ $.html | plainify | htmlUnescape }}"><span>{{ $.html }}</span></a>
+{{- else }}{{ .html }}{{ end -}}

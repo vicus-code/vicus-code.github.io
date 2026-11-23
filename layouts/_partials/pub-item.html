@@ -10,7 +10,7 @@
   <div>
     <p class="title">
       {{- if .Draft }}<span class="draft-badge">{{ T "draft" }}</span>{{ end }}
-      {{- with $href }}<a href="{{ . }}">{{ partial "md.html" $t }}</a>{{ else }}{{ partial "md.html" $t }}{{ end -}}
+      {{- partial "cim-link.html" (dict "href" $href "html" (partial "md.html" $t)) -}}
     </p>
     {{- /* ha a tételnek saját oldala is van, a külső link a listában is látszik (pl. Fanzin-anatómia → artpool.hu) */}}
     {{- $kulso := "" }}{{ if and .Params.link (eq $href .RelPermalink) }}{{ $kulso = .Params.link }}{{ end }}

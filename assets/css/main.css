@@ -120,6 +120,15 @@ em, i { font-style: italic; }
 .links a, .btn, .site-nav a, .kicker a, .lapozo-gomb { color: var(--muted); text-decoration: none; }
 .links a:hover, .btn:hover, .site-nav a:hover, .site-nav a[aria-current="page"], .kicker a:hover, .lapozo-gomb:hover { color: var(--ink); }
 .btn { display: inline-block; background: none; border: 0; padding: 0; cursor: pointer; }
+/* a tételek címei (Szöveg, Koncertek, Linkek; a Kép és a Zene képgombjai alatt): aláhúzás nélkül, rámutatva dőltek */
+a.dolt { text-decoration: none; }
+a.dolt:hover, a.dolt:focus-visible, .card:hover h3, .card:focus-visible h3 { font-style: italic; }
+/* a dőlt betű keskenyebb: egy láthatatlan, álló másolat ugyanabban a cellában tartja a cím szélességét és magasságát
+   (cim-link.html, release-card.html, vizualis/section.html) */
+a.dolt { display: inline-grid; }
+h3.dolt { display: grid; }
+.dolt > span, .dolt::before { grid-area: 1 / 1; }
+.dolt::before { content: attr(data-t); visibility: hidden; pointer-events: none; user-select: none; font-style: normal; }
 
 /* Jóváhagyásra váró szöveg (⟦…⟧) – csak az előnézetben látszik így */
 mark.todo {
@@ -167,7 +176,6 @@ mark.todo {
 .card .cover-empty { aspect-ratio: 1 / 1; background: var(--paper-2); }
 .card h3 { margin: .9rem 0 .2rem; }
 .card .meta { margin: 0; }
-.card:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 /* egy kiadvány oldala: balra a borító, jobbra az adatok */
 .release { display: grid; gap: 2rem 3.5rem; grid-template-columns: minmax(0, 1fr); padding-block: var(--fej) 1rem; }
 @media (min-width: 52rem) { .release { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } }
