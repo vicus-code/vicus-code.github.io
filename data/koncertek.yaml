@@ -14,11 +14,13 @@
   esemeny: Gondozási Központ, Fukasa
   esemeny_en: "Gondozási Központ, Fukasa"
   projekt: Gondozási Központ
+  link: https://www.lumen.hu/event-details-registration/gondozasi-kozpont-fukasa
 - datum: 2025-08-23
   helyszin: Hangfarm
   varos: Ellend
   esemeny: Ellendpont
   projekt: Gondozási Központ
+  link: https://telekomspots.hu/en/events/21847/ellendpont
   video: https://www.youtube.com/watch?v=vrSc6KnOS1E
 - datum: 2025-06-07
   helyszin: Recyclart
@@ -26,6 +28,7 @@
   varos_en: "Brussels"
   esemeny: SCKRUUHK (schiev × KRAAK × UH Fest)
   projekt: Gondozási Központ
+  link: https://kraak.net/concerts/sckruuhk
 - datum: 2025-03-28
   helyszin: Kondor Béla Közösségi Ház
   helyszin_en: "Kondor Béla Community House"
@@ -33,6 +36,7 @@
   esemeny: "A *Nem az a punk, aki…* 2. kötetének (Nők a magyar undergroundban) bemutatója"
   esemeny_en: "Launch of *Nem az a punk, aki…* vol. 2 (Women in the Hungarian underground)"
   projekt: Gondozási Központ
+  link: https://www.nuskull.hu/hirek/koncertekkel-egybekotott-konyvbemutaton-hivjak-fel-a-figyelmet-a-nok-szerepere-az-undergroundban
 - datum: 2025-02-07
   helyszin: Lumen
   varos: Budapest
@@ -46,6 +50,7 @@
   esemeny: A Mérce támogatói estje
   esemeny_en: "Mérce supporters’ night"
   projekt: Gondozási Központ
+  link: https://merce.hu/2024/05/21/orokre-eleg-volt-ebbol-beszelgess-es-bulizz-a-mercevel-a-golyaban/
 - datum: 2023-02-26
   helyszin: Noise'n'Roses
   varos: Budapest
@@ -89,6 +94,7 @@
   esemeny: Határidő buli (Keret Blog, Kikeltető)
   esemeny_en: "Határidő party (Keret Blog, Kikeltető)"
   projekt: Holnaplányok
+  link: https://port.hu/esemeny/zene/kikelteto-hatarido-buli-2021/event-5843104
 - datum: 2021-08-14
   helyszin: Kolorádó Fesztivál, Keret színpad
   helyszin_en: "Kolorádó Festival, Keret stage"
@@ -128,6 +134,7 @@
   esemeny: Tegnapsrácok-buli az Ukmukfukk Zinefeszt keretében
   esemeny_en: "Tegnapsrácok party, part of Ukmukfukk Zine Fest"
   projekt: Holnaplányok
+  link: https://port.hu/esemeny/zene/ukmukfund-tamogatoi-vurstli/event-5711614
 - datum: 2020-01-24
   helyszin: Grand Café
   varos: Szeged
@@ -196,8 +203,8 @@
 - datum: 2019-08-29
   helyszin: Auróra
   varos: Budapest
-  esemeny: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Martus, Holnaplányok"
-  esemeny_en: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Martus, Holnaplányok"
+  esemeny: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Barkóczi Noémi, Holnaplányok"
+  esemeny_en: "Ladyfest Budapest: Lonesome Hot Dudes (AT), Noémi Barkóczi, Holnaplányok"
   projekt: Holnaplányok
   link: https://www.facebook.com/events/2589333864424446/
 - datum: 2019-09-06
@@ -234,7 +241,7 @@
   esemeny: "13\\. LIFT Fesztivál – buli nőknek"
   esemeny_en: "13th LIFT Festival – party for women"
   projekt: Holnaplányok
-  link: https://www.facebook.com/events/2323185854458496/
+  link: https://labrisz.hu/en/lift-fesztival/
 # Az Aires Altos első évei (Facebook-export és YouTube, 2026. november)
 - datum: 2013-05-31
   helyszin: Hátsó Kapu
@@ -242,7 +249,13 @@
   esemeny: Songwriter Showcase – a zenekar első koncertje
   esemeny_en: "Songwriter Showcase – the band’s first concert"
   projekt: Aires Altos
+  link: https://444.hu/2013/05/31/csepel-csajok-es-egy-kad-ver-hetvegi-buliajanlo
   video: https://www.youtube.com/watch?v=CYttl37pubg
+- datum: 2013-07-22
+  helyszin: A38, Orrterasz
+  varos: Budapest
+  esemeny: Rakéta
+  projekt: Aires Altos
 - datum: 2013-08-16
   helyszin: Index
   varos: Budapest
@@ -255,8 +268,15 @@
   esemeny: Wormkids, Aires Altos
   esemeny_en: "Wormkids, Aires Altos"
   projekt: Aires Altos
-- datum: 2014-01-25
+- datum: 2013-12-13
   helyszin: Hátsó Kapu
+  varos: Budapest
+  esemeny: "Songwriter Showcase: Freddie (US), Aires Altos, Fancy Dress Party, Gustave Tiger"
+  esemeny_en: "Songwriter Showcase: Freddie (US), Aires Altos, Fancy Dress Party, Gustave Tiger"
+  projekt: Aires Altos
+  link: https://index.hu/kultur/2013/12/13/luca_napi_horror_sorrel_divakkal/
+- datum: 2014-01-25
+  helyszin: Csontreál
   varos: Budapest
   esemeny: "ColLab: Aires Altos, Gerencsér Gerda, Szabó Kristóf"
   esemeny_en: "ColLab: Aires Altos, Gerda Gerencsér, Kristóf Szabó"
@@ -300,7 +320,7 @@
   esemeny: Rakéta Fesztivál 2014
   esemeny_en: "Rakéta Festival 2014"
   projekt: Aires Altos
-  link: https://www.facebook.com/events/525272827598373/
+  link: https://welovebudapest.com/en/article/2014/07/19/sound-city-raketa-festival-2014/
 - datum: 2016-11-12
   helyszin: Brancs
   varos: Eger
@@ -315,18 +335,28 @@
   projekt: Aires Altos
   link: https://www.facebook.com/events/274860816257276/
   video: https://www.youtube.com/watch?v=HBa6mAep9JA
+- datum: 2017-12-02
+  # A helyszín nem ismert
+  helyszin: ""
+  varos: ""
+  esemeny: "Stenk születésnap: Dope Calypso, Aires Altos"
+  esemeny_en: "Stenk birthday: Dope Calypso, Aires Altos"
+  projekt: Aires Altos
+  link: https://444.hu/2017/12/01/lehet-menni-viselkedni/
 - datum: 2017-12-20
   helyszin: Gólya
   varos: Budapest
   esemeny: "NéhaÖT: Barna Margit & Bárdits Éva"
   esemeny_en: "NéhaÖT: Margit Barna & Éva Bárdits"
   projekt: Bárdits Éva
+  link: https://www.facebook.com/events/153690881940647/
 - datum: 2019-09-29
   helyszin: Auróra
   varos: Budapest
   esemeny: "Pile (US), The Somersault Boy, Holnaplányok"
   esemeny_en: "Pile (US), The Somersault Boy, Holnaplányok"
   projekt: Holnaplányok
+  link: https://444.hu/jo/2019/09/27/fejjel-elore-a-hetvegebe
 - datum: 2019-12-30
   helyszin: Gólya
   varos: Budapest
