@@ -1,7 +1,12 @@
 {{- /* Kép képaláírással és fotós nevével. A hívó a nyelvnek megfelelő alt/felirat értéket adja.
-     „ar”: a kép szélesség/magasság aránya, a sorokba rendezett galériához (gallery.html). */ -}}
+     „ar”: a kép szélesség/magasság aránya, a sorokba rendezett galériához (gallery.html).
+     A kép link a nagy változatára (legfeljebb 2000 px széles): a main.js az oldalon nyitja meg nagyban, szkript nélkül magában nyílik. */ -}}
+{{- $nagy := "" }}
+{{- with resources.Get (strings.TrimPrefix "/" .kep) }}{{ $w := cond (gt .Width 2000) 2000 .Width }}{{ $nagy = (.Resize (printf "%dx webp q80" $w)).RelPermalink }}{{ end }}
 <figure{{ with .ar }} style="--ar: {{ . | safeCSS }}"{{ end }}>
-  {{ partial "img.html" (dict "src" .kep "alt" (.alt | default .felirat) "sizes" (.sizes | default "(min-width: 74rem) 22rem, (min-width: 40rem) 45vw, 92vw") "class" .class "loading" .loading) }}
+  {{ with $nagy }}<a class="nagyit" href="{{ . }}">{{ end }}
+  {{- partial "img.html" (dict "src" .kep "alt" (.alt | default .felirat) "sizes" (.sizes | default "(min-width: 74rem) 22rem, (min-width: 40rem) 45vw, 92vw") "class" .class "loading" .loading) }}
+  {{- with $nagy }}</a>{{ end }}
   {{- if or .felirat .credit }}
   <figcaption>
     {{- with .felirat }}{{ partial "md.html" . }}{{ end }}

@@ -143,3 +143,56 @@ document.addEventListener('click', function (e) {
     clearTimeout(idozito); idozito = setTimeout(mind, 150);
   });
 })();
+
+/* Képek nagyban (figure.html, „nagyit” link): kattintásra a kép az egész képernyőn, fehéren, alatta a felirata.
+   Nyilakkal (vagy a kép bal/jobb felére kattintva, telefonon húzással) az ugyanabban a galériában lévő előző/következő kép;
+   Esc, a ×, vagy a képen kívül kattintva bezárul. */
+(function () {
+  var linkek = document.querySelectorAll('a.nagyit');
+  if (!linkek.length || typeof HTMLDialogElement !== 'function') return;
+  var en = document.documentElement.lang === 'en';
+  var d = document.createElement('dialog');
+  d.className = 'nagykep';
+  d.setAttribute('aria-label', en ? 'Image' : 'Kép');
+  d.innerHTML = '<button type="button" class="nagykep-zar" aria-label="' + (en ? 'Close' : 'Bezár') + '">×</button>' +
+    '<figure><img alt=""><figcaption class="meta"></figcaption></figure>';
+  document.body.appendChild(d);
+  var kep = d.querySelector('img'), felirat = d.querySelector('figcaption'), sor = [], i = 0;
+  function mutat(n) {
+    i = (n + sor.length) % sor.length;
+    var a = sor[i], k = a.querySelector('img'), fc = a.closest('figure').querySelector('figcaption');
+    kep.src = a.href; kep.alt = k ? k.alt : '';
+    felirat.innerHTML = fc ? fc.innerHTML : '';
+    felirat.hidden = !fc;
+  }
+  [].forEach.call(linkek, function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      var g = a.closest('.gallery') || document;
+      sor = [].slice.call(g.querySelectorAll('a.nagyit'));
+      mutat(sor.indexOf(a));
+      d.showModal();
+    });
+  });
+  d.addEventListener('close', function () { kep.removeAttribute('src'); });
+  d.querySelector('.nagykep-zar').addEventListener('click', function () { d.close(); });
+  d.addEventListener('click', function (e) {
+    if (e.target === kep) {
+      if (sor.length < 2) return;
+      var r = kep.getBoundingClientRect();
+      mutat(i + (e.clientX < r.left + r.width / 2 ? -1 : 1));
+    } else if (!e.target.closest('figcaption')) d.close();
+  });
+  d.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { mutat(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { mutat(i - 1); e.preventDefault(); }
+  });
+  var x0 = null;
+  d.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  d.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50 && sor.length > 1) mutat(i + (dx < 0 ? 1 : -1));
+  });
+})();

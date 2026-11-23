@@ -139,7 +139,7 @@ mark.todo {
 .draft-badge { display: inline-block; color: var(--muted); border: 1px dashed var(--muted); padding: .05rem .4rem; margin: 0 .5rem .4rem 0; vertical-align: middle; }
 
 /* --- Fejléc --- */
-/* egy sor: név | menü (jobbra) | a másik nyelv (a jobb felső sarokban, kisebben, a menütől nagyobb közzel); a sorok az alapvonalukon.
+/* egy sor: név | menü (jobbra) | a másik nyelv (a jobb felső sarokban, a menüpontok méretében, a menütől nagyobb közzel); a sorok az alapvonalukon.
    A sor magassága minden oldalon ugyanannyi (2 × ,9rem + a kis betű sora), a nyitóoldalon is, ahol csak a nyelv áll benne. */
 .fejsor { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "nev menu nyelv"; align-items: baseline; column-gap: 2rem; row-gap: .6rem; padding-block: .9rem; }
 .fejsor .site-name { grid-area: nev; }
@@ -147,7 +147,7 @@ mark.todo {
 .banan-jel { display: block; align-self: center; line-height: 0; --banan: 1.75rem; margin-block: calc((var(--t-small) * 1.4 - var(--banan)) / 2); }
 .banan-jel img { display: block; height: var(--banan); width: auto; }
 .fejsor .site-nav { grid-area: menu; justify-self: end; }
-.nyelv { grid-area: nyelv; justify-self: end; margin-left: 1.25rem; font-family: var(--serif); font-size: .8125rem; line-height: calc(var(--t-small) * 1.4); color: var(--muted); text-decoration: none; }
+.nyelv { grid-area: nyelv; justify-self: end; margin-left: 1.25rem; font-family: var(--serif); font-size: var(--t-small); line-height: calc(var(--t-small) * 1.4); color: var(--muted); text-decoration: none; }
 .nyelv { font-style: italic; }
 .nyelv:hover, .nyelv:focus-visible { color: var(--ink); font-style: normal; }
 /* keskeny képernyőn: fent a név és a nyelv, alattuk a menü */
@@ -403,3 +403,13 @@ body > main { flex: 1; }
 /* Zine oldal, közreműködések: az év egyszer, a tételek alatta egymás alatt, a CV soraival egyező közzel */
 .kozremukodes dd p { margin: 0 0 .45rem; }
 .kozremukodes dd p:last-child { margin-bottom: 0; }
+
+/* --- Képek nagyban (main.js, figure.html „nagyit”): fehér, az egész képernyő; a kép a lehető legnagyobban, alatta a felirat --- */
+.nagyit { display: block; cursor: zoom-in; }
+.nagykep { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: var(--paper); color: var(--ink); }
+.nagykep::backdrop { background: var(--paper); }
+.nagykep figure { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 3rem var(--gutter) 1.25rem; box-sizing: border-box; cursor: zoom-out; }
+.nagykep img { min-height: 0; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; cursor: pointer; }
+.nagykep figcaption { padding: 0; text-align: center; cursor: auto; }
+.nagykep-zar { position: absolute; top: .5rem; right: var(--gutter); background: none; border: 0; padding: .25rem; font: 300 1.75rem/1 var(--serif); color: var(--muted); cursor: pointer; }
+.nagykep-zar:hover, .nagykep-zar:focus-visible { color: var(--ink); }
