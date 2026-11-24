@@ -8,7 +8,7 @@
 <header class="site-header">
   <div class="wrap fejsor">
     {{- if not .IsHome }}
-    {{- /* a név helyén egy pici banán (a kiadó logója, ugyanaz, mint a böngészőfül ikonja); a név a felolvasóknak szól */}}
+    {{- /* a név helyén egy pici banán (a kiadó logója); a név a felolvasóknak szól */}}
     <a class="site-name banan-jel" href="{{ "/" | relLangURL }}">
       {{- with resources.Get "images/agencia/banan-szines.png" }}{{ with .Resize "x112 png" }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">{{ end }}{{ end -}}
       <span class="visually-hidden">{{ site.Title }}</span></a>
