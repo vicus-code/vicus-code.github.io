@@ -429,3 +429,6 @@ body > main { flex: 1; }
 .feliratkozas input:focus-visible { outline: 1px solid var(--ink); outline-offset: 0; border-color: var(--ink); }
 .feliratkozas button { justify-self: start; margin-top: .2rem; font: inherit; font-size: var(--t-body); line-height: 1.4; color: var(--ink); background: none; border: 1px solid var(--ink); border-radius: 0; padding: .4rem 1rem; cursor: pointer; }
 .feliratkozas button:hover, .feliratkozas button:focus-visible { font-style: italic; }
+/* a gomb alatt egy mondat arról, hogy ez hírlevél; kicsi és szürke, mint a címke */
+.feliratkozas-adat { margin: .1rem 0 0; font-size: var(--t-small); line-height: 1.45; color: var(--muted); }
+.feliratkozas-adat p { margin: 0; }
