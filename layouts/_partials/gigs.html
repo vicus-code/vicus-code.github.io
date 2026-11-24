@@ -36,7 +36,7 @@
     {{- with .video }}{{ $bits = $bits | append (printf "<a href=\"%s\">%s</a>" . (strings.FirstUpper (T "video"))) }}{{ end }}
     {{- with $note }}{{ $bits = $bits | append (partial "md.html" .) }}{{ end }}
     <div class="sajto-sor">
-      <p class="sajto-cim">{{ partial "cim-link.html" (dict "href" $r.link "html" (partial "md.html" $cim)) }}</p>
+      <p class="sajto-cim">{{ partial "cim-link.html" (dict "href" $r.link "html" (partial "md.html" $cim) "jel" true) }}</p>
       <p class="meta">{{ delimit $bits " · " | safeHTML }}</p>
     </div>
     {{- end }}{{ end }}

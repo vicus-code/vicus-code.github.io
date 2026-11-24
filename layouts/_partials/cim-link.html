@@ -1,5 +1,13 @@
 {{- /* Egy tétel címe linkként (Szöveg, Koncertek, Linkek): rámutatva dőlt lesz. A dőlt betű keskenyebb, ezért egy láthatatlan,
      álló másolat (data-t, ::before) tartja a helyét: a cím nem lesz rövidebb, és alatta semmi nem ugrik feljebb.
-     Bemenet: dict "href" (ha üres, csak a cím áll ott) és "html" (a kész cím). */ -}}
-{{- with .href }}<a class="dolt" href="{{ . }}" data-t="{{ $.html | plainify | htmlUnescape }}"><span>{{ $.html }}</span></a>
+     Bemenet: dict "href" (ha üres, csak a cím áll ott), "html" (a kész cím) és "jel" (ha igaz, a cím végén egy kis ferde nyíl
+     mutatja, hogy link: a koncertlistában, ahol nem minden sor link). A nyíl az utolsó szóval egy tördelhetetlen egységben áll,
+     hogy keskeny képernyőn se kerüljön egyedül új sorba. */ -}}
+{{- $html := string .html }}
+{{- if .jel }}
+  {{- $nyil := `<svg class="link-jel" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path d="M2.5 7.5 7.5 2.5M3.5 2.5h4v4"/></svg>` }}
+  {{- with index (findRE `[^\s<>]+$` $html 1) 0 }}{{ $html = printf "%s<span class=\"nw\">%s%s</span>" (strings.TrimSuffix . $html) . $nyil }}
+  {{- else }}{{ $html = printf "%s%s" $html $nyil }}{{ end }}
+{{- end }}
+{{- with .href }}<a class="dolt{{ if $.jel }} jeles{{ end }}" href="{{ . }}" data-t="{{ $.html | plainify | htmlUnescape }}"><span>{{ $html | safeHTML }}</span></a>
 {{- else }}{{ .html }}{{ end -}}

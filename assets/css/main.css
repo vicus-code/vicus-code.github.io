@@ -129,6 +129,11 @@ a.dolt { display: inline-grid; }
 h3.dolt { display: grid; }
 .dolt > span, .dolt::before { grid-area: 1 / 1; }
 .dolt::before { content: attr(data-t); visibility: hidden; pointer-events: none; user-select: none; font-style: normal; }
+/* a koncertlistában a linkes sorok címe végén egy kis szürke ferde nyíl (rámutatva fekete); a láthatatlan másolat neki is helyet hagy */
+.link-jel { display: inline-block; width: .62em; height: .62em; margin-left: .3em; vertical-align: .02em; fill: none; stroke: var(--muted); stroke-width: 1.1; stroke-linecap: square; }
+a.dolt:hover .link-jel, a.dolt:focus-visible .link-jel { stroke: var(--ink); }
+.dolt.jeles::before { padding-right: .92em; }
+.dolt .nw { white-space: nowrap; }
 
 /* Jóváhagyásra váró szöveg (⟦…⟧) – csak az előnézetben látszik így */
 mark.todo {
