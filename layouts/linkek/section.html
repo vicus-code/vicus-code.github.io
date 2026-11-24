@@ -2,7 +2,7 @@
 {{ partial "oldalfej.html" . }}
 {{- /* A cím alatt két oszlop: balra a megjelenések évenként (mint a Szöveg oldal tételei), jobbra keret nélkül a profilok (logóval);
      a profilok első sora a megjelenések első sorával egy magasságban kezdődik, és görgetéskor a helyén marad (sticky).
-     Telefonon a profilok a cím alatt, a megjelenések előtt állnak. A két rész címe csak a felolvasóknak szól. */}}
+     A profilok alatt a feliratkozó űrlap. Telefonon a profilok és az űrlap a cím alatt, a megjelenések előtt állnak. A két rész címe csak a felolvasóknak szól. */}}
 <div class="wrap linkek-oldal">
   {{- with site.GetPage "/zene" }}
   <section id="megjelenesek">
@@ -13,6 +13,7 @@
   <aside class="profilok" aria-labelledby="social-cim">
     <h2 class="visually-hidden" id="social-cim">{{ T "social" }}</h2>
     {{ partial "linksor.html" . }}
+    {{ partial "feliratkozas.html" . }}
   </aside>
 </div>
 {{ end }}

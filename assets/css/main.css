@@ -332,13 +332,13 @@ body > main { flex: 1; }
 /* Rámutatáskor dőltté váló szöveg ugrás nélkül: két láthatatlan, nulla magas másolat (::before álló, ::after dőlt)
    lefoglalja a szélesebb változat helyét. Így a doboz mindig
    ugyanolyan széles: a dőltté váló szöveg semmit nem tol el, és a doboz sem keskenyedik ki az egér alól. */
-.nyito-menu a, .nyelv { display: inline-flex; flex-direction: column; align-items: flex-start; }
-.nyito-menu a::before, .nyito-menu a::after, .nyelv::before, .nyelv::after {
+.nyito-menu a, .nyelv, .feliratkozas button { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.nyito-menu a::before, .nyito-menu a::after, .nyelv::before, .nyelv::after, .feliratkozas button::before, .feliratkozas button::after {
   content: attr(data-t); height: 0; overflow: hidden; visibility: hidden; pointer-events: none; user-select: none; font-style: normal;
 }
-.nyito-menu a::after, .nyelv::after { font-style: italic; }
+.nyito-menu a::after, .nyelv::after, .feliratkozas button::after { font-style: italic; }
 /* a másolatok a szöveg után állnak, így a doboz alapvonala a szövegé marad */
-.nyito-menu a::before, .nyelv::before, .nyito-menu a::after, .nyelv::after { order: 1; }
+.nyito-menu a::before, .nyelv::before, .nyito-menu a::after, .nyelv::after, .feliratkozas button::before, .feliratkozas button::after { order: 1; }
 
 /* --- Lapozható zine (layouts/_partials/lapozo.html + main.js): telefonon és JS nélkül oldalra húzható lapsor, széles képernyőn kinyitható könyv 3D-ben forduló lapokkal --- */
 .lapozo { margin-block: 2.5rem 1rem; }
@@ -418,3 +418,14 @@ body > main { flex: 1; }
 .nagykep figcaption { padding: 0; text-align: center; cursor: auto; }
 .nagykep-zar { position: absolute; top: .5rem; right: var(--gutter); background: none; border: 0; padding: .25rem; font: 300 1.75rem/1 var(--serif); color: var(--muted); cursor: pointer; }
 .nagykep-zar:hover, .nagykep-zar:focus-visible { color: var(--ink); }
+
+/* --- Feliratkozó űrlap (feliratkozas.html; CV az e-mail alatt, Linkek a profilok alatt): e-mail és gomb egymás alatt.
+   Fölötte kicsi szürke címke; a mező vékony szürke keretben, szögletesen; a gomb fekete keretes, rámutatva dőlt --- */
+.feliratkozas { display: grid; gap: .8rem; max-width: 20rem; margin: 0; }
+.profilok .feliratkozas { margin-top: 2.5rem; }
+.feliratkozas label { display: grid; gap: .3rem; }
+.feliratkozas label span { font-size: var(--t-small); line-height: 1.4; color: var(--muted); }
+.feliratkozas input { font: inherit; font-size: var(--t-body); line-height: 1.4; color: var(--ink); background: var(--paper); border: 1px solid var(--muted); border-radius: 0; padding: .4rem .55rem; width: 100%; box-sizing: border-box; -webkit-appearance: none; appearance: none; }
+.feliratkozas input:focus-visible { outline: 1px solid var(--ink); outline-offset: 0; border-color: var(--ink); }
+.feliratkozas button { justify-self: start; margin-top: .2rem; font: inherit; font-size: var(--t-body); line-height: 1.4; color: var(--ink); background: none; border: 1px solid var(--ink); border-radius: 0; padding: .4rem 1rem; cursor: pointer; }
+.feliratkozas button:hover, .feliratkozas button:focus-visible { font-style: italic; }

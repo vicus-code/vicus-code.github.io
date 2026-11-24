@@ -3,4 +3,6 @@
 {{- with partial "loc.html" (dict "m" .Params "k" "email") }}
 <p class="email-line"{{ with partial "loc.html" (dict "m" $.Params "k" "email_olvaso") }} aria-label="{{ . }}"{{ end }}>{{ . }}</p>
 {{- end }}
+{{- /* az e-mail-cím alatt a feliratkozó űrlap */}}
+{{ partial "feliratkozas.html" . }}
 {{- /* a linkek (Instagram, Ágencia, Subvert, YouTube, Behance, Academia.edu) nem ismétlődnek itt: ott vannak az alsó menüben */}}

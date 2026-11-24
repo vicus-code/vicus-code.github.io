@@ -1,0 +1,14 @@
+{{- /* Feliratkozó űrlap (CV: contact.html, Linkek: linkek/section.html): e-mail és Feliratkozás gomb
+     (név nincs: a Buttondown ingyenes csomagja a nevet nem tárolja).
+     Sima HTML-űrlap, szkript nélkül: a Buttondown embed-subscribe címére küld (docs.buttondown.com, building-your-subscriber-base),
+     új lapon nyílik a Buttondown válasza (ott lehet a CAPTCHA vagy a hibajavítás), az oldal nyitva marad.
+     A Buttondown alapból megerősítő levelet küld (double opt-in).
+     $felh: a Buttondown-felhasználónév. */ -}}
+{{- $felh := "agenciakoll" }}
+{{- $en := eq site.Language.Lang "en" }}
+{{- $gomb := cond $en "Subscribe" "Feliratkozás" }}
+<form class="feliratkozas" action="https://buttondown.com/api/emails/embed-subscribe/{{ $felh }}" method="post" target="_blank">
+  <label><span>E-mail</span><input type="email" name="email" autocomplete="email" required></label>
+  <input type="hidden" name="embed" value="1">
+  <button type="submit" data-t="{{ $gomb }}">{{ $gomb }}</button>
+</form>
