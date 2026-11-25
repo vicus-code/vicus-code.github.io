@@ -148,9 +148,9 @@ mark.todo {
    A sor magassága minden oldalon ugyanannyi (2 × ,9rem + a kis betű sora), a nyitóoldalon is, ahol csak a nyelv áll benne. */
 .fejsor { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "nev menu nyelv"; align-items: baseline; column-gap: 2rem; row-gap: .6rem; padding-block: .9rem; }
 .fejsor .site-name { grid-area: nev; }
-/* a név helyén a banán: a sor közepén, és a sor magasságát nem növeli (negatív margó), így a címek ugyanott maradnak */
-.banan-jel { display: block; align-self: center; line-height: 0; --banan: 1.75rem; margin-block: calc((var(--t-small) * 1.4 - var(--banan)) / 2); }
-.banan-jel img { display: block; height: var(--banan); width: auto; }
+/* a név helyén a virág: a sor közepén, és a sor magasságát nem növeli (negatív margó), így a címek ugyanott maradnak */
+.virag-jel { display: block; align-self: center; line-height: 0; --jel: 1.75rem; margin-block: calc((var(--t-small) * 1.4 - var(--jel)) / 2); }
+.virag-jel img { display: block; height: var(--jel); width: auto; }
 .fejsor .site-nav { grid-area: menu; justify-self: end; }
 .nyelv { grid-area: nyelv; justify-self: end; margin-left: 1.25rem; font-family: var(--serif); font-size: var(--t-small); line-height: calc(var(--t-small) * 1.4); color: var(--muted); text-decoration: none; }
 .nyelv { font-style: italic; }

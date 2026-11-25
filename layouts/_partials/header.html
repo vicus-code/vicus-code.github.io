@@ -1,5 +1,5 @@
 {{- /* Fejléc. Jobbra fent, minden oldalon ugyanott, a másik nyelv a menüpontok méretében, kiírva, dőlten (English / Magyar; rámutatva álló): külön áll, nem a menü része.
-     Aloldalon balra egy pici banán (a nyitóoldalra visz), jobbra a menü; telefonon a banán és a nyelv egy sorban, alattuk a menü.
+     Aloldalon balra egy pici piros virág (a nyitóoldalra visz), jobbra a menü; telefonon a virág és a nyelv egy sorban, alattuk a menü.
      A nyitóoldalon csak a nyelv áll itt; a név és a menü ott az oldalon van (home.html). */ -}}
 {{- $other := "" }}
 {{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}
@@ -8,9 +8,9 @@
 <header class="site-header">
   <div class="wrap fejsor">
     {{- if not .IsHome }}
-    {{- /* a név helyén egy pici banán (a kiadó logója); a név a felolvasóknak szól */}}
-    <a class="site-name banan-jel" href="{{ "/" | relLangURL }}">
-      {{- with resources.Get "images/agencia/banan-szines.png" }}{{ with .Resize "x112 png" }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">{{ end }}{{ end -}}
+    {{- /* a név helyén egy pici piros virág (ugyanaz, mint a böngészőfül ikonja); a név a felolvasóknak szól */}}
+    <a class="site-name virag-jel" href="{{ "/" | relLangURL }}">
+      {{- with resources.Get "images/virag-jel.png" }}{{ with .Resize "112x png" }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">{{ end }}{{ end -}}
       <span class="visually-hidden">{{ site.Title }}</span></a>
     <nav class="site-nav" aria-label="{{ T "mainMenu" }}">
       <ul>
