@@ -12,5 +12,9 @@
       {{- end }}
     </ul>
   </nav>
+  {{- /* a menü alatt, jobbra lent a piros virág (ugyanaz, mint az ikon) */}}
+  {{- with resources.Get "images/virag-jel.png" }}{{ with .Resize "240x png" }}
+  <img class="nyito-virag" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
+  {{- end }}{{ end }}
 </div>
 {{ end }}

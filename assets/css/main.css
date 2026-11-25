@@ -328,6 +328,8 @@ body > main { flex: 1; }
 .nyito-menu a { font-weight: 300; color: var(--ink); text-decoration: none; }
 /* rámutatva dőlt lesz (ugyanazzal a vastagsággal); a név sosem */
 .nyito-menu a:hover, .nyito-menu a:focus-visible { font-style: italic; }
+/* a piros virág a menü alatt, a sáv kb. 70%-ánál, másfél sor nagyságban */
+.nyito-virag { display: block; width: calc(var(--sor) * 1.5); height: auto; margin: calc(var(--sor) * 1.1) 0 0 calc(70% - var(--sor) * .75); }
 
 /* Rámutatáskor dőltté váló szöveg ugrás nélkül: két láthatatlan, nulla magas másolat (::before álló, ::after dőlt)
    lefoglalja a szélesebb változat helyét. Így a doboz mindig
